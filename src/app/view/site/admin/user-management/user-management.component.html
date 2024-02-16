@@ -1,0 +1,142 @@
+<div class="columns is-mobile">
+  <div class="column">
+    <h3 class="smart-header-text ">
+      User Management System</h3>
+  </div>
+  <div class="column is-4 is-flex is-justify-content-end smart-mobile-hide">
+    <button class="button smart-action-button-secondary" (click)="openForm()">
+      <i class="fa fa-user-plus p-1"></i>Add User
+    </button>     
+  </div>
+  <div class="column is-3 is-flex is-justify-content-end smart-desk-hide">   
+    <figure class="image is-32x32" (click)="openForm()">
+      <img class="is-rounded" src="assets/icons/add-100-blue.png">
+    </figure>
+  </div>
+</div>
+
+<div class="card">
+  <!-- <div class="card-header">
+      <h3 class="card-header-title smart-header-text">
+        User Management Systems</h3>
+        <button class="button smart-action-button-secondary" (click)="openForm()">
+          <i class="fa-plus is-large"></i>Upload
+        </button>
+    </div> -->
+  <div class="card-content">
+    <div class="content smart-user-table">
+      <app-smart-tablenew [data]="tableData" [tconfig]="tableConfigNew">
+      </app-smart-tablenew>
+    </div>
+  </div>
+</div>
+
+<ng-template #employeeImage let-item>  
+  <div class="media smart-profile-media">
+    <div class="media-left">
+      <figure class="image is-48x48">
+        <img class="is-rounded" [src]="item.profile_img" alt="">
+      </figure>  
+    </div>
+    <div class="media-content">
+      <span class="">{{item.ename}}</span>
+      </div>
+    </div>   
+</ng-template>
+
+<ng-template #createform let-c="close" let-d="dismiss">
+  <!-- <div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel" class="ft-popup-heading text-center brand-text-color">User Management
+      Form</h5>
+    <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
+  </div> -->
+  <div class="modal-body">
+    <app-smart-form-new [smartFormConfig]="createFormConfig()" [smartFormData]="formData"></app-smart-form-new>
+  </div>
+</ng-template>
+
+
+<ng-template #deleteForm let-c="close" let-d="dismiss">
+  <div class="modal-header notification is-danger">
+    <h5 class="modal-title" id="exampleModalLabel" class="ft-popup-heading text-center brand-text-color">
+      Change Password Confirmation
+    </h5>
+    <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    Are you sure you want to Change Password
+  </div>
+  <div class="modal-footer">
+    <div class="pull-right m-2 buttons">
+      <button class="button is-success">
+        <span class="icon"><i class="fa fa-check" aria-hidden="true" (click)="changePassword('Yes')"></i></span>
+        <span>Yes</span>
+      </button>
+      <button class="button is-danger">
+        <span class="icon"><i class="fa fa-times" aria-hidden="true" (click)="changePassword('No')"></i></span>
+        <span>No</span>
+      </button>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #viewForm let-c="close" let-d="dismiss">
+  <div class="modal-body">
+    <div class="columns">
+      <div class="column is-8">
+        <div class="card-content p-0">
+          <div class="table is-fullwidth">
+            <tr>
+              <td class="csp-1"><i class="fa fa-id-card"></i>IC No:</td>
+              <td>{{viewData?.euserid}}</td>
+            </tr>
+            <tr>
+              <td class="csp-1"> <i class="fa fa-user"></i>Name:</td>
+              <td>{{viewData?.ename}}</td>
+            </tr>
+            <tr>
+              <td class="csp-1"><i class="fa fa-phone"></i>Intercom Number:</td>
+              <td>{{viewData?.intercome_number}}</td>
+            </tr>
+            <tr>
+              <td class="csp-1"><i class="fa fa-mobile"></i>Mobile Number:</td>
+              <td>{{viewData?.mobile_no}}</td>
+            </tr>
+            <tr class="csp-1">
+              <td> <i class="fa fa-envelope"></i>Email:</td>
+              <td>{{viewData?.emailid}}</td>
+            </tr>
+            <tr class="csp-1">
+              <td> <i class="fa fa-group-arrows-rotate"></i>Sec/Div/Group:</td>
+              
+              <td >{{viewData?.sd_org_id}}</td>
+            </tr>
+            <tr class="csp-1">
+              <td class="csp-1 has-text-weight-bold"> <i class="fa fa-user "></i>Designation:</td>
+              <td>{{viewData?.designation}}</td>
+          </tr>
+          </div>
+        </div>
+      </div>
+      <div class="column is-4">
+        <div class="card mb-5">
+          <div class="card-image">
+            <figure class="image is-4by3 is-center">
+              <div class="imgBox">
+                <img [src]="[viewData?.profile_img]" class="image" alt="Profile" />
+              </div>
+            </figure>
+          </div>
+        </div>
+        <h1 class="is-size-5 is-bold is-underlined">Role</h1>
+        <div class="">
+          <ol>
+            <li *ngFor="let role of viewData.role">
+              {{role.label}}
+            </li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

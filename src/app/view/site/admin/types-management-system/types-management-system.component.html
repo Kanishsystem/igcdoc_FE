@@ -1,0 +1,51 @@
+<div class="columns">
+    
+    <div class="column is-8">
+      <h3 class="card-header-title smart-header-text">
+       
+        Types Management Systems </h3> 
+        </div> 
+        <div class="column is-4 is-flex is-justify-content-end" >
+        <button class="button smart-action-button-secondary" (click)=" openForm()">
+          <i class="fa-plus is-large"></i>Add
+        </button>
+        </div>   
+    </div>
+    <div class="columns">
+      <div class="column is-12">
+    <div class="card">
+    <div class="card-content">
+      <div class="content">
+     
+      <app-smart-tablenew [data]="tableData" [tconfig]="tableConfigNew">
+      </app-smart-tablenew>
+    </div>
+    </div>
+  </div>
+  </div>
+</div>
+
+
+
+
+  <ng-template #createform let-c="close" let-d="dismiss">
+    <!-- <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"
+            class="ft-popup-heading text-center brand-text-color">Types Management Form</h5>
+        <button type="button" class="btn-close" aria-label="Close"
+            (click)="d('Cross click')"></button>
+    </div> -->
+    <div class="modal-body">
+      <app-smart-form-new [smartFormConfig]="createFormConfig()" [smartFormData]="formData"></app-smart-form-new> 
+    </div>
+  </ng-template>
+
+
+
+
+
+
+
+
+
+

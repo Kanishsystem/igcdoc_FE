@@ -1,0 +1,74 @@
+.carousel-container {
+    display: flex;
+    overflow: hidden;
+    width: 100%;
+    transition: transform 0.5s;
+  }
+  
+  .carousel-item {
+    flex: 0 0 100%;
+    min-width: 100%;
+    display: flex;
+  }
+  
+  .carousel-item.active {
+    transform: translateX(0);
+   
+  }
+  
+  .carousel-control {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 10px 20px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .prev {
+    left: 10px;
+  }
+  
+  .next {
+    right: 10px;
+  }
+
+  
+/** corousal images **/
+.smart-slide{
+	position: relative;
+  width: 100%;
+  height: 100%;
+}
+.smart-slide img{
+  width:100%;
+  height: 100%;
+  object-fit: cover;
+}
+.smart-slide .smart-slider-content{
+	position:absolute;
+	bottom:0;
+	text-align: center;
+	width:100%;
+	color:rgb(5, 5, 5);
+	background-color: rgb(255, 255, 255);
+	opacity: 0.8;
+    padding:1em;
+}
+.smart-slide .smart-slider-content h3{	
+	text-align:center;
+	font-size: 1.2em;
+	font-weight: bold;
+	opacity: 1;
+	color:rgb(9, 5, 238);
+}
+
+.smart-slide .smart-slider-content p{
+	
+	text-align:center;
+	font-size: 0.9em;
+	opacity: 1;
+}

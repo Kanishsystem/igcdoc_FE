@@ -1,0 +1,87 @@
+<section class="hero is-fullheight smart-login">
+  <div class="hero-body">
+    <div class="container">
+      <div class="columns is-multiline is-centered">
+        <div class="column is-12 card head-card">
+          <div class="media">
+            <div class="media-left">
+              <figure class="image is-48x48">
+                <img class="is-rounded" [src]="siteSettings?.book_image" alt="logo">
+              </figure>
+            </div>
+            <div class="media-content">
+              <h1>{{siteSettings?.site_name || 'IGCAR DOCUMENT' }}</h1>
+            </div>
+          </div> 
+        </div>
+        <div class="column is-4-tablet is-4-desktop is-4-widescreen card p-5 smart-login-form login-card">
+          <h1 class="has-text-centered has-text-link is-size-4 mb-7 smart-login-title">SIGN IN</h1>
+          <app-smart-form-new [smartFormConfig]="createLoginFormConfig()" [smartFormData]="loginData"></app-smart-form-new>
+        </div>
+        <div class="column is-8-tablet is-8-desktop is-8-widescreen card image-card smart-mobile-hide">
+          <app-smart-carousel [templateArray]="carousal_templates" [config]="this.carousal_items"></app-smart-carousel>
+        </div>
+        <!--
+        <div class="column is-12">
+          <app-site-circular [source]=true></app-site-circular>      
+        </div>
+         -->
+      </div>
+    </div>
+  </div>
+</section>
+
+<div *ngFor="let template of carousal_templates">  
+  <ng-template #{{template.name}}>
+    <p>{{template.content}}</p>
+    <div class="smart-slide">
+      <img src="../assets/images/bg-1.jpg" />
+      <div class="smart-slider-content">
+        <h3> Activity-1</h3>
+        <p> Best viewed in 1024x768 resolution
+          © Site Owned & Maintained by : Indira Gandhi Centre for Atomic Research, Department of Atomic Energy, Government of India
+          Last updated on: 30-September-2023</p>
+      </div>   
+    </div> 
+  </ng-template>
+</div>
+
+<ng-template #imageTemplate_1>
+  <div class="smart-slide">
+    <img src="../assets/images/bg-1.jpg" />
+    <div class="smart-slider-content">
+      <h3> Activity-1</h3>
+      <p> Best viewed in 1024x768 resolution
+        © Site Owned & Maintained by : Indira Gandhi Centre for Atomic Research, Department of Atomic Energy, Government of India
+        Last updated on: 30-September-2023</p>
+    </div>   
+  </div> 
+</ng-template>
+<ng-template #imageTemplate_2>   
+  <img src="../assets/images/bg-2.jpg" />
+</ng-template>
+<ng-template #resetPassFirstForm let-c="close" let-d="dismiss">     
+  <app-smart-form-new [smartFormConfig]="createFirstResetFormConfig()" [smartFormData]="resetData"></app-smart-form-new> 
+</ng-template>
+<!-- Login User -->
+<ng-template #login_user>   
+  <div class="media smart-login-media">
+    <div class="media-left">
+      <figure class="image is-48x48">
+        <img *ngIf="user_data?.profile" class="is-rounded" [src]="user_data?.profile">
+        <img *ngIf="!user_data?.profile" src="../assets/images/profile.png" />
+      </figure>
+    </div>
+    <div class="media-content">
+      <h1>{{user_data?.name}}</h1>
+      
+    </div>
+  </div>
+  <p class="login-links has-text-right smart-login-another-account" *ngIf="user_data">
+    <a (click)="clearUser()">Try Another Account ?</a></p>     
+</ng-template>
+
+<!-- <ng-template #login_another> 
+      <p class="has-text-right login-links smart-login-forgot"><a>Forgot Password ?</a></p>
+</ng-template> -->
+

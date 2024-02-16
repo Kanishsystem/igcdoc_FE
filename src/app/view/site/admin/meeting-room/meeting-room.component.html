@@ -1,0 +1,157 @@
+<div class="columns">
+  <div class="column is-8">
+    <h3 class="card-header-title smart-header-text">{{title}}</h3> 
+  </div>
+  <div class="column is-4 d-flex justify-content-end meet-buttons">
+    <div class="select" *ngIf="bookingButton==true">
+      <select [(ngModel)]="meetRoom" (change)="meetRoomChange()">
+          <option *ngFor="let obj of meetRoomTypes" value="{{obj.value}}">{{obj.label}}</option>        
+      </select>
+    </div>     
+    <button class="button smart-action-button-secondary" *ngIf="bookingButton==false" (click)="bookingButton=true;getCalenderTableData()">
+      <i class="fa fa-calendar p-1"></i> Calender
+    </button>
+    <button class="button smart-action-button-secondary" *ngIf="bookingButton==true" (click)="showTable('user')">
+      <i class="fa fa-user p-1 "></i> My Bookings
+    </button>
+    <button class="button smart-action-button-secondary" *ngIf="bookingButton==true && adminEnable" (click)="showTable('admin')">
+      <i class="fa fa-users p-1"></i>All Bookings
+    </button>
+    <button class="button smart-action-button" *ngIf="bookingButton==false" (click)=" openForm()">
+       <span class="icon">
+        <i class="fa fa-plus p-1"></i>
+        </span>
+        <span>New Booking</span>
+    </button>
+  </div>
+</div>
+<div *ngIf="bookingButton==true" class="meet-calender">
+  <app-smart-meet [meetData]="meetData" [meetTitle]="meetRoomTitle" 
+  [meetTemplate]="meetCardTemplate" (monthAction)="monthAction($event)"  (clickAction)="clickAction($event)">
+  </app-smart-meet>
+</div>
+<div *ngIf="bookingButton==false" class="box smart-table-box mb-5">
+  <app-smart-tablenew [data]="tableData" [tconfig]="tableConfigNew"></app-smart-tablenew>
+</div>
+
+<ng-template #createform let-c="close" let-d="dismiss">
+  <div class="smart-meet-form">
+      <app-smart-form-new [smartFormConfig]="createFormConfig()" [smartFormData]="formData"></app-smart-form-new> 
+  </div>   
+ </ng-template>
+
+ <ng-template #meetCardTemplate let-obj>
+  <div class="box smart-meet-card">   
+      <p class="has-text-danger-dark">
+        <i class="fa fa-clock-o"></i>
+        {{obj?.start | slice:0:5 }} - {{obj?.end | slice:0:5 }}
+       </p>
+      <p class="has-text-info-dark">{{obj?.title }}</p>
+      <p class="admin-color">
+        <i class="fa fa-user"></i>
+        {{obj?.created_by }}</p>   
+  </div>
+</ng-template>
+
+
+<ng-template #meetTemplate>
+      <div class="columns">
+        <div class="column is-4 has-text-weight-bold">Purpose</div><div class="column is-8">{{singleMeetData?.meet_purpose}}  </div>
+        </div>
+        <div class="columns">
+        <div class="column is-4 has-text-weight-bold">Meeting Date</div><div class="column is-8">  {{singleMeetData?.created_time|date:'dd/MM/YYYY'}}</div>
+        </div>
+        <div class="columns">
+        <div class="column is-4 has-text-weight-bold">Meeting Start Time</div><div class="column is-8">  {{singleMeetData?.meet_start_time}}</div>
+        </div>
+        <div class="columns">
+        <div class="column is-4 has-text-weight-bold">Meeting End Time</div><div class="column is-8"> {{singleMeetData?.meet_end_time}}</div>
+        </div>
+        <div class="columns">
+        <div class="column is-4 has-text-weight-bold ">
+
+          Status</div><div class="column is-8 tag" [ngClass]="get_statusClass_disp(singleMeetData?.order_status)">
+            {{get_status_disp(singleMeetData?.status)}}</div>
+      </div>
+</ng-template>
+
+<ng-template #editform let-c="close" let-d="dismiss">
+  <div class="modal-body">
+    <div class="columns is-multiline">
+      <div class="column is-12 p-0">
+        <span class="smart-field-label">Room Name</span>
+        <span class="smart-field-value"> {{editData?.room_name}}</span>
+      </div>
+  
+      
+      <div class="column is-12 p-0">
+        <span class="smart-field-label">Meet Purpose</span>
+        <span class="smart-field-value">{{editData?.meet_purpose}}</span>
+      </div>
+
+  
+      <div class="column is-12 p-0">
+        <span class="smart-field-label">Start Time</span>
+        <span class="smart-field-value">{{editData?.meet_start_time}}</span>
+      </div>
+      
+      <div class="column is-12 p-0">
+        <span class="smart-field-label">End Time</span>
+        <span class="smart-field-value">{{editData?.meet_end_time}}</span>
+      </div>
+      <div class="column is-12 p-0">
+        <span class="smart-field-label">Requester Name</span>
+        <span class="smart-field-value"> {{editData?.created_by}}</span>
+      </div>
+  
+      <div class="column is-12 p-0">
+        <span class="smart-field-label">Requested Date</span>
+        <span class="smart-field-value">{{editData?.created_time|date:'dd/MM/YYYY'}}</span>
+      </div>
+  
+    </div>
+   
+    <app-smart-form-new [smartFormConfig]="editFormConfig()" [smartFormData]="editData"></app-smart-form-new> 
+  </div>
+</ng-template>
+
+<ng-template #viewform let-c="close" let-d="dismiss">
+  
+  <div class="columns is-multiline">
+    <div class="column is-12 p-0">
+      <span class="smart-field-label">Room Name</span>
+      <span class="smart-field-value"> {{viewData?.room_name}}</span>
+    </div>
+    <div class="column is-12 p-0">
+      <span class="smart-field-label">Meet Purpose</span>
+      <span class="smart-field-value"> {{viewData?.meet_purpose}}</span>
+    </div>
+
+
+    <div class="column is-12 p-0">
+      <span class="smart-field-label">Requester Name</span>
+      <span class="smart-field-value"> {{viewData?.created_by}}</span>
+    </div>
+    <div class="column is-12 p-0">
+      <span class="smart-field-label">Start Time</span>
+      <span class="smart-field-value">{{viewData?.meet_start_time}}</span>
+    </div>
+    
+    <div class="column is-12 p-0">
+      <span class="smart-field-label">End Time</span>
+      <span class="smart-field-value">{{viewData?.meet_end_time}}</span>
+    </div>
+
+    
+
+    <div class="column is-12 p-0">
+      <span class="smart-field-label">Requested Date</span>
+      <span class="smart-field-value">{{viewData?.created_time|date:'dd/MM/YYYY'}}</span>
+    </div>
+    </div>
+
+  </ng-template>
+
+
+
+

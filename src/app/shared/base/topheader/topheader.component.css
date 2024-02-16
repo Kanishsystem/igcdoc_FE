@@ -1,0 +1,108 @@
+/*.logo{
+    width: 7%;
+    height: 100%;
+}
+*/
+
+ 
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+
+
+}
+body{
+    min-height:100vh ;
+
+}
+
+header{
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    background-color:rgb(255,255,255);
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+    padding: 0px;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 1000;
+    display: flex;
+
+}
+header .logo{
+    font-weight: bolder;
+    font-size: 40px;
+    color: black;
+    font-weight: bold;
+    
+}
+header .navbar ul{
+    list-style: none;
+
+}
+
+header .navbar ul li{
+    position: relative;
+    float: left;
+}
+header .navbar ul li a{
+
+    font-size: 20px;
+    padding: 20px;
+    color: white;
+    display: block;
+}
+
+header .navbar ul li a:hover{
+    background: blue;
+    color: black;
+    border: 20px;
+
+
+}
+#menu-bar{
+    display: none;
+}
+header label{
+    font-size: 20px;
+    color: white;
+    cursor: pointer;
+    display: none;
+}
+button{
+    background-color: blue;
+    width: 50px;
+    color: white;
+}
+
+@media(max-width:991px){
+    header{
+        padding: 20px;
+
+    }
+    label{
+        display: initial;
+    }
+
+    header .navbar{
+         position: absolute;
+        top:100%;left: 0;right: 0;
+        background:rgb(56, 56, 248);
+        border-top: 1px  solid rgba(0,0,0,0.1);
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+
+    }
+    header .navbar ul li{
+        width: 100%;
+        font-size: 25px;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    header .navbar ul li a{
+        font-size: 30px;
+    }
+    
+}
+

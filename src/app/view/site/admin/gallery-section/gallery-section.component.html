@@ -1,0 +1,136 @@
+<div *ngIf="mode=='table'">
+
+  <div class="columns is-mobile ">
+    <div class="column">
+
+      <h3 class="card-header-title smart-header-text">
+
+        Gallery </h3>
+    </div>
+    <div class="column is-4 is-flex is-justify-content-end smart-mobile-hide">
+      <button class="button smart-action-button-secondary" (click)="openForm()">
+        <i class="fa fa-plus p-1"></i>Add Gallery
+      </button>
+    </div>
+    <div class="column is-3 is-flex is-justify-content-end smart-desk-hide">
+      <figure class="image is-32x32" (click)="openForm()">
+        <img class="is-rounded" src="assets/icons/add-100-blue.png">
+      </figure>
+    </div>
+  </div>
+  <div class="columns ">
+    <div class="column is-18">
+      <div class="card">
+        <div class="card-content">
+          <div class="content">
+            <app-smart-tablenew [data]="tableData" [tconfig]="tableConfigNew">
+            </app-smart-tablenew>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #employeesTemplate let-item>
+  <span class="tag" *ngFor="let obj of item.employees">{{obj.label}}</span>
+</ng-template>
+
+<ng-template #imageTemplate let-item>
+  <img src="{{imageUrl}}/{{item.ID}}" style="width:200px;height:200px">
+</ng-template>
+
+
+<ng-template #createform let-c="close" let-d="dismiss">
+  <!-- <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"
+            class="ft-popup-heading text-center brand-text-color">Role Management Form</h5>
+        <button type="button" class="btn-close" aria-label="Close"
+            (click)="d('Cross click')"></button>
+    </div> -->
+  <div class="modal-body">
+    <app-smart-form-new [smartFormConfig]="createFormConfig()" [smartFormData]="formData"></app-smart-form-new>
+  </div>
+</ng-template>
+<div *ngIf="mode=='display'">
+  <div class="columns is-multiline">
+    <div class="column is-12">
+      <div class="title has-text-centered">
+        <p class="bounce-in-top"> Gallery Section</p>
+      
+      </div>
+    </div>  
+  <!-- <div class="column is-4">
+    <div class="card">
+      <p *ngFor="let item of eventData; let i=index" class="mb-4">
+        <button class="button" (click)="showEventGallery(item)"
+        [ngClass]="currentEventName==item ?'is-link':''">{{i+1}} . {{item}}</button>
+      </p> 
+    </div>    
+  </div> -->
+
+  <div class="column is-3 card smart-gallery-card">
+    <div class="card-header card has-text-centered gallery-card-header">
+      <div class="card-title ">
+        <p class="bounce-in-top"> Gallery List</p>
+       </div>
+     
+    </div>
+    <div class="card-body">
+      <ul *ngFor="let item of eventData; let i=index">
+       <li class="gallery-list-items" (click)="showEventGallery(item)"
+       [ngClass]="currentEventName==item ?'is-link':''"
+       > {{i+1}} . {{item}}
+      </li>
+    
+
+
+      
+      </ul>
+     </div>
+
+  </div>
+  <div class="column is-9">
+    <div class="column is-multiline card">
+      <app-smart-carousel [templateArray]="carousal_templates" [config]="this.carousal_items"></app-smart-carousel>
+      <!-- 
+      <div class="column is-6 has-text-centered" *ngFor="let item of galleryData">
+        <img src="{{imageUrl}}/{{item.ID}}" style="width:200px;height:200px">
+        <p> {{item.description}}</p>
+      </div>
+      -->
+    </div>
+    
+  </div>
+ 
+</div>
+</div>
+
+<div *ngFor="let template of carousal_templates">  
+  <ng-template #{{template.name}}>
+    <p>{{template.content}}</p>
+    <div class="smart-slide">
+      <img src="../assets/images/bg-1.jpg" />
+      <div class="smart-slider-content">
+        <h3> Activity-1</h3>
+        <p> Best viewed in 1024x768 resolution
+          © Site Owned & Maintained by : Indira Gandhi Centre for Atomic Research, Department of Atomic Energy, Government of India
+          Last updated on: 30-September-2023</p>
+      </div>   
+    </div> 
+  </ng-template>
+</div>
+
+<ng-template #imageTemplate_1>
+  <div class="smart-slide">
+    <img src="../assets/images/bg-1.jpg" />
+    <div class="smart-slider-content">
+      <h3> Activity-1</h3>
+      <p> Best viewed in 1024x768 resolution
+        © Site Owned & Maintained by : Indira Gandhi Centre for Atomic Research, Department of Atomic Energy, Government of India
+        Last updated on: 30-September-2023</p>
+    </div>   
+  </div> 
+</ng-template>
+<ng-template #imageTemplate_2>   
+  <img src="../assets/images/bg-2.jpg" />
+</ng-template>

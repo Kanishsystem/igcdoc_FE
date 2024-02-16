@@ -1,0 +1,49 @@
+
+.first-div{
+  border-right:1px solid rgb(179, 179, 216);
+  position: relative;
+
+ }
+ .second-div{
+  border-left:1px solid rgb(43, 136, 59);
+ }
+.top-round{
+  position: absolute;
+  width: 10px;
+  height: 10px;
+ background-color: rgb(68, 205, 109);
+  border-radius: 40px;
+  right: -6px;
+  top: 0;
+  
+}
+
+
+.main-div{
+  width: 220px;
+}
+.main-main-div{
+  border:1px solid blue
+}
+.sub1{
+  border:1px solid blue;
+  width: auto;
+}
+sub2{
+  text-align:center;
+}
+table, th, td {
+  border: 1px solid rgb(54, 53, 53);
+  border-collapse: separate;
+  border-spacing: 2px;
+}
+th,td{
+  background-color: rgb(128, 123, 123);
+}
+
+table{width:100% ;
+height: 100%;}
+h1{
+  font-weight: 900;
+
+}

@@ -1,0 +1,179 @@
+<div class="columns is-mobile">
+  <div class="column">
+    <h3 class="smart-header-text">
+      {{ siteTitle }}
+    </h3>
+  </div>
+  <div class="column is-4 is-flex is-justify-content-end smart-mobile-hide">
+    <div class="tabs is-small is-size-6 is-toggle border-1 card" *ngIf="selectionButton == true">
+      <ul>
+        <li *ngFor="let obj of actionTypes" (click)="processSelection = obj.value; actionChange()"
+          [ngClass]="obj.value == processSelection ? 'is-active' : ''">
+          <a>
+            <span>{{ obj.label }}</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="column is-flex is-justify-content-end smart-mobile-hide" *ngIf="selectionButton == false">
+      <div class="tabs is-small is-size-6 is-toggle border-1 card">
+        <ul>
+          <li *ngFor="let obj of docMainCatTypes" (click)="docMainCat = obj.value; docMainCatChange()"
+            [ngClass]="obj.value == docMainCat ? 'is-active' : ''">
+            <a>
+              <span>{{ obj.label }}</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <button class="button smart-action-button-secondary" (click)="openForm()">
+        <i class="fa fa-plus p-1"></i> New Document
+      </button>
+    </div>
+  </div>
+  <div class="column is-3 is-flex is-justify-content-end smart-desk-hide">
+    <figure class="image is-32x32" (click)="openForm()">
+      <img class="is-rounded" src="assets/icons/add-100-blue.png" />
+    </figure>
+  </div>
+</div>
+<div class="box">
+  <app-smart-tablenew [data]="tableData" [tconfig]="tableConfigNew">
+  </app-smart-tablenew>
+</div>
+
+<ng-template #createform let-c="close" let-d="dismiss">
+  <table class="table">
+    <tr>
+      <td class="has-text-danger" width="30%">Document Main Category</td>
+      <td><b>{{docMainCategory}}</b></td>
+    </tr>
+  </table>
+  <app-smart-form-new [smartFormConfig]="createFormConfig()" [smartFormData]="formData"></app-smart-form-new>
+</ng-template>
+<ng-template #viewPermissionNote>
+  <b><u>View Permission Settings</u></b>
+</ng-template>
+<ng-template #downloadPermissionNote>
+  <b><u>Download Permission Settings</u></b>
+</ng-template>
+
+<ng-template #editform let-c="close" let-d="dismiss">
+  <div class="modal-body">
+    <div class="columns is-multiline">
+      <div class="column is-12 p-0">
+        <span class="smart-field-label">Title</span>
+        <span class="smart-field-value"> {{ editData?.doc_title }}</span>
+      </div>
+
+      <div class="column is-12 p-0">
+        <span class="smart-field-label">Type</span>
+        <span class="smart-field-value">{{ editData?.doc_type }}</span>
+      </div>
+
+      <!-- <div class="column is-12 p-0">
+        <span class="smart-field-label">Requester Name</span>
+        <span class="smart-field-value">{{viewData?.created_by}}</span>
+      </div>
+  
+      <div class="column is-12 p-0">
+        <span class="smart-field-label">Requester Date</span>
+        <span class="smart-field-value">{{viewData?.created_time|date:'dd/MM/YYYY'}}</span>
+      </div> -->
+    </div>
+
+    <app-smart-form-new [smartFormConfig]="editFormConfig()" [smartFormData]="editData"></app-smart-form-new>
+  </div>
+</ng-template>
+
+<ng-template #viewform let-c="close" let-d="dismiss">
+  <div class="columns is-multiline">
+    <div class="column is-12 p-0">
+      <span class="smart-field-label document-title">Title</span>
+      <span class="smart-field-value"> {{ viewData?.doc_title }}</span>
+    </div>
+    <div class="column is-12 p-0">
+      <span class="smart-field-label">Document Category</span>
+      <span class="smart-field-value">{{ viewData?.doc_category }}</span>
+    </div>
+    <div class="column is-12 p-0">
+      <span class="smart-field-label">Document Type</span>
+      <span class="smart-field-value">{{ viewData?.doc_type }}</span>
+    </div>
+    <div class="column is-12 p-0">
+      <span class="smart-field-label">Uploaded By</span>
+      <span class="smart-field-value">{{ viewData?.user_name }}</span>
+    </div>
+
+    <div class="column is-12 p-0" *ngIf="docMainCat==2 ? true :false;">
+      <span class="smart-field-label" >Work Order Number</span>
+      <span class="smart-field-value">{{ viewData?.wo_no }}</span>
+    </div>
+    <div class="column is-12 p-0" *ngIf="docMainCat==2 ? true :false;">
+      <span class="smart-field-label" >Work Order Value</span>
+      <span class="smart-field-value">{{ viewData?.wo_value }}</span>
+    </div>
+    <div class="column is-12 p-0" *ngIf="docMainCat==2 ? true :false;">
+      <span class="smart-field-label" >Work Order Name</span>
+      <span class="smart-field-value">{{ viewData?.wo_name }}</span>
+    </div>
+    <div class="column is-12 p-0" *ngIf="docMainCat==2 ? true :false;">
+      <span class="smart-field-label" >Work Type</span>
+      <span class="smart-field-value">{{ viewData?.wo_type }}</span>
+    </div>
+    <div class="column is-12 p-0" *ngIf="docMainCat==2 ? true :false;">
+      <span class="smart-field-label" >Work Order Start Date</span>
+      <span class="smart-field-value">{{ viewData?.wo_start_from }}</span>
+    </div>
+    <div class="column is-12 p-0" *ngIf="docMainCat==2 ? true :false;">
+      <span class="smart-field-label" >Work Order To Date </span>
+      <span class="smart-field-value">{{ viewData?.wo_start_to }}</span>
+    </div>
+    <!-- <div class="column is-12 p-0">
+      <span class="smart-field-label">Uploaded by Date</span>
+      <span class="smart-field-value">{{
+        viewData?.created_time | date : "dd/MM/YYYY"
+        }}</span>
+    </div> -->
+    <!-- <div class="column is-12 p-0">
+      <span class="smart-field-label">Authors</span>
+      <span class="smart-field-value">
+        <span class="tag" *ngFor="let obj of viewData?.authors">{{
+          obj.author_name
+          }}</span>
+      </span>
+    </div> -->
+    <div class="column is-12 p-0">
+      <span class="smart-field-la has-text-danger">View Permissions</span>
+      
+    </div>
+    <div class="column is-12 p-0 smart-doc-view">
+      <span class="smart-field-permisson">Roles</span>
+      <span class="smart-field-valu">
+        <span class="tag" *ngFor="let obj of viewData?.permissions?.view_role">{{ obj.role_name || "-----" }}</span>
+      </span>
+    </div>
+    <div class="column is-12 p-0 smart-doc-view">
+      <span class="smart-field-permisson">Employees</span>
+      <span class="smart-field-valu">
+        <span class="tag" *ngFor="let obj of viewData?.permissions?.view_users">{{ obj.ename || "-----" }}</span>
+      </span>
+    </div>
+    <div class="column is-12 p-0">
+      <span class="smart-field-lab has-text-danger">Download Permissions</span>
+      
+    </div>
+    <div class="column is-12 p-0 smart-doc-view">
+      <span class="smart-field-permisson">Roles</span>
+      <span class="smart-field-valu">
+        <span class="tag" *ngFor="let obj of viewData?.permissions?.download_role">{{ obj.role_name || "-----" }}</span>
+      </span>
+    </div>
+    <div class="column is-12 p-0 smart-doc-view">
+      <span class="smart-field-permisson">Employees</span>
+      <span class="smart-field-valu">
+        <span class="tag" *ngFor="let obj of viewData?.permissions?.download_users">{{ obj.ename || "-----" }}</span>
+      </span>
+    </div>
+  </div>
+</ng-template>

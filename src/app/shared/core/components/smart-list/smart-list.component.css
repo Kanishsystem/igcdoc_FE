@@ -1,0 +1,28 @@
+.smart-list{
+    margin:0;
+}
+.smart-list li a{
+    position: relative;
+    background-color: bisque;
+}
+.smart-list li a:hover{
+    position: relative;
+    background-color: rgb(235, 230, 225);
+}
+.smart-list li a .icon{
+    position: absolute;
+    right: 1em;  
+}
+.smart-list li.is-active a{
+   background-color: rgb(163, 127, 82);
+   color:white;
+}
+
+.smart-list-edit{
+    color:blueviolet;
+    margin-right:1em;   
+}
+.smart-list-delete{
+    color:red;
+}
+

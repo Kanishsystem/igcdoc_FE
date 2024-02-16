@@ -1,0 +1,186 @@
+<div class="columns is-mobile">
+  <div class="column">
+    <h3 class="smart-header-text">Organization</h3>
+  </div>
+  <div class="column">
+    <button
+      class="button smart-action-button-secondary pl-2 pr-2"
+      (click)="openPdfOrg('SITE_GET_ORG_ONE_PDF')"
+    >
+    Organization Chart MFRG
+    </button>
+  </div>
+  <div class="column">
+    <button
+      class="button smart-action-button-secondary pl-2 pr-2"
+      (click)="openPdfOrg('SITE_GET_ORG_TWO_PDF')"
+    >
+    Organization Chart  FMCG
+    </button>
+  </div>
+  <div class="column is-2 is-flex is-justify-content-end smart-mobile-hide">
+    <button
+      class="button smart-action-button-secondary px-2"
+      *ngIf="backEnable"
+      (click)="backToOrg()"
+    >
+      <span class="icon"
+        ><i class="fa fa-arrow-left" aria-hidden="true"></i>
+      </span>
+      <span> Back</span>
+    </button>
+    <button
+      class="button smart-action-button-secondary px-2"
+      *ngIf="mode == 'admin'"
+      (click)="openForm()"
+    >
+      Add Organization
+    </button>
+  </div>
+  <div
+    class="column is-2 is-flex is-justify-content-end smart-desk-hide"
+    *ngIf="mode == 'admin'"
+  >
+    <figure class="image is-32x32" (click)="openForm()">
+      <img class="is-rounded" src="assets/icons/add-100-blue.png" />
+    </figure>
+  </div>
+</div>
+<div class="tree-container" style="width: 100%; overflow-x: scroll">
+  <div class="smart-tree" >
+    <app-smart-org
+      [orgData]="treeList"
+      [orgTemplate]="orgTemplate"
+      [classContainer]="'smart-tree'"
+    ></app-smart-org>
+  </div>
+</div>
+<!-- 
+<div class="smart-org-vert-tree">
+    <ul>
+      <li *ngFor="let member of treeList" >
+        <a class="card">   
+      <ng-container *ngTemplateOutlet="orgTemplate; context: { $implicit: member}"></ng-container>                      
+    </a>  
+      <ul class="smart-org-vert-inner"  *ngIf="member.children && member.children.length > 0">
+        <li  *ngFor="let sobj of member.children" > 
+          <a class="card">   
+            <ng-container *ngTemplateOutlet="orgTemplate; context: { $implicit: sobj}"></ng-container>                      
+          </a>  
+        </li>
+      </ul>
+    </li>
+    </ul>
+</div>
+-->
+
+<!-- Employees display -->
+
+<ng-template #employeeform let-c="close" let-d="dismiss">
+  <div class="modal-body filter">
+    <div
+      class="p-5"
+      style="background-color: #ede8e8; border-top: 2px solid black"
+      *ngIf="orgEmployees.length > 0"
+    >
+      <div class="columns is-multiline">
+        <div *ngFor="let item of orgEmployees" class="card p-5">
+          <div class="smart-org-user-image">
+            <img [src]="[item?.profile_img]" />
+          </div>
+          <p class="smart-org-name-disp" (click)="openViewForm(item?.ID)" >{{ item?.ename }}</p>
+          <span class="smart-org-sec-disp"> {{ item?.sd_org_name }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #createform let-c="close" let-d="dismiss">
+  <div class="modal-body filter">
+    <app-smart-form-new
+      [smartFormConfig]="createFormConfig()"
+      [smartFormData]="formData"
+    ></app-smart-form-new>
+  </div>
+</ng-template>
+
+<ng-template #orgTemplate let-item>
+  <div  class="smart-test">
+    <div class="smart-org-edit-icons" *ngIf="mode == 'admin'">
+      <i
+        class="fa fa-pencil-square-o has-text-info mx-2"
+        (click)="openEditForm(item)"
+      ></i>
+      <!-- <i
+        class="fa fa-trash has-text-danger"
+        (click)="openDeleteCustomDialog(item?.ID)"
+      ></i> -->
+    </div>
+    <div class="smart-org-user-image" title="Profile" (click)="openViewForm(item?.sd_mt_userdb_id)">
+      <img [src]="[item?.profile_img]" /></div>
+    <p class="smart-org-name-disp" title="Profile" (click)="openViewForm(item?.sd_mt_userdb_id)">{{ item?.ename }}</p>
+    <span class="smart-org-sec-disp" title="Member List" (click)="orgClicked(item)"> {{ item?.sd_org_name }}</span>
+    <span class="smart-org-sec-disp" title="Member List" (click)="orgClicked(item)"> {{ item?.designation }}</span>
+  </div>
+</ng-template>
+
+<ng-template #viewForm let-c="close" let-d="dismiss">
+  <div class="modal-body">
+    <div class="columns">
+      <div class="column is-8">
+        <div class="card-content p-0">
+          <div class="table is-fullwidth">
+            <tr>
+              <td class="csp-1"><i class="fa fa-id-card"></i>IC No:</td>
+              <td>{{viewData?.euserid}}</td>
+            </tr>
+            <tr>
+              <td class="csp-1"> <i class="fa fa-user"></i>Name:</td>
+              <td>{{viewData?.ename}}</td>
+            </tr>
+            <tr>
+              <td class="csp-1"><i class="fa fa-phone"></i>Intercom Number:</td>
+              <td>{{viewData?.intercome_number}}</td>
+            </tr>
+            <tr>
+              <td class="csp-1"><i class="fa fa-mobile"></i>Mobile Number:</td>
+              <td>{{viewData?.mobile_no}}</td>
+            </tr>
+            <tr class="csp-1">
+              <td> <i class="fa fa-envelope"></i>Email:</td>
+              <td>{{viewData?.emailid}}</td>
+            </tr>
+            <tr class="csp-1">
+              <td> <i class="fa fa-group-arrows-rotate"></i>Sec/Div/Group:</td>
+              <td>{{viewData?.sd_org_id}}</td>
+            </tr>
+            <tr class="csp-1">
+              <td> <i class="fa fa-user "></i>Designation:</td>
+              <td>{{viewData?.designation}}</td>
+          </tr>
+          </div>
+        </div>
+      </div>
+      <div class="column is-4">
+        <div class="card mb-5">
+          <div class="card-image">
+            <figure class="image is-4by3 is-center">
+              <div class="imgBox">
+                <img [src]="[viewData?.profile_img]" class="image" alt="Profile" />
+              </div>
+            </figure>
+          </div>
+        </div>
+        <h1 class="is-size-5 is-bold is-underlined">Role</h1>
+        <div class="">
+          <ol>
+            <li *ngFor="let role of viewData.role">
+              {{role.label}}
+            </li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

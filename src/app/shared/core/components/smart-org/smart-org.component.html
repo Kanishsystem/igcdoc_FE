@@ -1,0 +1,14 @@
+<ul class="smart-org-tree {{ classContainer }}_ul">
+  <li *ngFor="let member of orgData" [ngClass]="classContainer">
+    <a class="smart-org-dev-{{member?.sd_org_type_id}}">
+      <ng-container
+        *ngTemplateOutlet="orgTemplate; context: { $implicit: member }"
+      ></ng-container>
+    </a>
+    <app-smart-org
+      *ngIf="member.children && member.children.length > 0"
+      [orgData]="member.children"
+      [orgTemplate]="orgTemplate"
+    ></app-smart-org>
+  </li>
+</ul>

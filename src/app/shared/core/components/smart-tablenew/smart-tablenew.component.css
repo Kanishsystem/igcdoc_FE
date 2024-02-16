@@ -1,0 +1,103 @@
+.dropdown-toggle::after {
+    display: none;
+}
+.smart-table-container{
+    width:100%;
+}
+.smart-table-search{
+    margin: 0 !important;
+}
+.smart-table-columns .column{
+    padding-bottom: 0em;
+}
+
+
+/**  filter configuration **/
+.smart-table-filter .dropdown-content{
+  box-shadow: none;
+}
+.smart-table-filter  .dropdown-item:focus{
+  color:none;
+  background-color: none;
+}
+.smart-table-filter  .dropdown-item:active{
+  color:#000;
+  background-color:#fff;
+}
+
+.smart-table-action{
+  cursor: pointer;
+  padding:1em;
+}
+.smart-table-action-popover .popover-body{
+  padding:0.4em;
+}
+
+.smart-table-show-entries{
+  margin-top:0.4em;
+}
+.smart-responsive thead tr th{
+   color:var(--primary-color-side);
+}
+
+
+/*** no results *****/
+.no-result-content{
+  height: 50vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  margin: 0 auto;
+}
+.no-result-content i{
+  font-size: 4em;
+}
+
+
+
+/* responsive table settings for mobile view s*/
+
+@media screen and (max-width: 600px) {  
+    .smart-responsive thead {
+      visibility: hidden;
+      height: 0;
+      position: absolute;
+      display: none;
+    }
+    
+    .smart-responsive tr {
+      display: block;
+      margin-bottom: .625em;
+      box-shadow: 0 0.5em 1em -0.125em rgba(10,10,10,.1), 0 0 0 1px rgba(10,10,10,.02);
+    }
+    .smart-responsive tbody tr:nth-child(odd) td{
+      background-color: rgb(240, 225, 225);
+    }
+    .smart-responsive tbody tr:last-child td{
+       border-bottom-width: 2px !important;
+    }
+    .smart-responsive td {
+      border: 1px solid;
+      border-bottom: none;
+      display: block;
+      font-size: .8em;
+      text-align: right !important;
+      min-height: 1em;
+    }
+    
+    .smart-responsive td::before {
+      content: attr(data-label);
+      float: left;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+    
+    .smart-responsive td:last-child {
+      border-bottom: 1px solid;
+    }
+    .smart-table-filter{
+      min-width: 18rem !important;
+    }
+  }

@@ -1,0 +1,178 @@
+.sub-view-image {
+  height: 80px;
+  width: 80px;
+  border-radius: 50%;
+  object-fit: fill;
+
+}
+
+.image-box {
+  border-radius: 50%;
+
+
+}
+
+.sub-view-title p {
+  color: rgb(92, 16, 43);
+  font-weight: 900;
+  /* font-size: 20px; */
+  font-size: 0.875em;
+}
+
+.card-body {
+  color: #242323;
+  font-weight: 500;
+
+}
+
+
+
+.smart-sub-view {
+  display: flex;
+  justify-content: space-between;
+
+}
+
+.smart-top-notification span {
+  display: inlin-block;
+  padding-right: 2em;
+  padding-left: 2em;
+  border-right: 1px dotted #000;
+}
+
+.smart-top-notification span:last-child {
+  border-right: 0;
+}
+
+.scrolling-card {
+  overflow: hidden;
+  height: 70%;
+}
+
+.scrolling-text {
+  white-space: nowrap;
+  /* Prevent text from wrapping */
+  overflow: hidden;
+  /* Hide overflowing text */
+  animation: scroll 20s linear infinite;
+  /* Apply a scrolling animation */
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateY(-100%);
+    /* Start off-screen to the right */
+  }
+
+  100% {
+    transform: translateY(100%);
+    /* Scroll to the left */
+  }
+}
+
+.scrolling-text:hover {
+  animation-play-state: paused;
+  /* Pause the animation on hover */
+}
+
+.sub-view-list {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  overflow: hidden;
+  position: relative;
+}
+
+.list-view {
+  /* width: calc((100vw - 3em) / 4);  */
+  margin: 1em;
+  background: #fff;
+  float: left;
+  text-wrap: wrap;
+  padding: 10px;
+  font-weight: 400;
+  z-index: 100;
+  color: rgb(44, 42, 44);
+  font-family: sans-serif;
+
+}
+
+/* .list-view:nth-child(odd){
+   background:url(../../../../assets/images/bg-10.jpg) 
+  background: rgb(249, 210, 168);
+
+}
+.list-view:nth-child(even){
+  background: rgb(18, 14, 14);
+
+} */
+
+/* .prov-1{
+    position: absolute;
+    bottom: %;
+    right: 5%;  
+  } */
+
+
+.list-date {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.bg-1 {
+  background-color: rgb(214, 214, 233);
+
+}
+
+.bg-2 {
+  background-color: rgb(240, 213, 213);
+
+}
+
+.bg-3 {
+  background-color: rgb(207, 223, 207);
+}
+
+.card-header {
+  /* background:#dd38fa; */
+  background: #fd7e14;
+  height: 40px;
+
+
+}
+
+.card-header-1 {
+  /* background: #00ccff; */
+  background: #fd7e14;
+}
+
+.sub-view-title {
+  color: rgb(113, 33, 37);
+  font-family: sans-serif;
+
+}
+
+.card-header-title {
+  align-items: center;
+  color: #ffffff;
+  display: flex;
+  flex-grow: 1;
+  font-weight: 700;
+  padding: 0.75rem;
+  height: 10px;
+}
+
+.card-shadow {
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.50);
+  box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.10);
+  backdrop-filter: blur(2.5px);
+  margin-right: 10px;
+  margin-top: 4px;
+}
+
+::ng-deep .smart-chart-div-dekstop .smart-chart-display{
+  width: 100% !important;
+  height: 350px !important;
+}

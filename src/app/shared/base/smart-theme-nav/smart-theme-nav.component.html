@@ -1,0 +1,40 @@
+
+
+
+<div class="smart-topnav">
+  <div class="smart-nav-left">
+    <a class="smart-nav-mobile"><span class="icon is-large"></span></a> 
+    <a class="smart-nav-mobile">{{site_title}}</a>
+    <a></a> 
+    <a>{{site_title}}</a>    
+  </div>
+  <div class="smart-nav-right">
+    <a>{{userName}}</a>
+    <a><i class="fa fa-user"></i></a>  
+    <a class="smart-nav-mobile" (click)="openCloseSideNav()">
+      <i class="fa fa-bars"></i>
+    </a>
+  </div>
+</div>
+
+<div class="smart-side-nav-sidebar"  [ngClass]="isSideNavOpen ? 'sidebar-mobile' : ''" >
+  <a class="closebtn" (click)="openCloseSideNav()">
+    <i class="fa fa-times"></i>
+  </a>
+  <ul class="menu-list">
+    <li *ngFor="let data of getSmartSideNav()" (click)="openCloseSideNav()"  routerLinkActive="active"  
+     placement="end" [ngbTooltip]="data?.title| uppercase" >
+      <!-- <ng-template #tooltip>{{data.title | uppercase}}</ng-template> -->
+      <a  *ngIf="data?.navClickType!=='LOGOUT'" 
+      routerLink={{data.navigateLink}}  routerLinkActive="active" > <i [ngClass]="data.icon"></i>
+     </a>
+      <a *ngIf="data?.navClickType=='LOGOUT'" (click)="logout()" routerLinkActive="active" > 
+        <i [ngClass]="data.icon"></i></a>
+    </li>
+  </ul> 
+</div>
+
+<footer class="smart-footer">
+    {{site_footer}}
+</footer>
+

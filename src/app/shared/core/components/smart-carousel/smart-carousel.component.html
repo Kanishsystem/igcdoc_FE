@@ -1,0 +1,17 @@
+<div class="carousel-container">
+    <div
+      class="carousel-item animate__animated"
+      *ngFor="let item of config?.data; let i = index"
+      [ngClass]="i === activeIndex ? 'animate__slideInLeft' : 'animate__slideOutRight'"
+    >    
+    <div class="smart-slide">
+      <img [src]="item?.image" />
+      <div class="smart-slider-content">
+        <h3>{{item.title}}</h3>
+        <p>{{item.desc}}</p>
+      </div>   
+    </div> 
+    </div>
+  </div>
+  <button (click)="prev()" class="carousel-control prev"><<</button>
+  <button (click)="next()" class="carousel-control next">>></button>

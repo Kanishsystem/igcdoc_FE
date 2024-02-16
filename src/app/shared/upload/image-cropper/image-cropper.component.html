@@ -1,0 +1,34 @@
+<div class="d-flex">
+    <button (click)="rotateLeft()" class="col btn btn-outline-secondary btn-sm">Rotate left</button>
+    <button (click)="flipHorizontal()" class="col btn btn-outline-secondary btn-sm">Flip horizontal</button>
+    <button (click)="flipVertical()" class="col btn btn-outline-secondary btn-sm ">Flip vertical</button>
+    <button (click)="rotateRight()" class="col btn btn-outline-secondary btn-sm">Rotate right</button>
+</div>
+<div>
+    <image-cropper
+        [imageBase64]="base64Image"
+        [imageChangedEvent]="imageChangedEvent"
+        [maintainAspectRatio]="true"
+        [containWithinAspectRatio]="containWithinAspectRatio"
+        [aspectRatio]="4 / 3"
+        [resizeToWidth]="256"
+        [cropperMinWidth]="128"
+        [onlyScaleDown]="true"
+        [roundCropper]="false"
+        [canvasRotation]="canvasRotation"
+        [transform]="transform"
+        [alignImage]="'left'"
+        [style.display]="showCropper ? null : 'none'"
+        format="png"
+        (imageCropped)="imageCropped($event)"
+        (imageLoaded)="imageLoaded()"
+        (cropperReady)="cropperReady($event)"
+        (loadImageFailed)="loadImageFailed()"
+    ></image-cropper>
+<div class="d-flex">
+    <button (click)="zoomOut()" class="col btn btn-outline-secondary btn-sm m-1">Zoom -</button>
+    <button (click)="resetImage()" class="col btn btn-outline-danger btn-sm m-1">Reset image</button>
+    <button (click)="onUpload()" class="col btn btn-outline-success btn-sm m-1">Upload</button>
+    <button (click)="zoomIn()" class="col btn btn-outline-secondary btn-sm m-1">Zoom +</button>
+</div> 
+

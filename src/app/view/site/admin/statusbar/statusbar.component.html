@@ -1,0 +1,22 @@
+<div class="columns main-main-div">
+
+    <div class="column sub1">
+        <header>
+            <div class="logo">My Angular App</div>
+
+        </header>
+    </div>
+
+
+
+
+    <div class="column sub2">
+        <div *ngFor="let div of divData; let i = index" class="columns is-multiline main-div">
+            <div class="column is-6 first-div">{{ div.id }}
+                <div class="top-round"></div>
+            </div>
+            <div class="column is-6 second-div">{{ div.content }}</div>
+
+        </div>
+    </div>
+</div>

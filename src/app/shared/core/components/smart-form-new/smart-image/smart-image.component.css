@@ -1,0 +1,28 @@
+.smart-image-edit-icon{
+    position: absolute;
+    top:0;
+    right:2px;
+    cursor: pointer;
+}
+.smart-image-edit-size{
+    position: absolute;
+    bottom:0;
+    right:2px;
+    font-size: 0.8em;
+}
+.smart-image-upload{
+    text-align: center;   
+}
+.smart-image-upload .card{
+    min-height: 50px;
+    padding:1.3em;
+}
+.smart-image-upload .file .file-label{
+    margin: 0 auto;
+}
+.smart-image-upload .file .file-label .file-cta{
+    width:100%;
+}
+.smart-image-top-icon {
+    margin-left: 2em;
+}

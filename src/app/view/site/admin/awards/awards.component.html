@@ -1,0 +1,104 @@
+<div *ngIf="mode=='table'">
+
+  <div class="columns is-mobile ">
+    <div class="column">
+
+      <h3 class="card-header-title smart-header-text">
+
+        Awards </h3>
+    </div>
+    <div class="column is-4 is-flex is-justify-content-end smart-mobile-hide">
+      <button class="button smart-action-button-secondary" (click)="openForm()">
+        <i class="fa fa-plus p-1"></i>Add New Awards
+      </button>
+    </div>
+    <div class="column is-3 is-flex is-justify-content-end smart-desk-hide">
+      <figure class="image is-32x32" (click)="openForm()">
+        <img class="is-rounded" src="assets/icons/add-100-blue.png">
+      </figure>
+    </div>
+  </div>
+  <div class="columns ">
+    <div class="column is-18">
+      <div class="card">
+        <div class="card-content">
+          <div class="content">
+            <app-smart-tablenew [data]="tableData" [tconfig]="tableConfigNew">
+            </app-smart-tablenew>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #employeesTemplate let-item>
+  <span class="tag" *ngFor="let obj of item.employees">{{obj.label}}</span>
+</ng-template>
+
+
+<ng-template #createform let-c="close" let-d="dismiss">
+  <!-- <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"
+            class="ft-popup-heading text-center brand-text-color">Role Management Form</h5>
+        <button type="button" class="btn-close" aria-label="Close"
+            (click)="d('Cross click')"></button>
+    </div> -->
+  <div class="modal-body">
+    <app-smart-form-new [smartFormConfig]="createFormConfig()" [smartFormData]="formData"></app-smart-form-new>
+  </div>
+</ng-template>
+<ng-template #imageTemplate let-item>
+
+  <img  src="{{imageUrl}}/{{item.ID}}"  style="width:200px;height:200px">
+</ng-template>
+
+
+
+<ng-template #createform let-c="close" let-d="dismiss">
+  <div class="modal-body">
+    <app-smart-form-new [smartFormConfig]="createFormConfig()" [smartFormData]="formData"></app-smart-form-new>
+  </div>
+</ng-template>
+
+<div *ngIf="mode=='display'">
+  <div class="columns">
+    <div class="column is-12">
+      <div class="title has-text-centered">
+        <p class="bounce-in-top">Awards</p>
+      
+      </div>
+    </div>
+  </div>
+  <div class="columns mt-5 is-multiline is-multiple">
+
+    <div class="column is-4 is-flex is-justify-content-center " *ngFor="let item of tableData">
+      <div class="smart-card">
+        <img  src="{{imageUrl}}/{{item.ID}}"   class="card-imgage">
+        <div class="card-body">
+            <!-- <h1 class="card-title">  {{ item?.title }}</h1> -->
+           <p class="sub-title">  {{ item?.award_date  | date : "dd/MM/YYYY"}}</p>
+             <p class="card-info">
+              {{ item?.title }}
+
+             </p>
+            
+        </div>
+     </div>
+    </div>
+<!-- 
+    <div class="column is-6 is-flex is-justify-content-center  smart-desk" *ngFor="let item of tableData">
+
+      <img class="smart-award-image" src="{{imageUrl}}/{{item.ID}}" />
+
+      <div class="smart-activitie-content">
+        <div class="smart-heading mb-5 is-size-5 has-text-info-dark is-bordered">
+          {{ item?.title }}
+        </div>
+        <p class="smart-card-content has-text-info-dark">
+          {{ item?.description }}
+        </p>
+      </div>
+    </div> -->
+   
+  </div>
+</div>

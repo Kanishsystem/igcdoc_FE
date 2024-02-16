@@ -1,0 +1,55 @@
+<div class="smart-image-upload">
+    <div class="card">
+        <div class="card-image">
+            <figure class="image">
+                <img [src]="finalImage"  />
+            </figure>
+        </div>
+        <span *ngIf="croppedImage" (click)="openCropForm()" class="smart-image-edit-icon">
+            <i class="fa fa-pencil-square-o"></i>
+        </span>
+        <span class="smart-image-edit-size">{{croppedImageSize}}</span>
+    </div>
+    <div class="file">
+        <label class="file-label">
+            <input class="file-input" type="file" name="resume" (change)="fileChangeEvent($event)">
+            <span class="file-cta">
+                <span class="file-icon">
+                    <i class="fa fa-upload"></i>
+                </span>
+                <span class="file-label" *ngIf="!croppedImage">
+                    Select
+                </span>
+                <span class="file-label" *ngIf="croppedImage">
+                    Replace
+                </span>
+            </span>
+        </label>
+    </div>
+</div>
+
+
+
+<ng-template #imageCropForm let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel" 
+        class="ft-popup-heading text-center brand-text-color">
+        <i (click)="uploadCroppedImage()" class="fa fa-check button" aria-hidden="true"></i>  
+    </h5>
+        <i (click)="rotateLeft()" class="fa fa-undo button smart-image-top-icon" aria-hidden="true"></i>
+        <i (click)="rotateRight()" class="fa fa-repeat button" aria-hidden="true"></i>
+        <i (click)="zoomOut()" class="fa fa-search-minus button" aria-hidden="true"></i> 
+        <i (click)="zoomIn()" class="fa fa-search-plus button" aria-hidden="true"></i> 
+        
+        <button type="button" class="btn-close" aria-label="Close"
+         (click)="d('Cross click')"> </button>
+    </div>
+    <div class="modal-body">
+        <image-cropper 
+        [imageBase64]="finalImage"
+        [imageChangedEvent]="imageChangedEvent" 
+        [maintainAspectRatio]="true" [aspectRatio]="4 / 3"
+            [canvasRotation]="canvasRotation" [transform]="transform"
+            (imageCropped)="imageCropped($event)"></image-cropper>      
+    </div>
+</ng-template>

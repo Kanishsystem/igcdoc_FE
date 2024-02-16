@@ -1,0 +1,16 @@
+.page-item{
+    cursor: pointer;
+}
+.pagination li{
+    margin:0 !important;
+}
+.pagination-link.is-disabled{
+    cursor: no-drop;
+    pointer-events: none;
+}
+.pagination-link.is-current{
+    background-color: var(--smart-page-active-color);
+    border-color: var(--smart-page-active-color);
+    pointer-events: none;
+}
+

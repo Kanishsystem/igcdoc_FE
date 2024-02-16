@@ -1,0 +1,7 @@
+::ng-deep .smart-table-filter{
+    min-width: 20rem;
+  }
+ .samrt-body{
+  margin-top: 100px;
+  margin-bottom: 200px;
+ }

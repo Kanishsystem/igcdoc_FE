@@ -1,0 +1,223 @@
+<div class="container-fluid">
+    <div class="columns">
+        <!-- <div class="column" *ngIf="isAdmin">
+            <div class="cardbox">                
+                <div class="card-1">
+                    <div class="cardname">USER LOGGED IN</div>
+                    <div class="is-flex is-justify-content-space-around mt-5">
+                        <div class="numbers">{{data?.user}}</div>
+                        <div class="iconBx">
+                            <i class="fa fa-users"></i>
+                        </div>
+                        
+                    </div>
+                   
+                </div> 
+                 <div class="card-1">
+                    <div class="cardname">TOTAL DOCS</div>
+                    <div  class="is-flex is-justify-content-space-around mt-5">
+                        <div class="numbers">{{data?.docs}}</div>
+                        <div class="iconBx">
+                            <i class="fa fa-folder-open"></i>
+                        </div>
+                        
+                    </div>
+                   
+                </div>
+                <div class="card-1">
+                    <div class="cardname">TOTAL MEETINGS</div>
+                    <div class="is-flex is-justify-content-space-around mt-5">
+                        <div class="numbers">{{data?.meetcount}}</div>
+                        <div class="iconBx">
+                            <i class="fa fa-handshake-o"></i>
+                        </div>
+                       
+                    </div>
+                   
+                </div>    
+               
+            </div>
+            <div class="cardbox">
+                <div class="card-1">
+                    <div class="cardname">ELECTRICAL</div>
+                    <div class="is-flex is-justify-content-space-around mt-5">
+                        <div class="numbers">{{data?.electrical}}</div>
+                        <div class="iconBx">
+                            <i class="fa fa-plug"></i>
+                        </div>
+                      
+                    </div>
+                  
+                </div> 
+                <div class="card-1">
+                    <div class="cardname">TELEPHONE</div>
+                    <div class="is-flex is-justify-content-space-around mt-5">
+                        <div class="numbers">{{data?.telephone}}</div>
+                      
+                        <div class="iconBx">
+                            <i class="fa fa-phone"></i>
+                        </div>
+                    </div>
+                   
+                </div> 
+                 <div class="card-1">
+                    <div class="cardname">NETWORK</div>
+                    <div class="is-flex is-justify-content-space-around mt-5">
+                        <div class="numbers">{{data?.network}}</div>
+                        <div class="iconBx">
+                            <i class="fa fa-globe"></i>
+                        </div>
+                       
+                    </div>
+                  
+                </div>            
+            </div>
+        </div> -->
+        <div class="column" *ngIf="!isAdmin">
+            <div class="cardbox">
+                <div class="card-1" *ngIf="isDoc" routerLink="/document-management-admin">
+                    <div class="cardname">DOCUMENTS</div>
+                    <div class="is-flex is-justify-content-space-around mt-5">
+                        <div class="numbers">{{data?.docsByStatus||0}}</div>
+                        <div class="iconBx">
+                            <i class="fa fa-plug"></i>
+                        </div>
+                       
+                    </div>
+                  
+                </div>                  
+                <div class="card-1" *ngIf="isEle" routerLink="/electrical-complaint-admin">
+                    <div class="cardname">ELECTRICAL</div>
+                    <div class="is-flex is-justify-content-space-around mt-5">
+                        <div class="numbers">{{data?.electricalByStatus||0}}</div>
+                      
+                        <div class="iconBx">
+                            <i class="fa fa-plug"></i>
+                        </div>
+                    </div>
+                  
+                </div> 
+                <div class="card-1" *ngIf="isTp" routerLink="/telephone-complaint-admin">
+                    <div class="cardname">TELEPHONE</div>
+
+                    <div class="is-flex is-justify-content-space-around mt-5">
+                        <div class="numbers">{{data?.telephoneByStatus||0}}</div>
+                        <div class="iconBx">
+                            <i class="fa fa-phone"></i>
+                        </div>
+                    </div>
+                    
+                </div> 
+                 <div class="card-1" *ngIf="isNw" routerLink="/network-complaint-admin">
+                    <div class="cardname">NETWORK</div>
+                    <div class="is-flex is-justify-content-space-around mt-5">
+                        <div class="numbers">{{data?.networkByStatus||0}}</div>
+                       
+                        <div class="iconBx">
+                            <i class="fa fa-globe"></i>
+                        </div>
+                    </div>
+                   
+                </div> 
+                <!-- <div class="card-1" *ngIf="isMe" routerLink="/mechanical-complaint-admin">
+                    <div class="cardname">MECHANICAL</div>
+                    <div class="is-flex is-justify-content-space-around mt-5">
+                        <div class="numbers">{{data?.mechanicalByStatus||0}}</div>
+                      
+                        <div class="iconBx">
+                            <i class="fa fa-briefcase"></i>
+                        </div>
+                    </div>
+                   
+                </div>                          -->
+            </div>          
+        </div>
+    </div>
+</div>
+
+
+
+<div class="columns is-multiline" *ngIf="isAdmin">
+    <div class="column is-4 ">  
+         <div class="card-1">
+        <div class="cardname">USER LOGGED IN</div>
+        <div class="is-flex is-justify-content-space-around mt-5">
+            <div class="numbers">{{data?.user}}</div>
+            <div class="iconBx">
+                <i class="fa fa-users"></i>
+            </div>
+            
+        </div>
+       
+    </div> </div>
+    <div class="column is-4">
+        <div class="card-1">
+            <div class="cardname">TOTAL DOCS</div>
+            <div  class="is-flex is-justify-content-space-around mt-5">
+                <div class="numbers">{{data?.docs}}</div>
+                <div class="iconBx">
+                    <i class="fa fa-folder-open"></i>
+                </div>
+                
+            </div>
+           
+        </div>
+    </div>
+    <div class="column is-4">
+        <div class="card-1">
+            <div class="cardname">TOTAL MEETINGS</div>
+            <div class="is-flex is-justify-content-space-around mt-5">
+                <div class="numbers">{{data?.meetcount}}</div>
+                <div class="iconBx">
+                    <i class="fa fa-handshake-o"></i>
+                </div>
+               
+            </div>
+           
+        </div>
+    </div>
+    <div class="column is-4"> 
+         <div class="card-1">
+        <div class="cardname">ELECTRICAL</div>
+        <div class="is-flex is-justify-content-space-around mt-5">
+            <div class="numbers">{{data?.electrical}}</div>
+            <div class="iconBx">
+                <i class="fa fa-plug"></i>
+            </div>
+          
+        </div>
+      
+    </div> </div>
+    <div class="column is-4">
+        <div class="card-1">
+            <div class="cardname">TELEPHONE</div>
+            <div class="is-flex is-justify-content-space-around mt-5">
+                <div class="numbers">{{data?.telephone}}</div>
+              
+                <div class="iconBx">
+                    <i class="fa fa-phone"></i>
+                </div>
+            </div>
+           
+        </div>
+    </div>
+    <div class="column is-4">
+        <div class="card-1">
+            <div class="cardname">NETWORK</div>
+            <div class="is-flex is-justify-content-space-around mt-5">
+                <div class="numbers">{{data?.network}}</div>
+                <div class="iconBx">
+                    <i class="fa fa-globe"></i>
+                </div>
+               
+            </div>
+          
+        </div> 
+    </div>
+</div>
+
+<div class="columns is-multiline">
+    <div class="column is-4 ">
+
+    </div>
+</div>

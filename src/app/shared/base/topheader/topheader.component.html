@@ -1,0 +1,40 @@
+<!--
+<div class="top_navbar">
+    <div class="menu">
+        <div class="hamburger mt-2">
+         <img class="logo" [src]="logoImage" > -->
+     <!--      {{title}}
+        </div>
+       
+        <div class="hamburger-right mt-2"> -->
+            <!-- <img class="logo" [src]="logoImage" > -->
+            <!-- <img src="./assets/images/user.png" class="profile-image" /> -->
+       <!--    {{user?.firstName}}
+           <img class="logo" [src]="profile">
+           
+        </div>
+    </div>
+    
+</div>
+--> 
+
+<header>
+
+   <a href="#" class="logo"><button>E</button> E-BOOK</a>
+
+   <label for="menu-bar"><i class="fa fa-bars" (click)="getMenu()"></i></label>
+
+   <nav class="navbar" *ngIf="isShow">
+    <ul>
+        <li (click)="getMenu()"><a href="#">Home</a></li>
+        <li (click)="getMenu()" ><a href="#">Profile</a></li>
+        <li  (click)="getMenu()"><a href="#">Personal Deatails</a></li>
+        <li  (click)="getMenu()"><a href="#">History</a></li>
+    
+        <li  (click)="getMenu()"><a href="#">Sign Out</a></li>
+    </ul>
+    </nav>
+</header>
+
+
+

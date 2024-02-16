@@ -1,0 +1,90 @@
+<section class="hero is-fullheight smart-login-body">
+  <div class="hero-body">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-6-tablet is-6-desktop is-6-widescreen">
+          <ng-template #newUserTemplate let-item> 
+           <p class="has-text-centered"> Dont Have a ?<a class="has-text-link" 
+            (click)="registerButtonClick()"> click here </a></p> 
+         </ng-template>
+          <!--login form-->
+          <div *ngIf="formName == 'login'">
+            <div class="card">             
+              <div class="card-content">
+                <div class="content">
+                  <h1 class="has-text-centered login-title"> LOGIN </h1>
+                  <app-smart-form-new
+                    [smartFormConfig]="createLoginFormConfig()"
+                  ></app-smart-form-new>
+                  <br/>
+                  <p class="has-text-centered"> Dont Have Account ?<a class="has-text-link" 
+                    (click)="registerButtonClick()"> Sign Up </a></p>                 
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!--forgot form-->
+
+          <div *ngIf="formName == 'forgot'">
+            <div class="card">
+              <header class="card-header">
+                <p class="card-header-title">Forgot Password</p>
+                <button class="card-header-icon" aria-label="more options"  placement="bottom" ngbTooltip="Back to Login" (click)="formName='login'">
+                  <span class="icon">
+                    <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                  </span>
+                </button>
+              </header>
+              <div class="card-content">
+                <div class="content">
+                  <app-smart-form-new
+                    [smartFormConfig]="createForgotFormConfig()"
+                  ></app-smart-form-new>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--reset-->
+          <div *ngIf="formName == 'reset'">
+            <div class="card">
+              <header class="card-header">
+                <p class="card-header-title">Reset Password</p>
+              </header>
+              <div class="card-content">
+                <div class="content">
+                  <app-smart-form-new
+                    [smartFormConfig]="createResetFormConfig()"
+                    [smartFormData]="this.resetData"
+                  ></app-smart-form-new>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!--register form-->
+
+          <div *ngIf="formName == 'register'">
+            <div class="card">
+              <header class="card-header">
+                <p class="card-header-title">Registration Form</p>
+                <button class="card-header-icon" aria-label="more options" placement="bottom" ngbTooltip="Back to Login" (click)="formName='login'">
+                  <span class="icon">
+                    <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                  </span>
+                </button>
+              </header>
+              <div class="card-content">
+                <div class="content">
+                  <app-smart-form-new
+                    [smartFormConfig]="createRegisterFormConfig()"
+                  ></app-smart-form-new>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

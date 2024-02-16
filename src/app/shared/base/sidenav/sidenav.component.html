@@ -1,0 +1,33 @@
+<!--<div class="wrapper hover_collapse">
+    <div class="sidebar" id="smart-sidebar">
+        <div class="sidebar_inner">
+            <ul>
+                <li *ngFor="let data of smartSideNav" 
+                [routerLinkActive]="['sidebar-active']" tooltipClass="tooltip"  
+                placement="right" [ngbTooltip]="tooltip" container="body">
+                   <ng-template #tooltip>{{data.title | uppercase}}</ng-template>
+                    <a routerLink={{data.navigateLink}}>
+                        <span class="icon"><i  [ngClass]="data.icon"></i></span>
+                        <span class="text">{{data.title}}</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+-->
+<div class="side-nav">
+  
+    <ul>
+        <li *ngFor="let data of smartSideNav" [routerLinkActive]="['sidebar-active']" 
+        tooltipClass="tooltip"  placement="right" [ngbTooltip]="tooltip" container="body">
+           <ng-template #tooltip>{{data.title | uppercase}}</ng-template>
+            <a routerLink={{data.navigateLink}}>
+                <span class="icon"><i  [ngClass]="data.icon"></i></span>
+                <span class="text">{{data.title}}</span>
+            </a>
+        </li>
+    </ul>
+
+</div>

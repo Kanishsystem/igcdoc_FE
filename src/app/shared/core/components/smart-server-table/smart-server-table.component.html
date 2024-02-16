@@ -1,0 +1,170 @@
+<div class="row">
+    <div class="col-6">
+        <span *ngIf="tableconfig?.showentries && this.tableconfig.pagination">
+            Show
+            <select [(ngModel)]="count" (change)="onShowCount();showEntries('SHOWCOUNT');triggerServerSidePage()">
+                <option *ngFor="let items of showItems">{{items}}</option>
+            </select>
+            Entries
+        </span>
+    </div>
+    <div class="col-6 d-flex flex-row-reverse">
+        <span *ngIf="tableconfig?.search" class="pt-2">
+            Search <input type="search" [(ngModel)]="filter" (ngModelChange)="searchItems()" />
+        </span>
+        <span *ngIf="tableconfig?.refresh">
+            <button class="btn btn-light btn-lg" (click)="onHeaderActionClick('REFRESH')"><i class="fa
+                    fa-refresh"></i></button>
+        </span>
+        <span *ngIf="tableconfig?.colsearch">
+            <button class="btn btn-light btn-lg" (click)="isFilterEnabled=!isFilterEnabled"><i
+                    class="{{isFilterEnabled ? 'fa fa-close' : 'fa fa-filter'}}"></i></button>
+        </span>
+        <span *ngIf="tableconfig?.download">
+            <button class="btn btn-light btn-lg" (click)="exportexcel(tableconfig?.name)"><i
+                    class="fa fa-download"></i></button>
+        </span>
+        <span *ngIf="tableconfig?.settings" ngbDropdown>
+            <button class="btn btn-light btn-lg" id="settings" ngbDropdownToggle><i class="fa fa-gear"></i></button>
+            <div ngbDropdownMenu aria-labelledby="settings"
+                style="width: 250px;height: 500px; overflow-x: hidden; overflow-y: scroll;">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" (click)="onAllColumnChange()" role="switch"
+                                [id]="'all'">
+                            <label class="form-check-label" [for]="'all'">ALL</label>
+                        </div>
+                    </li>
+                    <li class="list-group-item" *ngFor="let colet of colsettingsData;let i = index">
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" [disabled]="colet?.disabled"
+                                [checked]="colet?.selected" value=true (click)="onColumnSelected($event,i,colet?.tbody)"
+                                role="switch" [id]="colet?.tbody">
+                            <label class="form-check-label" [for]="colet?.tbody">{{colet?.title}}</label>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </span>
+        <span *ngIf="tableconfig?.add">
+            <button class="btn btn-light btn-lg" (click)="onHeaderActionClick('ADD')"><i
+                    class="fa fa-create">+</i></button>
+        </span>
+    </div>
+</div>
+
+<div class="" style="width: 100%">
+    <table class="table pb-3 table-hover " id={{tableconfig?.name}}>
+        <thead class="border">
+            <tr class="datatable-head smart-header border">
+                <ng-template ngFor let-thead [ngForOf]="colsettingsData">
+                    <th smartTableShort [enablesort]=tableconfig?.sorting (click)="sortArr(thead.tbody)"
+                        *ngIf="thead?.selected">{{thead.title}}</th>
+                </ng-template>
+            </tr>
+            <tr *ngIf="isFilterEnabled">
+                <th *ngFor="let thead of colsettingsData">
+                    <form>
+                        <input type="search" name="{{thead.tbody}}" id="{{thead.tbody}}" autocomplete="off"
+                            (input)="coulmnSearch(thead.tbody,$event)" *ngIf="thead?.filter == true ? true : false"
+                            #filterText class="form-control form-control-sm">
+                    </form>
+                </th>
+            </tr>
+        </thead>
+        <tbody *ngIf="tabledata?.length> 0 || tabledata?.length != null" class="table-group-divider">
+            <tr *ngFor="let tbody of tabledata | paginate: {id: 'server', itemsPerPage:count, currentPage: page,totalItems : totalCounts}; let i= index"
+                class="ft-table-body">
+                <ng-template ngFor let-tdata [ngForOf]="colsettingsData">
+                    <ng-container *ngIf="tdata?.selected">
+                        <td *ngIf="tdata.type=='db' && !tdata.uppercase">
+                            {{tbody[tdata.tbody] || '-' }}
+                        </td>
+                        <td *ngIf="tdata.type=='db' && tdata.uppercase">
+                            {{tbody[tdata.tbody] | uppercase }}
+                        </td>
+                        <td *ngIf="tdata.type=='date'">
+                            <span *ngIf="tdata?.customFormat">{{tbody[tdata.tbody] | date: tdata?.format || '-'
+                                }}</span>
+                            <span *ngIf="tdata?.datePipeFormat">{{tbody[tdata.tbody] | date: tdata?.format || '-'
+                                }}</span>
+                            <span *ngIf="!tdata?.datePipeFormat && !tdata?.customFormat">{{tbody[tdata.tbody] || '-'
+                                }}</span>
+                        </td>
+                        <td *ngIf="tdata.type=='badge'">
+                            <span *ngFor="let badgecond of tdata.cond">
+                                <span *ngIf="tbody[tdata.tbody] == badgecond.comp" id="status" class="badge"
+                                    [ngStyle]="{'background-color':badgecond.color}">{{tbody[tdata.tbody]}}</span>
+                            </span>
+                        </td>
+                        <td *ngIf="tdata.type=='btngroup'">
+                            <div class="d-flex">
+                                <span *ngFor="let btngrp of tdata.btnconfig">
+                                    <span *ngIf="!btngrp.cond && !btngrp.showcond" class="p-2">
+                                        <i *ngIf="btngrp.type == 'icon'" [ngStyle]="{'color':btngrp.color}"
+                                            class="{{btngrp.icon}}" title="{{btngrp.title}}"
+                                            (click)="onBodyActionClick(btngrp.action,i,tbody[btngrp.returnData],tbody[btngrp.returnData1],tbody[btngrp.returnData2],tbody)"></i>
+                                    </span>
+                                    <span *ngIf="!btngrp.cond && !btngrp.showcond && btngrp.type == 'iconSelect'"
+                                        class="p-2">
+                                        <div ngbDropdown class="d-inline-block">
+                                            <i id="dropdownBasic1" ngbDropdownToggle class="{{btngrp.icon}}"></i>
+                                            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                                                <button ngbDropdownItem *ngFor="let dpoptions of btngrp?.options "
+                                                    (click)="onBodyActionClick(dpoptions.action,i,tbody[dpoptions.returnData],tbody[dpoptions.returnData1],tbody[dpoptions.returnData2],tbody)"><i
+                                                        class="{{dpoptions.icon}} mr-1"></i>{{dpoptions.title}}</button>
+                                            </div>
+                                        </div>
+                                    </span>
+                                    <span *ngIf="btngrp.cond && btngrp.cond.value.includes(tbody[btngrp.cond.comp])">
+                                        <i *ngIf="btngrp.type == 'icon'" [ngStyle]="{'color':btngrp.color}"
+                                            class="{{btngrp.icon}}" title="{{btngrp.title}}"
+                                            (click)="onBodyActionClick(btngrp.action,i,tbody[btngrp.returnData],tbody[btngrp.returnData1],tbody[btngrp.returnData2],tbody)"></i>
+                                    </span>
+                                    <span *ngIf="btngrp.showcond && btngrp.showcond.comp == btngrp.showcond.value">
+                                        <i *ngIf="btngrp.type == 'icon'" [ngStyle]="{'color':btngrp.color}"
+                                            class="{{btngrp.icon}}" title="{{btngrp.title}}"
+                                            (click)="onBodyActionClick(btngrp.action,tbody[btngrp.returnData],i)">{{btngrp.icon}}</i>
+                                    </span>
+                                </span>
+                            </div>
+                        </td>
+                    </ng-container>
+                </ng-template>
+            </tr>
+        </tbody>
+        <tbody
+            *ngIf="(this.tableconfig.pagination || this.tableconfig.norecordsFound )&& (tabledata?.length == 0 || tabledata?.length == null)"
+            class="table-group-divider">
+            <tr class="datatable-head">
+                <td [attr.colspan]=colspan class="text-center">
+                    <span>No Records Found</span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="row">
+        <div class="col-6 ">
+            <span *ngIf="tableconfig?.showingentries && this.tableconfig.pagination">
+                Showing {{showStartCount}} to {{showEndCount}} of
+                {{isSearchEnabled ? totalFilteredCount : totalCount }} entries
+                <span *ngIf="isSearchEnabled">(filtered from {{totalCount}}
+                    total entries)</span>
+            </span>
+            <span *ngIf="tableconfig?.currentpage && this.tableconfig.pagination">
+                Current Page
+                <select [(ngModel)]="page" (change)="showEntries('PAGE')">
+                    <option *ngFor="let items of currentPage">{{items}}</option>
+                </select> |
+            </span>
+        </div>
+        <div class="col-6 d-flex flex-row-reverse">
+            <span *ngIf="this.tableconfig.pagination && tabledata?.length != 0 && tabledata?.length != null">
+                <pagination-controls (pageChange)="onPageChange($event)" [responsive]="responsive" [maxSize]="maxSize"
+                    id="server" [directionLinks]="true" [previousLabel]="'Previous'"
+                    [nextLabel]="'Next'"></pagination-controls>
+            </span>
+        </div>
+    </div>
+</div>

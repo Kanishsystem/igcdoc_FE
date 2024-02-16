@@ -1,0 +1,10 @@
+#pdfViewer{
+    margin:0 auto;
+    padding:1em;
+    background:black;
+}
+::ng-deep .pdf-canvas {
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 1em;
+  }

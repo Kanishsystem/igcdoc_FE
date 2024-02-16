@@ -1,0 +1,12 @@
+<ul class="menu-list smart-list">
+    <li *ngFor="let obj of this.tableData;let i=index;" 
+    [ngClass]="obj.ID==this.formData?.ID?'is-active':''" >
+        <a (click)="editClick(obj)" >{{i+1}}. {{getLabel(obj)}}
+         <span class="icon">            
+           <i class="fa fa-trash smart-list-delete" (click)=" openDeleteCustomDialog(obj.ID)"></i>
+        </span>
+    </a>
+    </li> 
+  </ul>
+<app-smart-form-new [smartFormConfig]="createFormConfig()"
+ [smartFormData]="formData"></app-smart-form-new> 

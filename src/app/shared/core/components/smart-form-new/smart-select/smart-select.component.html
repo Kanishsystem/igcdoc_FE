@@ -1,0 +1,32 @@
+<div class="dropdown is-fullwidth smart-select" 
+   [ngClass]="showDropDown ? 'is-active' : ''" (mouseleave)="showDropDown = false">
+    <div class="dropdown-trigger">
+      <button class="button smart-select-button" aria-haspopup="true" aria-controls="dropdown-menu" 
+       (click)="showDropDown=!showDropDown;openFocus();filterText=''">
+        <span class="smart-select-button-label" *ngIf="checkedList.length > 0">
+          <span class="tag is-link" *ngFor="let obj of checkedList;let i = index">
+            {{obj.label}}
+            <button class="delete is-small" (click)="removeOption(i)"></button>
+          </span>
+        </span>
+        <span class="smart-select-button-label"  *ngIf="checkedList.length==0">
+             {{item?.placeHolder}}
+        </span>
+        <span class="icon is-small smart-select-button-icon">
+          <i class="fas fa-angle-down" aria-hidden="true"></i>
+        </span>
+      </button>
+    </div>
+    <div class="dropdown-menu smart-drop-down" id="dropdown-menu" role="menu">
+      <input #filterInput type="text" class="input" placeholder="Search Here ......." [(ngModel)]="filterText" />
+      <div class="dropdown-content">       
+        <div class="field dropdown-item"  *ngFor="let opt of getSelectOptions">
+          <input class="is-checkradio" id="{{item.name}}_{{opt.value}}" 
+          type="checkbox" name="{{item.name}}_{{opt.value}}"
+          [checked]="getCheckedStatus(opt.value)"
+          (change)="getSelectedValue(opt,$event)">
+          <label for="{{item.name}}_{{opt.value}}">{{opt.label}}</label>
+        </div>      
+      </div>
+    </div>
+  </div>

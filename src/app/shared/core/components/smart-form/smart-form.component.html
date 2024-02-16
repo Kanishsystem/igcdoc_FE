@@ -1,0 +1,81 @@
+<form [formGroup]="smartForm">
+    <div class="row  pt-3">
+        <div *ngFor="let smartForms of smartFormConfig" class="col-md-{{smartForms?.width}}">
+            <div class="group  mb-2" *ngIf="smartForms?.type=='select'">
+                <label>{{smartForms?.label}}<span class="red-required text-danger"> *</span> </label>
+                <div class="smart-input">
+                    <select class="input-value" [formControlName]="smartForms?.name"
+                        (change)="smartOnChange(smartForms?.name)">
+                        <option selected [value]="null" disabled>SELECT</option>
+                        <option *ngFor="let opt of smartForms?.options" value={{opt?.key}}>{{opt?.value | uppercase }}
+                        </option>
+                    </select>
+                    <div class="text-danger"
+                        *ngIf="smartFormControl[smartForms?.name]?.errors && (smartFormControl[smartForms?.name]?.touched || isSubmitted) ">
+                        <div *ngIf="smartFormControl[smartForms?.name]?.errors?.required">
+                            {{smartForms?.label}} is required
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="group mb-2" *ngIf="smartForms.type=='text'">
+                <label>{{smartForms?.label}}<span class="red-required text-danger"> *</span> </label>
+                <div class="smart-input">
+                    <input class="input-value upper-case" id="addressArea" placeholder="{{smartForms?.label}}"
+                        [formControlName]="smartForms?.name" (change)="smartOnChange(smartForms?.name)" />
+                    <div class="text-danger"
+                        *ngIf="smartFormControl[smartForms?.name]?.errors && (smartFormControl[smartForms?.name]?.touched || isSubmitted) ">
+                        <div *ngIf="smartFormControl[smartForms?.name]?.errors?.required">
+                            {{smartForms?.label}} is required
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="group  mb-2" *ngIf="smartForms?.type=='date'">
+                <label>{{smartForms?.label}}<span class="red-required text-danger"> *</span> </label>
+                <div class="input-group smart-input">
+                    <input class="input-value upper-case" id="dob" AddDateHyphen [formControlName]="smartForms?.name"
+                        placeholder="DD-MM-YYYY" name="d2" (change)="smartOnChange(smartForms?.name)" ngbDatepicker
+                        #d2="ngbDatepicker">
+                    <div class="input-group-append">
+                        <span class="calendar" (click)="d2.toggle()" type="button">📅</span>
+                    </div>
+                </div>
+                <div class="text-danger"
+                    *ngIf="smartFormControl[smartForms?.name]?.errors && (smartFormControl[smartForms?.name]?.touched || isSubmitted) ">
+                    <div *ngIf="smartFormControl[smartForms?.name]?.errors?.required">
+                        {{smartForms?.label}} is required
+                    </div>
+                </div>
+            </div>
+            <div class="row group mb-2" *ngIf="smartForms?.type=='radio'">
+                <div class="col-auto ft-input-label">{{smartForms?.label}}<span
+                        class="red-required text-danger">*</span> </div>
+                <div *ngFor="let options of  smartForms?.options" class="col-md-{{options?.width}}">
+                    <input class="input-value upper-case" [formControlName]="smartForms?.name" type="radio"
+                        id={{options?.key}} value={{options?.key}} (click)="smartOnChange(smartForms?.name)">
+                    <label class="form-check-label ft-radio-value brand-text-desc-color"
+                        for={{options?.key}}>{{options?.key}}</label><br />
+                </div>
+            </div>
+            <div class="row group  mb-2" *ngIf="smartForms?.type=='checkbox'">
+                <div class="col-auto ft-input-label">{{smartForms?.label}}<span
+                        class="red-required text-danger">*</span> </div>
+                <div *ngFor="let options of  smartForms?.options" class="col-md-{{options?.width}}">
+                    <input class="input-value upper-case" [formControlName]="smartForms?.name" type="checkbox"
+                        id={{options?.key}} value={{options?.key}} (click)="smartOnChange(smartForms?.name)">
+                    <label class="form-check-label ft-radio-value brand-text-desc-color"
+                        for={{options?.key}}>{{options?.key}}</label><br />
+                </div>
+            </div>
+            <div class="row group  mb-2" *ngIf="smartForms?.type=='none'">
+
+            </div>
+            <div class="group mt-4 text-center" *ngIf="smartForms?.type=='button'">
+                <div class="smart-input">
+                    <button class="btn btn-primary" (click)="smartFormSubmit()">{{smartForms?.label}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

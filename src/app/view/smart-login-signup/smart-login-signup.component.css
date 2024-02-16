@@ -1,0 +1,117 @@
+.smart-login{
+	/* background: radial-gradient(#653d84, #332042); */
+	background: url(../../../assets/images/Login.png);
+}
+.smart-login .card{
+	border-radius: 0;
+}
+.head-card{
+	border-top-right-radius:10px !important;
+	border-top-left-radius:10px !important;
+}
+.login-card{
+	border-bottom-left-radius: 10px !important;
+}
+.image-card{
+	border-bottom-right-radius: 10px !important;
+}
+/*
+.smart-login .container{
+	padding-left: 5em;
+	padding-right:5em;
+}*/
+.smart-login h1{
+	text-align:center;
+	font-size:1.5em;
+	color:#653d84;
+	margin-top: 0.4em;
+}
+/** corousal images **/
+.smart-slide{
+	position: relative;
+}
+.smart-slide .smart-slider-content{
+	position:absolute;
+	bottom:0;
+	text-align: center;
+	width:100%;
+	color:rgb(5, 5, 5);
+	background-color: rgb(255, 255, 255);
+	opacity: 0.8;
+    padding:1em;
+}
+.smart-slide .smart-slider-content h3{	
+	text-align:center;
+	font-size: 1.2em;
+	font-weight: bold;
+	opacity: 1;
+	color:rgb(9, 5, 238);
+}
+
+.smart-slide .smart-slider-content p{
+	
+	text-align:center;
+	font-size: 0.9em;
+	opacity: 1;
+}
+
+
+
+
+
+.login-links{
+	width:100%;
+}
+::ng-deep .smart-login-form .column{
+	margin-bottom: 1.5em;
+}
+::ng-deep .smart-login-form .smart-control{
+	/* border-bottom: 2px solid blue; */
+}
+::ng-deep .smart-login-avtar .field{
+	display:block;
+}
+.smart-login-title{
+	margin-bottom: 2em;
+	text-decoration: underline;
+}
+
+.smart-login-media{
+	box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
+	width:100%;
+	padding:0.4em;
+	margin-bottom: 0.5em !important;
+}
+.smart-login-media .media-content h1{
+	text-align: left;
+}
+.smart-login-another-account{
+	text-decoration: underline;
+	font-size: 0.9em;
+	color: #8e8cf5;	
+}
+.smart-login-another-account:hover{
+	color: blue;
+}
+::ng-deep .smart-login-password{
+	margin-bottom: 0 !important;
+}
+.smart-login-forgot{
+	text-decoration: underline;
+	font-size: 0.9em;
+	color: #8e8cf5;
+}
+/* ::ng-deep .smart-label .label{
+	font-weight:"400";
+	margin-bottom: 20px;
+	color: red;
+	font-family: sans-serif;
+
+}
+::ng-deep .smart-login-password{
+	margin-bottom: 0 !important;
+	color: red;
+} */
+
+
+

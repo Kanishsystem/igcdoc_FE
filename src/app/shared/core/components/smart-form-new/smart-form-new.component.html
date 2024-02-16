@@ -1,0 +1,291 @@
+<form [formGroup]="smartForm">
+  <div class="row">
+    <div class="columns is-multiline">
+      <div
+        *ngFor="
+          let item of SmartFieldsConfig;
+          let i = index;
+          trackBy: trackByFn
+        "
+        class="column is-{{ item?.width }}"
+        [ngClass]="getFieldClass(item)"
+        [hidden]="getHideInfo(item)"
+      >
+        <div
+          *ngIf="checkFormElement(item)"
+          class="field smart-field"
+          [ngClass]="getSubFieldClass(item)"
+        >
+          <!-- label function -->
+          <div
+            *ngIf="smartFormConfig?.fieldIndicationType != 'label'"
+            class="smart-label"
+            [ngClass]="getLabelClass(item)"
+          >
+            <label class="label"
+              >{{ getLabel(item) }}
+              <span
+                *ngIf="requiredStar[item.name]"
+                class="smart-form-required has-text-danger"
+                >*</span
+              >
+            </label>
+          </div>
+
+          <div class="field-body">
+            <!-- Error Top Position -->
+            <p
+              *ngIf="checkErrorPosition(item, 'top') && checkErrorExists(item)"
+              class="help is-danger"
+            >
+              {{ getErrorMsg(item) }}
+            </p>
+            <!--form control starts here -->
+            <div
+              class="smart-control control is-expanded"
+              [ngClass]="getControlBoxClass(item)"
+            >
+              <!-- input box display -->
+              <input
+                *ngIf="item.type == 'text'"
+                class="input"
+                type="text"
+                [ngClass]="checkErrorExists(item) ? 'is-danger' : ''"
+                [placeholder]="getPlaceHolder(item)"
+                [formControlName]="item?.name"
+                (change)="changeFormFiled(item)"
+                appSmartAllow
+                [allowedPattern]="item?.allowedPattern"
+                [maxlength]="allowPatterns[item?.name].maxLength"
+                [minlength]="allowPatterns[item?.name].minLength"
+              />
+              <!--  password box  minlength="allowedPattern[item?.name].minLength"
+                max="allowedPattern[item?.name].max"
+                min="allowedPattern[item?.name].min"   -->
+              <input
+                *ngIf="item.type == 'password'"
+                class="input"
+                type="{{ getPassWordEye(item.name) ? 'text' : 'password' }}"
+                [placeholder]="getPlaceHolder(item)"
+                [formControlName]="item?.name"
+              />
+              <!-- Select Box Display -->
+              <div *ngIf="item.type == 'select'" class="select smart-select">
+                <select
+                  [formControlName]="item?.name"
+                  (change)="changeFormFiled(item)"
+                >
+                  <option selected [value]="null" disabled>
+                    {{ getPlaceHolder(item) }}
+                  </option>
+                  <option
+                    *ngFor="let opt of getSelectBoxOptions(item)"
+                    value="{{ opt?.value }}"
+                  >
+                    {{ opt?.label }}
+                  </option>
+                </select>
+              </div>
+              <div
+                *ngIf="item.type == 'selectsearch'"
+                class="smart-select smart-select-ng"
+              >
+                <ng-select  [formControlName]="item?.name" (change)="changeFormFiled(item)" >
+                  <ng-option *ngFor="let opt of getSelectBoxOptions(item)" [value]="opt?.value">
+                    {{ opt?.label }}
+                  </ng-option>
+                </ng-select>
+              </div>
+
+              <div
+              *ngIf="item.type == 'selectsearchmultiple'"
+              class="smart-select smart-select-ng"
+            >
+              <ng-select  [formControlName]="item?.name" 
+             (change)="changeFormFiled(item)" 
+             [multiple]="true">
+                <ng-option *ngFor="let opt of selectOptions[item.name]" [value]="opt">
+                  {{ opt?.label }}
+                </ng-option>
+              </ng-select>
+            </div>
+              <!-- Text Box display -->
+              <textarea
+                *ngIf="item.type == 'textarea'"
+                [formControlName]="item?.name"
+                class="textarea"
+                [rows]="item?.rows"
+                [placeholder]="getPlaceHolder(item)"
+              ></textarea>
+              <!-- radio buttons -->
+              <div *ngIf="item.type == 'radio'">
+                <div
+                  class="radio"
+                  *ngFor="let opt of getSelectBoxOptions(item); let i = index"
+                >
+                  <input
+                    class="is-checkradio"
+                    [ngClass]="item?.checkBoxClass"
+                    value="{{ opt?.value }}"
+                    id="checbox_{{ item?.name }}_{{ i }}"
+                    type="radio"
+                    name="{{ item?.name }}"
+                    [formControlName]="item?.name"
+                    (change)="changeFormFiled(item)"
+                  />
+                  <label for="checbox_{{ item?.name }}_{{ i }}">
+                    {{ opt?.label }}</label
+                  >
+                </div>
+              </div>
+              <!-- select with multiple check boxes -->
+              <div *ngIf="item.type == 'selectmultiple'">
+                <app-smart-select
+                  style="width: 100%"
+                  [selectOptions]="getSelectBoxOptions(item)"
+                  [item]="item"
+                  (selectCheckedList)="selectCheckedList($event)"
+                  [selectValue]="getValue(item)"
+                ></app-smart-select>
+              </div>
+              <!-- file upload  -->
+              <div *ngIf="item.type == 'file'">
+                <app-smart-file
+                  [item]="item"
+                  (setUploadedFile)="selectCheckedList($event)"
+                ></app-smart-file>
+              </div>
+              <!-- image cropper multiple check boxes -->
+              <div *ngIf="item.type == 'imagecrop'">
+                <app-smart-image
+                  [item]="item"
+                  [inputValue]="getValue(item)"
+                  (selectCheckedList)="selectCheckedList($event)"
+                ></app-smart-image>
+              </div>
+              <div *ngIf="item.type == 'time'">
+                <app-smart-date
+                  [item]="item"
+                  [data]="getValue(item)"
+                  (updateAction)="selectCheckedList($event)"
+                  [type]="'time'"
+                ></app-smart-date>
+              </div>
+              <!--  date picker -->
+
+              <input
+                *ngIf="item.type == 'date'"
+                class="input"
+                type="text"
+                [ngClass]="checkErrorExists(item) ? 'is-danger' : ''"
+                [formControlName]="item?.name"
+                placeholder="DD-MM-YYYY"
+                name="d2"
+                ngbDatepicker
+                [minDate]="item?.dateSettings?.minDate"
+                #d2="ngbDatepicker"
+                (click)="d2.toggle()"
+                (change)="changeFormFiled(item)"
+              />
+              <label
+                *ngIf="smartFormConfig?.fieldIndicationType == 'label'"
+                class="smart-label-placeholder"
+                >{{ getLabel(item) }}</label
+              >
+
+              <!-- Icons Position-->
+              <span
+                *ngIf="item?.leftIcon?.length > 0"
+                class="icon is-small is-left"
+              >
+                <i class="fa" [ngClass]="item?.leftIcon"></i>
+              </span>
+              <span
+                *ngIf="item?.rightIcon?.length > 0 && item.type != 'password'"
+                class="icon is-small is-right"
+              >
+                <i class="fa" [ngClass]="item?.rightIcon"></i>
+              </span>
+
+              <span
+                *ngIf="item.type == 'password'"
+                class="icon is-small is-right clickable-icon"
+                (click)="changePasswordEye(item)"
+              >
+                <i
+                  class="fa"
+                  [ngClass]="
+                    getPassWordEye(item.name) ? 'fa-eye-slash' : 'fa-eye'
+                  "
+                ></i>
+              </span>
+            </div>
+            <!-- error at bottom display-->
+          </div>
+          <p
+            *ngIf="checkErrorPosition(item, 'bottom') && checkErrorExists(item)"
+            class="help is-danger"
+            [ngClass]="getErrorClass()"
+          >
+            {{ getErrorMsg(item) }}
+          </p>
+        </div>
+        <!-- template display -->
+        <div
+          *ngIf="!checkFormElement(item) && item?.type == 'template'"
+          class="field is-grouped"
+        >
+          <ng-container
+            *ngTemplateOutlet="
+              getTemplateName(item);
+              context: { $implicit: item }
+            "
+          ></ng-container>
+        </div>
+
+        <!-- control element when buttons clicked -->
+        <div
+          *ngIf="!checkFormElement(item) && item?.type == 'button'"
+          class="field is-grouped"
+        >
+          <!--  
+           <app-smart-button
+            [btn_config]="item.buttons"
+            [row_data]="getRowData()"
+            (smartFormOnChange)="smartFormSubmit($event)"
+            class="smart-btn-container"
+          ></app-smart-button>
+
+        -->
+          <ng-container>
+            <button
+              *ngIf="item.buttonType == 'button'"
+              type="{{
+                item?.buttonSubmitType == 'submit' ? 'submit' : 'button'
+              }}"
+              class="smart-btn button"
+              [ngClass]="item.buttonClass"
+              (click)="button_click(item)"
+            >
+              <i *ngIf="item?.leftIcon" class="fa {{ item?.leftIcon }}"></i>
+              <span *ngIf="item.label?.length > 1">{{ item.label }}</span>
+              <i *ngIf="item?.rightIcon" class="fa {{ item?.rightIcon }}"></i>
+            </button>
+            <a
+              *ngIf="item.buttonType == 'link'"
+              [ngClass]="item.buttonClass"
+              (click)="button_click(item)"
+            >
+              <span *ngIf="item.label?.length > 1">{{ item.label }}</span>
+            </a>
+            <i
+              *ngIf="item.buttonType == 'icon'"
+              class="smart-icon fa {{ item.leftIcon }}"
+              (click)="button_click(item)"
+            ></i>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

@@ -1,0 +1,99 @@
+.modal-card-foot{
+    padding:0.4em;
+}
+.modal-card-title {
+    font-size:1.2rem;
+}
+.modal-card-head{
+    padding: 0.6em;
+}
+.modal-card-body{
+    padding: 0.6em;
+}
+
+/**** width classes ****/
+.smart-alert-width-90 .modal-card{
+        width: 90%;
+}
+.smart-alert-width-80 .modal-card{
+    width: 80%;
+}
+.smart-alert-width-70 .modal-card{
+    width: 70%;
+}
+.smart-alert-width-60 .modal-card{
+    width: 60%;
+}
+.smart-alert-width-50 .modal-card{
+    width: 50%;
+}
+.smart-alert-width-40 .modal-card{
+    width: 40%;
+}
+.smart-alert-width-30 .modal-card{
+    width: 30%;
+}
+.smart-alert-width-20 .modal-card{
+    width: 20%;
+}
+.smart-alert-width-10 .modal-card{
+    width: 10%;
+}
+
+
+
+
+
+/***  stats the styling of modal class ***/
+.smart-delete-confirm .modal-card-head{
+    background-color: hsl(348, 100%, 61%);    
+}
+.smart-delete-confirm .modal-card-head .modal-card-title{
+    color:white;
+}
+.smart-delete-confirm .modal-card-body{
+    color: hsl(348, 76%, 60%);  
+}
+
+
+/***  stats the styling of modal class ***/
+.smart-link-confirm .modal-card-head{
+    background-color: hsl(251, 86%, 34%);    
+}
+.smart-link-confirm .modal-card-head .modal-card-title{
+    color:white;
+}
+.smart-link-confirm .modal-card-body{
+    color: hsl(251, 83%, 16%);  
+}
+
+/***  smart action confirm ***/
+.smart-action-confirm .modal-card-head{
+    background-color: var(--smart-action-button-background)
+}
+.smart-action-confirm .modal-card-head .modal-card-title{
+    color:white;
+}
+
+
+/*** iframe pdf funtionalities ****/
+.smart-pdf-iframe{
+    width:100%;
+    min-height:600px;
+}
+::ng-deep #toolbar{
+    display:none;
+}
+
+
+
+/* Responsive styling */
+@media screen and (max-width: 768px) {
+    .modal-card{
+        width:90% !important;
+        font-size: 0.9em;
+    }
+    .modal-card-title{
+        font-size: 0.9em; 
+    }
+}

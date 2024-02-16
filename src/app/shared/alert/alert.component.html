@@ -1,0 +1,23 @@
+<ng-template #alert let-modal let-c="close" let-d="dismiss">
+  <div class="modal-header notification" [ngClass]="headerClass||'is-danger'">
+    <h5 class="modal-title" class="ft-popup-heading brand-text-color">
+      {{ header || "Delete Confirmation" }}
+    </h5>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="close()"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <p>{{ questions || "Are you sure you want to delete this item? This action cannot be undone." }}</p>   
+  </div>
+  <div class="modal-footer">
+    <div class="pull-right m-2 buttons">
+      <button *ngFor="let item of actionButtonsArr" class="button" [ngClass]="item.class" (click)="onConfirmation(item.value)">
+      {{item.label}}
+      </button>   
+    </div>
+  </div>
+</ng-template>

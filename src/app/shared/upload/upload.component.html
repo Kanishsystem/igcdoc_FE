@@ -1,0 +1,54 @@
+<div class="container">
+        <div class="row" *ngIf="isFileSelector=='SELECT'" >
+            <div class="col-md-4 form-check">
+                <input class="form-check-input" type="radio" name="fileSelector" value="IMAGE" [(ngModel)]="fileSelector" id="IMAGE">
+                <label class="form-check-label" for="IMAGE">Image</label>
+              </div>
+            <div class="col-md-4 form-check">
+                <input class="form-check-input" type="radio" [(ngModel)]="fileSelector" value="CAMERA" name="fileSelector" id="CAMERA">
+                <label class="form-check-label" for="CAMERA">Camera</label>
+              </div>
+              <div class="col-md-4 form-check">
+                <input class="form-check-input" type="radio" [(ngModel)]="fileSelector" value="PDF" name="fileSelector" id="PDF">
+                <label class="form-check-label" for="PDF">PDF</label>
+              </div>
+              <div class="col-md-12 text-center mt-4">
+                    <button class="btn btn-outline-success" (click)="onProceed()">Proceed</button>
+              </div>
+        </div>
+        <div class="" *ngIf="isFileSelector=='CAPTURE'">
+            <div class="card">
+                <div class="card-body">
+                    <app-camera *ngIf="captureType== 'CAMERA'" (restCaptureType)="resetCapture()" (returnData)="capturedData($event)"></app-camera>
+                </div>
+            </div>
+        </div>
+        <div [hidden]="true">
+          <input type="file" accept=".jpg,.png,.jpeg" #imageUpload (change)="getUploadedImage($event)" >
+          <input type="file" accept=".pdf" #pdfUpload (change)="getUploadedImage($event)" >
+        </div>
+        <div class="card" *ngIf="isFileSelector=='CROPPER'">
+          <div class="card-body">
+            <app-image-cropper [data]="base64Data" (returnCroppedImage)="getCroppedImage($event)"></app-image-cropper>
+          </div>
+        </div>
+        <div class="card" *ngIf="isFileSelector=='FINAL'">
+          <div class="card-body">
+            <div *ngIf="fileSelector !=  'PDF'">
+              <img [src]="base64Data" alt="Image" width="400" height="350">
+            </div>
+            <div *ngIf="fileSelector ==  'PDF'">
+              <iframe [src]="base64PDF" frameborder="0" width="400" height="350"></iframe>
+            </div>
+              <div class="row">
+                <div class="col-md-12 text-center mt-4">
+                  <button class="btn btn-outline-dark m-1" (click)="resetCapture()">Change Image</button>
+                  <button class="btn btn-success" (click)="onSave()">Save</button>
+                </div>
+              </div>
+          </div>
+        </div>
+</div>
+
+
+

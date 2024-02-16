@@ -1,0 +1,310 @@
+.smart-login-card{
+    background: url(../../../../assets/images/Login.png);
+    width: 100%;
+    height: 100vh;
+}
+.smart-slide-image{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+
+
+
+}
+.login-container{
+
+	width: 100%;
+	background-color: white;
+	height: 100vh;
+	overflow: hidden;
+	
+}
+.card{
+	background: url(../../../../assets/images/Login.png);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 20px;
+   background-position: center;
+   background-size: cover;
+   border: none;
+   position: relative;
+   height: 80vh;
+
+}
+.smart-image-card{
+  
+	height: 100vh;
+	margin-bottom: 20px;
+	border-radius: 20px;
+	height: 450px;
+	width: 550px;
+	position: absolute;
+	
+}
+.smart-login-view{
+	z-index: 9;
+	margin-top: 100px;
+	margin-left: 70px;
+	margin-right: 70px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	position: relative;
+	
+	
+}
+.smart-login{
+	/* background: radial-gradient(#653d84, #332042); */
+	/* background: url(../../../assets/images/Login.png); */
+    background-color: #332042;
+}
+.smart-login .card{
+	border-radius: 0;
+}
+.head-card{
+	border-top-right-radius:10px !important;
+	border-top-left-radius:10px !important;
+}
+.login-card{
+ background: white;
+
+}
+.image-card{
+	/* border-bottom-right-radius: 10px !important; */
+}
+.login-heading{
+	display: flex;
+}
+/*
+.smart-login .container{
+	padding-left: 5em;
+	padding-right:5em;
+}*/
+.smart-login h1{
+	text-align:center;
+	font-size:1.5em;
+	color:#653d84;
+	margin-top: 0.4em;
+}
+/** corousal images **/
+.smart-slide{
+	position: relative;
+}
+.smart-slide .smart-slider-content{
+	position:absolute;
+	bottom:0;
+	text-align: center;
+	width:100%;
+	color:rgb(5, 5, 5);
+	background-color: rgb(255, 255, 255);
+	opacity: 0.8;
+    padding:1em;
+}
+.smart-slide .smart-slider-content h3{	
+	text-align:center;
+	font-size: 1.2em;
+	font-weight: bold;
+	opacity: 1;
+	color:rgb(9, 5, 238);
+}
+
+.smart-slide .smart-slider-content p{
+	
+	text-align:center;
+	font-size: 0.9em;
+	opacity: 1;
+}
+.media-content{
+	
+	color: blue;
+	/* margin-bottom: 20px;
+	margin-top: 15px; */
+}
+.login-media-content{
+	font-weight: 900;
+	font-size: 1.75rem;
+	margin-top: 15px;
+	font-family: sans-serif;
+}
+.login-media-content h1{
+	font-weight: 900;
+	/* background: linear-gradient(to right,#2105f9 ,rgb(255, 108, 3) ); */
+	background: #2105f9;
+	background-clip: text;
+	color: transparent;
+}
+
+
+
+
+
+.login-links{
+	width:100%;
+}
+::ng-deep .smart-login-form .column{
+	margin-bottom: 1.5em;
+	position: relative;
+}
+/* ::ng-deep .smart-login-form .smart-control{
+	/* border-bottom: 2px solid blue; */
+
+::ng-deep .smart-login-avtar .field{
+	display:block;
+	
+}
+.smart-login-title{
+	font-size: 1.5em;
+	margin-bottom: 10px;
+	font-weight: 800;
+	font-family: 'Calibri';
+	color: #0814fb;
+	
+}
+
+.smart-login-media{
+	box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
+	width:100%;
+	padding:0.4em;
+	margin-bottom: 0.5em !important;
+}
+.smart-login-media .media-content h1{
+	text-align: left;
+}
+.smart-login-another-account{
+	text-decoration: underline;
+	font-size: 0.9em;
+	color: #8e8cf5;	
+}
+.smart-login-another-account:hover{
+	color: blue;
+}
+::ng-deep .smart-login-password{
+	margin-bottom: 0 !important;
+	
+}
+.smart-login-forgot{
+	text-decoration: underline;
+	font-size: 0.9em;
+	color: #8e8cf5;
+}
+
+.heartbeat {
+	-webkit-animation: heartbeat 1.5s ease-in-out infinite both;
+	        animation: heartbeat 1.5s ease-in-out infinite both;
+			cursor: pointer;
+			color: white;
+			font-weight: bold;
+		
+
+}
+
+
+@-webkit-keyframes heartbeat {
+	from {
+	  -webkit-transform: scale(1);
+			  transform: scale(1);
+	  -webkit-transform-origin: center center;
+			  transform-origin: center center;
+	  -webkit-animation-timing-function: ease-out;
+			  animation-timing-function: ease-out;
+	}
+	10% {
+	  -webkit-transform: scale(0.91);
+			  transform: scale(0.91);
+	  -webkit-animation-timing-function: ease-in;
+			  animation-timing-function: ease-in;
+	}
+	17% {
+	  -webkit-transform: scale(0.98);
+			  transform: scale(0.98);
+	  -webkit-animation-timing-function: ease-out;
+			  animation-timing-function: ease-out;
+	}
+	33% {
+	  -webkit-transform: scale(0.87);
+			  transform: scale(0.87);
+	  -webkit-animation-timing-function: ease-in;
+			  animation-timing-function: ease-in;
+	}
+	45% {
+	  -webkit-transform: scale(1);
+			  transform: scale(1);
+	  -webkit-animation-timing-function: ease-out;
+			  animation-timing-function: ease-out;
+	}
+  }
+  @keyframes heartbeat {
+	from {
+	  -webkit-transform: scale(1);
+			  transform: scale(1);
+	  -webkit-transform-origin: center center;
+			  transform-origin: center center;
+	  -webkit-animation-timing-function: ease-out;
+			  animation-timing-function: ease-out;
+	}
+	10% {
+	  -webkit-transform: scale(0.91);
+			  transform: scale(0.91);
+	  -webkit-animation-timing-function: ease-in;
+			  animation-timing-function: ease-in;
+	}
+	17% {
+	  -webkit-transform: scale(0.98);
+			  transform: scale(0.98);
+	  -webkit-animation-timing-function: ease-out;
+			  animation-timing-function: ease-out;
+	}
+	33% {
+	  -webkit-transform: scale(0.87);
+			  transform: scale(0.87);
+	  -webkit-animation-timing-function: ease-in;
+			  animation-timing-function: ease-in;
+	}
+	45% {
+	  -webkit-transform: scale(1);
+			  transform: scale(1);
+	  -webkit-animation-timing-function: ease-out;
+			  animation-timing-function: ease-out;
+	}
+  }
+
+  .color-change-2x {
+	-webkit-animation: color-change-2x 2s linear infinite alternate both;
+	        animation: color-change-2x 2s linear infinite alternate both;
+			width: 70px;
+			height: 70px;
+			border-radius: 50%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			position: absolute;
+			right: 10px;
+			top: 10px;
+
+
+
+}
+
+@-webkit-keyframes color-change-2x {
+	0% {
+	  background: #19dcea;
+	}
+	100% {
+	  background: #b22cff;
+	}
+  }
+  @keyframes color-change-2x {
+	0% {
+	  background: #19dcea;
+	}
+	100% {
+	  background: #b22cff;
+	}
+  }
+  
+  
+
+

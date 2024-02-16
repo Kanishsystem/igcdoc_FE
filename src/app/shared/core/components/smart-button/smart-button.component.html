@@ -1,0 +1,21 @@
+<ng-container *ngFor="let item of config; index as i">
+    <button *ngIf="button_show(i) && item.btn_type=='button'" type="button"
+     class="smart-btn button" [ngClass]="item.class"
+        (click)="button_click(i)">
+        <i *ngIf="item.icon?.length>0" class="fa" [ngClass]="item?.icon"></i>
+        <span *ngIf="item.label?.length > 1">{{item.label}}</span>
+    </button>
+    <span class="icon mr-1 ml-1"  [ngClass]="item.class">
+        <i *ngIf="button_show(i) && item.btn_type=='icon'" class="smart-icon fa" 
+    (click)="button_click(i)" [ngClass]="item.icon"></i></span>
+    <button *ngIf="button_show(i) && item.btn_type=='buttonright'" type="button"
+     class="smart-btn-right btn" [ngClass]="item.class"
+        (click)="button_click(i)">
+        <span *ngIf="item.label?.length > 1">{{item.label}}</span>
+        <i *ngIf="item.icon?.length>0" class="fa" [ngClass]="item.icon"></i>
+    </button>
+    <span *ngIf="button_show(i) && item.btn_type=='link'"
+         [ngClass]="item.class" (click)="button_click(i)"> 
+         <span *ngIf="item.label?.length > 1">{{item.label}}</span>
+    </span>
+</ng-container>

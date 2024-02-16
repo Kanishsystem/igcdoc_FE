@@ -1,0 +1,32 @@
+::ng-deep .meet-new-form .modal-card-head{
+    background-color: red;
+}
+::ng-deep .meet-new-form .modal-card-head .modal-card-title{
+    color:white;
+}
+.meet-buttons button{
+  margin-left: 0.9em;
+}
+
+::ng-deep .meet-calender .smart-head-column{
+  background-color:var(--smart-action-button-background);
+  color:var(--smart-action-button-text);
+}
+
+::ng-deep .smart-table-filter{
+  min-width:40rem
+}
+@media screen and (min-width: 600px) { 
+::ng-deep .smart-meet-form .is-horizontal .smart-label{
+  flex-grow: 2;
+  padding-top:2em;
+  }
+}
+.smart-meet-card{
+  width:100%;
+  padding:0.2em;
+}
+.admin-color{
+  color: #2e8035;
+  font-weight: 800;
+}

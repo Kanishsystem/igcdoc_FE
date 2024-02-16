@@ -1,0 +1,191 @@
+@font-face {
+    font-family: 'Roboto';
+    src: url('assets/fonts/roboto/Roboto-Regular.ttf') format('truetype');
+  }
+
+* {
+    box-sizing: border-box;
+}
+  
+html{
+    background-color: var(--body-background);
+}
+body {
+    background-color: var(--body-background);
+    height: 85vh;
+    scrollbar-width: 0;
+    font-family: 'Roboto', sans-serif;
+}   
+.modal{
+    z-index: 1055;
+}
+
+.content ul {
+    list-style: none;  
+}
+
+
+/** head fonts **/
+.smart-page-title {
+    font-family: Ubuntu,sans-serif;
+    color:black;
+    font-weight: bold;
+    font-size:1.3em;
+}
+.smart-page-title span{
+    background: linear-gradient(90deg,#da8cff,#9a55ff);
+    color:white
+}
+
+/** **/
+
+
+
+
+/*** Flex related styles ***/
+.smart-flex{  
+    display: flex;
+}
+.smart-flex-row {
+    flex-direction: row;
+}
+.smart-flex-shrink {
+    flex-shrink: 1;
+}
+.smart-rounded-full {
+    border-radius: 9999px;
+}
+.smart-flex-1{
+    flex: 1 1 0%; /* Equivalent to Tailwind's .flex-1 */
+}
+.smart-items-center{
+    align-items: center;
+}
+
+
+/**  Color bg Styling **/
+.smart-bg-green-600{
+    background-color: rgba(5,150,105,0.9);
+}
+
+/*** text colors ***/
+.smart-text-gray-600{
+    color: rgba(75,85,99,0.9);
+}
+.smart-text-green-500{
+    color: rgba(16,185,129,var(--smart-text-opacity));
+}
+
+
+/** smart action button styling **/
+.smart-action-button{
+    background-color: var(--smart-action-button-background);
+    color:var(--smart-action-button-text);
+    filter: brightness(1.0);
+}
+.smart-action-button:hover{
+    background-color: var(--smart-action-button-background);   
+    color:var(--smart-action-button-text);
+    filter: brightness(0.8);
+}
+/*** Smart Secondary Action Buttons ****/
+.smart-action-button-secondary{
+    background-color: var(--white-color);
+    border-color: var(--smart-action-button-background);    
+    color:var(--smart-action-button-background);
+    filter: brightness(1.0);
+}
+.smart-action-button-secondary:hover{   
+    background-color: var(--smart-action-button-background);
+    color:var(--smart-action-button-text);  
+}
+.smart-rounded-button{
+    border-radius: 50%;
+    font-size: 2em;
+}
+
+/***   ***/
+.smart-field-label{
+    display:inline-block;
+    width:50%;
+    font-weight: bold;
+    text-align:left;
+    border-bottom: 1px solid #ddd;
+    padding:0.2em;
+}
+.smart-field-value{
+    display:inline-block;
+    width:50%;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    padding:0.2em;
+    padding-left: 1em;
+}
+
+.smart-header-text{
+    /* color:var(--smart-action-button-background); */
+    color:var(--primary-color-side);
+    font-size: 20px;
+    font-weight: 800;
+}
+.smart-select-ng{
+   border:1px solid #ddd;
+   padding:0.5em;
+}
+.ng-dropdown-panel{
+    background-color: white;
+    border:1px solid #ddd;
+    padding:0.5em;
+}
+.ng-dropdown-panel .ng-dropdown-panel-items .ng-option{
+    padding:0.3em;
+}
+.ng-dropdown-panel .ng-dropdown-panel-items .ng-option-marked{
+     background-color:#9a55ff;
+     color:white;
+}
+
+.ng-select-multiple .ng-select-container .ng-value-container .ng-value{
+    background-color: #fff;
+    padding:5px;
+    border:1px solid #9a55ff;
+    border-radius: 5px;
+    margin-right: 5px;
+}
+
+/** * **/
+/* .smart-table-box{
+    box-shadow: 10px 10px #9a55ff;
+} */
+.dropdown-menu{
+    z-index:9999;
+}
+
+@media screen and (min-width: 600px) { 
+    .smart-desk-hide{
+        display: none !important;
+    }
+}
+
+@media screen and (max-width: 600px) {  
+/****  modal styling in mobile***/
+.modal-card, .modal-content{
+    margin:0;
+}
+.smart-mobile-hide{
+    display: none !important;
+}
+
+.smart-header-text{
+    font-size: 1em;
+}
+
+}
+
+#toast-container{
+    text-transform: capitalize;
+  }
+  .toast-top-right{
+    top:50px !important
+  }
+

@@ -1,0 +1,164 @@
+<!--- <app-smart-theme-nav></app-smart-theme-nav> 
+<div class="col smart-body"> 
+<router-outlet></router-outlet>   
+</div>
+-->
+
+<div class="container is-fluid smart-container">
+  <div class="columns is-gapless">
+    <div class="column is-1 smart-side-column" [ngClass]="sidebar_active?'smart-side-active':''">
+      <div class="sidenav">
+        <div class="smart-top-logo">
+          <nav class="level is-mobile ">
+            <div class="level-left">
+              <figure class="image is-64x64 is-right mt-5 ms-4">
+                <img class="is-rounded" [src]="site_logo">
+              </figure>
+              <span class="pl-2 smart-desk-hide header">
+                {{site_shot_title}}
+              </span>
+            </div>
+            <div class="level-right smart-desk-hide">
+              <i class="fas fa-close" aria-hidden="true" (click)="sidebar_active=false"></i>
+            </div>
+          </nav>
+        </div>
+        <!--
+                        <a *ngFor="let data of getSmartSideNav()"  
+                         routerLink={{data.navigateLink}}  routerLinkActive="active" 
+                        (click)="sidebar_active=false"
+                          class="sidenav-item">
+                            <i [ngClass]="data.icon" ></i>
+                            <span class="sidenav-title">{{data.title}}</span>
+                        </a>  
+                       -->
+        <ul class="smart-main-ul">
+          <ng-container *ngFor="let data of navs">
+            <li *ngIf="checkPerm(data?.perm)">
+              <a *ngIf="!data?.children" routerLink={{data?.navigateLink}}>
+                <i [ngClass]="data?.icon"></i>{{data?.title}}
+              </a>
+              <a *ngIf="data?.children">
+                <i [ngClass]="data?.icon"></i>{{data?.title}}
+              </a>
+              <ul class="smart-sub-nav" *ngIf="data?.children">
+                <ng-container *ngFor="let singleNav of getChildren(data)">
+                  <li *ngIf="checkPerm(singleNav?.perm)">
+                    <a *ngIf="!checkChildren(singleNav)" routerLink={{singleNav.navigateLink}}>{{singleNav?.title}}</a>
+                    <a *ngIf="checkChildren(singleNav)">{{singleNav?.title}}</a>
+                    <ul *ngIf="checkChildren(singleNav)" class="smart-sub-nav-sub">
+                      <ng-container *ngFor="let singleNavSub of  getChildren(singleNav)">
+                        <li *ngIf="checkPerm(singleNavSub?.perm)">
+                          <a routerLink={{singleNavSub.navigateLink}}>{{singleNavSub.title}}</a>
+                        </li>
+                      </ng-container>
+                    </ul>
+
+                  </li>
+                </ng-container>
+              </ul>
+            </li>
+          </ng-container>
+        </ul>
+      </div>
+    </div>
+    <div class="column">
+      <nav class="navbar smart-nav-bar is-flex is-justify-content-space-around" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+          <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
+            data-target="navbarBasicExample" (click)="sidebar_active=!sidebar_active">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+          </a>
+          <div class="">
+            <a class="navbar-item " [routerLink]="['sub-view']"> 
+              <div class="button btn" >
+                Home
+              </div>
+             
+            </a>
+            </div>
+            <div  class="navbar-menu has-text-centered">
+          <a class="navbar-item header smart-mobile-hide is-size-4" [routerLink]="['sub-view']">
+            {{site_title}}
+          </a>
+          <a class="navbar-item smart-desk-hide">
+            {{site_shot_title}}
+          </a>
+        </div>
+        </div>
+        <div class="navbar-end">
+          <div class="navbar-item smart-mobile-hide smart-menu-profile">
+            <div (mouseenter)="profile_button=true" (mouseleave)="profile_button=false" class="dropdown is-right "
+              [ngClass]="profile_button?'is-active':''">
+              <div class="dropdown-trigger">
+                <button class="button" aria-haspopup="true" aria-controls="dropdown-menu6">
+                  <span class="mr-2 mt-2">
+                    <figure class="image is-24x24">
+                      <img class="is-rounded" [src]="profile_img?profile_img : ''">
+                    </figure>
+                  </span>
+                  <span class="smart-mobile-hide">{{userName}}</span>
+                  <span class="icon is-small">
+                    <i class="fa " [ngClass]="profile_button ? 'fa-angle-up' : 'fa-angle-down'" aria-hidden="true"></i>
+                  </span>
+                </button>
+              </div>
+              <div class="dropdown-menu" id="dropdown-menu6" role="menu">
+                <div class="dropdown-content">
+                  <a href="#" class="dropdown-item" [routerLink]="['user-profile']">
+                    <i class="fa fa-user-circle-o p-1 ms-2"></i>
+                    Profile
+
+                  </a>
+                  <a class="dropdown-item" (click)="logout()">
+                    <i class="fa fa-sign-out p-1 ms-2"></i>
+                    Log Out
+
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="navbar-item smart-desk-hide smart-menu-profile">
+            <div (click)="profile_button=!profile_button" class="dropdown is-right "
+              [ngClass]="profile_button?'is-active':''">
+              <div class="dropdown-trigger">
+                <button class="button" aria-haspopup="true" aria-controls="dropdown-menu6">
+                  <span>
+                    <figure class="image is-24x24 mt-1">
+                      <img class="is-rounded" [src]="profile_img?profile_img : ''">
+
+                    </figure>
+                  </span>
+                  <span class="icon is-small">
+                    <i class="fa " [ngClass]="profile_button ? 'fa-angle-up' : 'fa-angle-down'" aria-hidden="true"></i>
+                  </span>
+                </button>
+              </div>
+              <div class="dropdown-menu" id="dropdown-menu6" role="menu">
+                <div class="dropdown-content">
+                  <a href="#" class="dropdown-item" routerLink="/user-profile">
+                    Profile
+                  </a>
+                  <a class="dropdown-item" (click)="logout()">
+                    Log Out
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div class="smart-middle">
+        <router-outlet></router-outlet>
+      </div>
+      <div class="smart-footer card has-text-centered">
+        {{site_footer}}<br>
+        {{site_contect_details}}
+      </div>
+    </div>
+  </div>
+
+</div>

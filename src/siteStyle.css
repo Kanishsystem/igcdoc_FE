@@ -1,0 +1,24 @@
+.book-list-table-middle span {
+    width: 100%;
+}
+
+.smart-responsive thead tr th,
+.smart-responsive tbody tr td {
+    padding-top: 0.4em;
+    padding-bottom: 0.4em;
+    font-size:1em
+}
+.smart-table-columns,.smart-table-container{
+    margin:0;   
+}
+.smart-table-columns .column{
+    padding:0.1em;
+}
+
+.smart-table-container .column {
+    margin: 0px;
+    padding: 0.1em;
+}
+.smart-table-container .column.is-12{
+    margin-bottom: -1em;
+}

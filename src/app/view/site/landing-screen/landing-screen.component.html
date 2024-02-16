@@ -1,0 +1,221 @@
+<div class="main-landing">
+<div class="columns p-0 m-0">
+  <div class="column p-0  is-12 menu-bar is-flex">
+    <nav class="navbar">
+      <div class="is-flex is-justify-content-center ms-5 ps-3">
+        <a><span class="logo"><img [src]="siteSettings?.book_image" alt="logo" /></span></a>
+        <div class="login-heading">
+          <!-- <h1>{{siteSettings?.site_name || 'IGCAR DOCUMENT' }}</h1> -->
+          <h1 class="">Materials Chemistry & Metal Fuel Cycle Group</h1>
+        </div>
+      </div>
+      <div class="navbar-item">
+        <p><a class="is-size-5 " href="/#features">Features</a></p>
+      </div>
+      <div class="navbar-item">
+        <p><a class="is-size-5 " href="/#activities">Activities</a></p>
+      </div>
+      <div class="buttons">
+        <!-- <a class="button is-primary" [routerLink]="['/']">
+              <strong>Sign up</strong>
+            </a> -->
+        <a class="button border-1 border-danger" [routerLink]="['/login']">
+          Log in
+        </a>
+      </div>
+
+
+    </nav>
+
+  </div>
+</div>
+
+<div class="columns mt-0 p-0 smart-landing-mobile smart-mobile">
+  <div class="column p-0 is-12 is-flex is-justify-content-end">
+    <div class="smart-image-box">
+      <img src="../../../../assets/images/igcar-4.jpg" />
+      <!-- <div class="image-box-content">Welcome to Books Paradise </div> -->
+    </div>
+  </div>
+</div>
+
+<!-- this is the middle poortion starting -->
+<div *ngIf="mainTab=='main'"> 
+
+<div class="columns mt-5 smart-desk">
+  <div class="column p-0 is-12">
+    <div class="background-container" [ngStyle]="{'background-image': 'url(' + images[currentImageIndex] + ')'}">
+      <div class="content">
+        <!-- Your content goes here -->
+      </div>
+    </div>
+    <!--        <div class="landing-image">
+     
+      </div>
+    -->
+    <!-- <div class="smart-image-box">
+      <div class="image-box-content">Welcome to Books Paradise </div>
+      </div> -->
+  </div>
+</div>
+<div class="notification has-background-warning-light is-light p-1 m-2 smart-top-notification">
+  <marquee>
+    <mark class="scroll-view">
+      <span *ngFor="let item of shutdowndata">
+        {{item.description}}
+        <span class="mx-4">Date: {{item.from_date | date:'dd/MM/yyyy' }}
+        </span>
+        <span class="mx-4">Time:{{item.from_time}} to {{item.to_time}}</span>
+        |
+      </span>
+    </mark>
+    <!-- <span class="" *ngFor="let offer of offerList">
+        {{offer.offer_desc}}
+      </span> -->
+  </marquee>
+</div>
+<div class="container">
+  <div class="columns mt-5" id="features">
+    <div class="column is-4">
+      <div class="card main-card">
+        <div class="card-img is-flex is-justify-content-center mt-3">
+          <img class="" src="../assets/images/document.png" [width]="190" />
+        </div>
+        <div class="card-subtitle">Documents</div>
+        <div class="card-content">
+          Users have the ability to upload documents to the system. This can be
+          done through a user-friendly interface that allows for
+          file uploads. The system may have specific restrictions on
+          acceptable file types (e.g., PDF) and maximum file sizes to maintain
+          compatibility and prevent misuse.
+        </div>
+      </div>
+    </div>
+    <div class="column is-4">
+      <div class="card main-card">
+        <div class="card-img is-flex is-justify-content-center mt-4">
+          <img src="../assets/images/meet.png" />
+        </div>
+        <div class="card-subtitle">Meetings</div>
+        <div class="card-content mb-0 pb-2">
+          Users can request to book a meeting room through the system. They
+          provide details such as room name, date, time, duration, purpose
+          Before submitting the booking request, users can view the availability
+          of meeting rooms for their selected date and time. Admins receive
+          notifications of pending meeting room booking requests
+        </div>
+      </div>
+    </div>
+    <div class="column is-4">
+      <div class="card main-card">
+        <div class="card-img is-flex is-justify-content-center">
+          <img src="../assets/images/complaint copy.png" [width]="250" />
+        </div>
+        <div class="card-subtitle">Complaints</div>
+        <div class="card-content ">
+          Users can submit electrical complaints through the system. They
+          provide details about the nature of the issue, location, and any
+          additional information that may be relevant. Users can view a history
+          of their submitted all complaints, including the status updates
+          and resolution details.
+          <!-- Each status change is timestamped, providing transparency and allowing users to track the progress of their complaints -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="columns mt-5" id="activities" *ngFor="let item of cardData; let i = index"
+    [ngClass]="{ 'is-flex-direction-row-reverse': i % 2 == 0 }">
+    <div class="column is-6 smart-desk" *ngIf="i < 3">
+      <img [src]="item?.activity_image" />
+    </div>
+    <div class="colums is-6" *ngIf="i < 3">
+      <div class="smart-activitie-content">
+        <div class="smart-heading mb-5">
+          {{ item?.activity_title }}
+        </div>
+        <p class="smart-card-content">
+          {{ item?.activity_desc }}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- home mille part end-->
+<div class="mt-5" *ngIf="mainTab=='history'"> 
+  <app-history-about-rcl [mode]="'display'" ></app-history-about-rcl>
+</div>
+<div class="mt-5" *ngIf="mainTab=='gallaery'"> 
+  <app-gallery-section [mode]="'display'" ></app-gallery-section>
+</div>
+<div class="mt-5" *ngIf="mainTab=='license'"> 
+  <app-license-documents [mode]="'display'"></app-license-documents>
+</div>
+<div class="mt-5" *ngIf="mainTab=='forms'"> 
+  <app-home-forms [mode]="'display'"></app-home-forms>
+</div>
+<div class="mt-5" *ngIf="mainTab=='awards'"> 
+  <app-awards [mode]="'display'"></app-awards>
+</div>
+
+<!-- Footer Buttons -->
+<div class="button-footer">
+<div class="columns button-group is-multiple">
+
+   <div class="column is-12 is-flex justify-content-around">
+    <button class="button  anim-bg-gradient" (click)="updateTab('history')"> History about RCL</button>
+    <button class="button anim-bg-gradient" (click)="updateTab('gallaery')" > Gallery Section</button>
+    <button class="button anim-bg-gradient" (click)="updateTab('license')" > License Documents</button>
+    <button class="button anim-bg-gradient" (click)="updateTab('forms')" > Forms</button>
+    <button class="button anim-bg-gradient" (click)="updateTab('awards')" > Awards </button>
+    <button class="button anim-bg-gradient" (click)="updateTab('main')" > Home </button>
+   </div>
+
+   </div>
+ 
+ 
+
+
+
+<!--- Footer code -->
+<div class="columns is-multiple smart-footer has-background-black">
+
+  <div class="column is-4 ">
+    <div class="footer-navigations  is-justify-content-space-around">
+      .
+      <!-- <div class="has-text-black">
+        <li><a class="has-text-white is-bordered is-size-5 my-4">History about RCL</a></li>
+        <li><a class="has-text-white is-bordered is-size-5 my-4">Gallery Section</a></li>
+        <li><a class="has-text-white is-bordered is-size-5 my-4">License Documents</a></li>
+        <li><a class="has-text-white is-bordered is-size-5 my-4">Awards</a></li>
+      </div> -->
+     
+  </div>
+  </div>
+  <div class="column is-4 mt-5  ">
+    <div >
+    <p class="footer-address">{{ siteSettings?.site_footer }}</p>
+    <p class="footer-address">{{ siteSettings?.site_contect_details }}</p>
+  </div>
+  <div class="footer-best-view is-right">
+    <span class="has-text-white ">Best Viewed @ google chrome and google firefox</span>
+  </div>
+  <div class="footer-best-view is-right">
+    <span class="has-text-white ">Best Display Resolution 1920 x 1080</span>
+  </div>
+</div>
+  
+  <div class="column is-4 has-text-centered">
+    <div class="has-text-white is-size-4">
+      Website Visit Count :#{{siteSettings?.site_visitor_count}}
+    </div>
+    <div class="has-text-white">
+      Updated Date : 13-02-2024
+    </div>
+  </div>
+
+</div>
+</div>
+</div>

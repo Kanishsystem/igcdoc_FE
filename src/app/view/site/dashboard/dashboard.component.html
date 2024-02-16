@@ -1,0 +1,63 @@
+<div class="columns is-mobile">
+  <div class="column is-8">
+    <h3 class="card-header-title smart-header-text">DashBoard</h3>
+  </div>
+  <div class="column is-4 d-flex justify-content-end meet-buttons">
+    <div class="select">
+      <select [(ngModel)]="selectedOpt" (change)="dashOptionChange()">
+        <option *ngFor="let obj of selectOptions;let i=index" value="{{i}}">{{obj}}</option>
+      </select>
+    </div>
+  </div>
+</div>
+<div class="column smart-dash-container">
+  <app-smart-card [data]="countsData"></app-smart-card>
+  <!-- <app-smart-dash-cards [config]="smartDashCards"></app-smart-dash-cards> -->
+</div>
+
+<div class="columns">
+  <div class="column is-8">
+    <div class="card mb-5">
+      <header class="card-header">
+        <p class="card-header-title">
+          Site Statistics
+        </p>
+        <button class="card-header-icon" aria-label="more options">
+          <span class="icon" (click)="changeYear(2)">
+            <i class="fa fa-chevron-left" aria-hidden="true"></i>
+          </span>
+          {{currentYear}}
+          <span class="icon" (click)="changeYear(1)">
+            <i class="fa fa-chevron-right" aria-hidden="true"></i>
+          </span>
+        </button>
+      </header>
+      <div class="card-content">
+        <div class="content">
+          <app-smart-chart [smartConfig]="smartChartConfig"></app-smart-chart>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="column is-4">
+    <div class="card">
+      <div class="card-header">
+        <h2 class="card-header-title">Recent User Activity</h2>
+        <h2 class="card-header-title">Logged in User: {{countsData?.user}}</h2>
+      </div>
+      <div class="card-content smart-users-card p-0 ">
+        <div class="scrolling-text">
+        <div class="users is-flex mb-2 " *ngFor="let user of userDetails">
+          <div class="user-img">
+            <div class="imgBx"> <img [src]="[user?.profile_img]" class="image" alt="Profile" /></div>  
+          </div>
+          <div class="is-flex is-justify-content-space-between ms-3">
+            <p class="user-name">{{user?.ename}}<br> <span>ICNO:{{user?.euserid}}</span></p>
+            <p class="user-date">{{user?.created_time |date:'dd/MM/YYYY'}}</p>
+          </div>
+        </div>
+      </div>
+      </div>      
+    </div>
+  </div>
+</div>

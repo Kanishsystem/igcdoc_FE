@@ -1,0 +1,19 @@
+::ng-deep .smart-table-filter{
+    min-width: 40rem;
+  }
+
+  .document-title{
+    vertical-align: top;
+  
+  }
+  .smart-doc-view{
+    border-bottom: 1px solid rgb(195, 192, 192);
+  }
+  .smart-field-permisson{
+    display: inline-block;
+    width: 50%;
+    font-weight: bold;
+    text-align: left;
+    /* border-bottom: 1px solid #ddd; */
+    padding: 0.2em;
+  }

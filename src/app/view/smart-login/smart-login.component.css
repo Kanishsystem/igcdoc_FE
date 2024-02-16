@@ -1,0 +1,18 @@
+.login-title{
+    color:#000 !important;
+    font-family: 'Montserrat', sans-serif;
+}
+.smart-login-body{
+    background: linear-gradient(to bottom, maroon, skyblue);
+}
+::ng-deep .smart-label .label{
+	font-weight:"400";
+	margin-bottom: 20px !important;
+	color: red !important;
+	font-family: sans-serif;
+
+}
+::ng-deep .smart-login-password{
+	margin-bottom: 0 !important;
+	color: red;
+}

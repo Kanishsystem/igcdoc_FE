@@ -1,0 +1,102 @@
+
+ /* Section for body of content*/
+section{
+    background: aqua;
+    position: relative;
+    width: 100%;
+    height: 100vh;
+}
+
+/* ContentBox */
+section .contentBox {
+    justify-content: center;
+    align-items: center;
+    width: 1500px;
+    position: relative;
+    display: flex;
+}
+
+/* FormBox */
+section .contentBox .formBox{
+    background: #fff;
+    border-radius: 20px;
+    position: absolute;
+    width: 25%;
+    height: 90%;
+    padding: 30px;
+    margin: 20%;
+    box-shadow: 0px 5px 10px;
+    justify-items: center;
+}
+
+/* Title of the formbox */
+section .contentBox .formBox h2{
+    text-align: center;
+    color: #000000;
+    font-weight: 600;
+    font-size: 1.5em;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+    display: inline-block;
+    letter-spacing: 1px;
+    display: block;
+} 
+
+/* Design for inputbox */
+section .contentBox .formBox .inputBox{
+    position: relative;
+    display: block;
+} 
+
+/* Design for input */
+section .contentBox .formBox  input{
+    border: 0px;
+    background: #ccb8cf;
+    border-radius: 5px;
+    display: block;
+    margin-bottom: 7px;
+    width: 100%;
+}
+
+/* Design for verify Button */ 
+.inputBox .smart-bttn1{
+    color: #fff;
+    background-color: blue;
+    border-radius: 5px;
+    margin: 4px;
+    position: absolute;
+    cursor: pointer;
+    left: 185px;
+    bottom: -4px;
+    width: 90px;
+    border: 0px;
+    height: 32px;
+}
+
+/* Design fot Sumbit Button */
+.inputBox .smart-bttn2{
+    height: 32px;
+    color: #fff;
+    border: 0px;
+    background-color: blue;
+    border-radius: 5px;
+    margin: 4px;
+    position: absolute;
+    cursor: pointer;
+    margin-top: 5px;
+    width: 70px;
+    left: 100px;
+    top: 5px;
+}
+
+/* OTP Inputbox Size */
+.otp{
+    width: 180px !important;
+}
+
+/* Label Style with !importent */
+
+label{
+    font-weight: 600 !important;
+    font-size: 14px !important;
+}

@@ -1,0 +1,223 @@
+.container-box{
+    background: url(../../../../assets/images/Login.png);
+    height: 100vh;
+    width: 100%;
+}
+
+/* .samrt-form-box{
+    position: relative;
+   
+    background:transparent;
+    border-radius: 20px;
+    display: flex;
+    justify-content: end;
+    align-items:center;
+    border: 3px solid rgba(255,255,255, .5);
+    backdrop-filter: blur(15px);
+} */
+
+.smart-login-card{
+    background: url(../../../../assets/images/Login.png);
+    width: 100%;
+    height: 100vh;
+}
+.smart-slide-image{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+
+
+
+}
+.login-container{
+    background: url(../../../../assets/images/Login.png);
+
+	width: 100%;
+	background-color: white;
+	height: 100vh;
+	overflow: hidden;
+	
+}
+.card{
+	background: url(../../../../assets/images/Login.png);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 20px;
+   background-position: center;
+   background-size: cover;
+   border: none;
+   position: relative;
+   height: 80vh;
+
+}
+.smart-image-card{
+  
+	height: 100vh;
+	margin-bottom: 20px;
+	border-radius: 20px;
+	height: 450px;
+	width: 550px;
+	position: absolute;
+	
+}
+.smart-login-view{
+	z-index: 9;
+	/* margin-top: 100px;
+	margin-left: 70px;
+	margin-right: 70px; */
+	display: flex;
+    width: 35%;
+    padding: 10px;
+	justify-content: end;
+	/* align-items: center; */
+	flex-direction: column;
+    background:transparent;
+    border-radius: 20px;
+    border: 3px solid rgba(255,255,255, .5);
+    /* backdrop-filter: blur(15px); */
+	
+	
+}
+.smart-login{
+	/* background: radial-gradient(#653d84, #332042); */
+	/* background: url(../../../assets/images/Login.png); */
+    background-color: #332042;
+}
+.smart-login .card{
+	border-radius: 0;
+}
+.head-card{
+	border-top-right-radius:10px !important;
+	border-top-left-radius:10px !important;
+}
+.login-card{
+padding: 10px;
+display: flex;
+justify-content: end;
+
+}
+.image-card{
+	/* border-bottom-right-radius: 10px !important; */
+}
+.login-heading{
+	display: flex;
+}
+/*
+.smart-login .container{
+	padding-left: 5em;
+	padding-right:5em;
+}*/
+.smart-login h1{
+	text-align:center;
+	font-size:1.5em;
+	color:#653d84;
+	margin-top: 0.4em;
+}
+/** corousal images **/
+.smart-slide{
+	position: relative;
+}
+.smart-slide .smart-slider-content{
+	position:absolute;
+	bottom:0;
+	text-align: center;
+	width:100%;
+	color:rgb(5, 5, 5);
+	background-color: rgb(255, 255, 255);
+	opacity: 0.8;
+    padding:1em;
+}
+.smart-slide .smart-slider-content h3{	
+	text-align:center;
+	font-size: 1.2em;
+	font-weight: bold;
+	opacity: 1;
+	color:rgb(9, 5, 238);
+}
+
+.smart-slide .smart-slider-content p{
+	
+	text-align:center;
+	font-size: 0.9em;
+	opacity: 1;
+}
+.media-content{
+	
+	color: blue;
+	/* margin-bottom: 20px;
+	margin-top: 15px; */
+}
+.login-media-content{
+	font-weight: 900;
+	font-size: 1.75rem;
+	margin-top: 15px;
+	
+	font-family: sans-serif;
+}
+.login-media-content h1{
+	font-weight: 900;
+	background: linear-gradient(to right,#2105f9 ,rgb(255, 108, 3) );
+	background-clip: text;
+	color: transparent;
+}
+
+
+
+
+
+.login-links{
+	width:100%;
+}
+::ng-deep .smart-login-form .column{
+	margin-bottom: 1.5em;
+	position: relative;
+}
+/* ::ng-deep .smart-login-form .smart-control{
+	/* border-bottom: 2px solid blue; */
+
+::ng-deep .smart-login-avtar .field{
+	display:block;
+	
+}
+.smart-login-title{
+	font-size: 1.5em;
+	margin-bottom: 10px;
+	font-weight: 800;
+	font-family: 'Calibri';
+	color: #0814fb;
+	
+}
+
+.smart-login-media{
+	box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
+	width:100%;
+	padding:0.4em;
+	margin-bottom: 0.5em !important;
+}
+.smart-login-media .media-content h1{
+	text-align: left;
+}
+.smart-login-another-account{
+	text-decoration: underline;
+	font-size: 0.9em;
+	color: #8e8cf5;	
+}
+.smart-login-another-account:hover{
+	color: blue;
+}
+::ng-deep .smart-login-password{
+	margin-bottom: 0 !important;
+	
+}
+.smart-login-forgot{
+	text-decoration: underline;
+	font-size: 0.9em;
+	color: #8e8cf5;
+}
+.main-title{
+    background:none;
+}
+
+

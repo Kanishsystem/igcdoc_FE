@@ -1,0 +1,257 @@
+<div class="columns is-multiline">
+  <div class="column is-12">
+    <div class="tabs is-toggle card  ">
+      <ul class="smart-site-tabs">
+        <li *ngFor="let obj of tabs;" (click)="tabSelected=obj.value"
+          [ngClass]="obj.value==tabSelected ? 'is-active':''"><a>
+            <span class="icon is-small"><i class="fa {{obj?.icon}}" aria-hidden="true"></i></span>
+            <span>{{obj.label}}</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<!-- site settings -->
+<div class="columns" *ngIf="tabSelected=='settings'">
+  <div class="column is-6">
+    <div class="card">
+      <header class="card-header">
+        <p class="card-header-title">
+          Site Settings
+        </p>
+      </header>
+      <div class="card-content">
+        <div class="content">
+          <app-smart-form-new [smartFormConfig]="createFormConfig()" [smartFormData]="formData"></app-smart-form-new>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="column is-6">
+    <div class="card">
+      <header class="card-header">
+        <p class="card-header-title">
+          Login Settings
+        </p>
+      </header>
+      <div class="card-content">
+        <div class="content">
+          <app-smart-form-new [smartFormConfig]="loginFormConfig()" [smartFormData]="formData"></app-smart-form-new>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="column is-12" *ngIf="tabSelected=='email'">
+  <div class="card">
+    <header class="card-header">
+      <p class="card-header-title">
+        Email Settings
+      </p>
+    </header>
+    <div class="card-content">
+      <div class="content">
+        <app-smart-form-new [smartFormConfig]="EmailFormConfig()" [smartFormData]="formData"></app-smart-form-new>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- document settings-->
+<div class="columns" *ngIf="tabSelected=='docs'">
+  <div class="column is-6">
+    <div class="card">
+      <header class="card-header">
+        <p class="card-header-title">
+          Document Types
+        </p>
+      </header>
+      <div class="card-content">
+        <div class="content">
+          <app-smart-list [smartFormConfig]="createDocTypeList()" [smartFormData]="formData"></app-smart-list>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="column is-6">
+    <div class="card">
+      <header class="card-header">
+        <p class="card-header-title">
+          Document Size & Extensions
+        </p>
+      </header>
+      <div class="card-content">
+
+        <div class="content">
+
+          <app-smart-form-new [smartFormConfig]="getDocSettingsForm()" [smartFormData]="formData"></app-smart-form-new>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Meeting Room -->
+<div class="columns" *ngIf="tabSelected=='meetroom'">
+  <div class="column is-6">
+    <div class="card">
+      <header class="card-header">
+        <p class="card-header-title">
+          Meeting Rooms
+        </p>
+      </header>
+      <div class="card-content">
+        <div class="content">
+          <app-smart-list [smartFormConfig]="createMeetTypeList()"></app-smart-list>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Administrators -->
+<div class="columns" *ngIf="tabSelected=='admin'">
+  <div class="column is-6">
+    <div class="card">
+      <header class="card-header">
+        <p class="card-header-title">
+          Administrators
+        </p>
+      </header>
+      <div class="card-content">
+        <div class="content">
+          <app-smart-form-new [smartFormConfig]="administrators()" [smartFormData]="formData"></app-smart-form-new>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Home Setting-->
+<div class="columns" *ngIf="tabSelected=='home'">
+  <div class="column is-6">
+    <div class="card">
+      <header class="card-header">
+        <p class="card-header-title">
+          Home Settings
+        </p>
+      </header>
+      <div class="card-content">
+        <div class="content">
+          <app-smart-form-new [smartFormConfig]="createFormConfigHome()"
+            [smartFormData]="formData"></app-smart-form-new>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<!--Organization Room -->
+<div class="columns" *ngIf="tabSelected=='organization'">
+  <div class="column is-6">
+    <div class="card">
+      <header class="card-header">
+        <p class="card-header-title">
+          Organization Types
+        </p>
+      </header>
+      <div class="card-content">
+        <div class="content">
+          <app-smart-list [smartFormConfig]="createorganizationTypeList()"></app-smart-list>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Commities
+<div class="columns" *ngIf="tabSelected=='commities'">
+  <div class="column is-6">
+    <div class="card">
+      <header class="card-header">
+        <p class="card-header-title">
+          Commities
+        </p>
+      </header>
+      <div class="card-content">
+        <div class="content">
+          <app-smart-list [smartFormConfig]="createcommitiesTypeList()"></app-smart-list>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<!--Organization-->
+<div class="columns" *ngIf="tabSelected=='org'">
+  <div class="column is-6">
+    <div class="card">
+      <header class="card-header">
+        <p class="card-header-title">
+          Organization
+        </p>
+      </header>
+      <div class="card-content">
+        <div class="content">
+          <app-smart-form-new [smartFormConfig]="createOrgList()" [smartFormData]="formData"></app-smart-form-new>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Home Setting-->
+<div class="columns" *ngIf="tabSelected=='homeimages'">
+  <div class="column is-12">
+    <div class="card">
+      <header class="card-header">
+        <p class="card-header-title">
+          Home Images
+        </p>
+      </header>
+      <div class="card-content">
+        <div class="content">
+          <app-home-images></app-home-images>
+          <!-- 
+          <app-smart-form-new [smartFormConfig]="createFormHomeImages()"
+            [smartFormData]="formData"></app-smart-form-new>
+            -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="columns" *ngIf="tabSelected=='awards'">
+  <div class="column">
+    <app-awards [mode]="'table'"></app-awards>
+  </div>
+</div>
+<div class="columns" *ngIf="tabSelected=='history'">
+  <div class="column">
+   <app-history-about-rcl [mode]="'table'" ></app-history-about-rcl>
+  </div>
+</div>
+<div class="columns" *ngIf="tabSelected=='gallery'">
+  <div class="column">
+   <app-gallery-section [mode]="'table'" ></app-gallery-section>
+  </div>
+</div>
+<div class="columns" *ngIf="tabSelected=='license_documents'">
+  <div class="column">
+ <app-license-documents [mode]="'table'"></app-license-documents>
+  </div>
+</div>
+
+<div class="columns" *ngIf="tabSelected=='forms_documents'">
+  <div class="column">
+ <app-home-forms [mode]="'table'"></app-home-forms>
+  </div>
+</div>

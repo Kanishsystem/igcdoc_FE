@@ -1,0 +1,28 @@
+<!-- <div class="card {{color}} order-card" [ngStyle]="{'background-color':color}">
+    <div class="card-block">
+        <h6 class="m-b-20">{{title}}</h6>
+        <h2><i class="{{icon}}"></i><span class="f-right">{{data}}</span></h2>
+        <div [align]="'right'">
+            <a class="btn btn-small  text-light" (click)="onViewMore(title)">View More</a>
+        </div>
+    </div>
+</div> -->
+
+<!-- <div class="card {{color}} order-card p-2" [ngStyle]="{'color':color,'border': '1px solid'+ color}">
+    <div [align]="'right'">{{sanitizeTitle(title) | uppercase}}
+        <div clas="d-flex flex-row">
+            <div class="" [align]="'left'">
+                {{data}}
+            </div>
+            <div class="" [align]="'right'">
+                <button class="btn btn-sm text-light" [ngStyle]="{'background-color':color}" (click)="onViewMore(title)">View More</button> 
+            </div>
+        </div>
+    </div>
+   
+</div> -->
+<div class="chip m-1" [ngStyle]="{'color':color,'border': '1px solid'+ color}"
+    (click)="onViewMore(title)">
+    <span class="round" [ngStyle]="{'background-color':color,'color': 'white'}">{{data}}</span>
+    {{sanitizeTitle(title) | uppercase}}
+</div>

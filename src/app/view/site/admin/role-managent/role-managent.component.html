@@ -1,0 +1,37 @@
+<div class="columns is-mobile">
+  <div class="column">
+    <h3 class="card-header-title smart-header-text"> Role Management </h3>
+  </div>
+  <div class="column is-4 is-flex is-justify-content-end smart-mobile-hide">
+    <button class="button smart-action-button-secondary" (click)="openForm()">
+      <i class="fa fa-plus p-1"></i>Add Role
+    </button>
+  </div>
+  <div class="column is-3 is-flex is-justify-content-end smart-desk-hide">
+    <figure class="image is-32x32" (click)="openForm()">
+      <img class="is-rounded" src="assets/icons/add-100-blue.png">
+    </figure>
+  </div>
+</div>
+<div class="columns ">
+  <div class="column is-12 p-0">
+    <div class="card">
+      <div class="card-content pt-2">
+        <div class="content">
+          <app-smart-tablenew [data]="tableData" [tconfig]="tableConfigNew"></app-smart-tablenew>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #employeesTemplate let-item>
+  <span class="tag" *ngFor="let obj of item.employees">{{obj.label}}</span>
+</ng-template>
+
+
+<ng-template #createform let-c="close" let-d="dismiss">
+
+  <app-smart-form-new [smartFormConfig]="createFormConfig()" [smartFormData]="formData"></app-smart-form-new>
+
+</ng-template>

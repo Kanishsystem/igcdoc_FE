@@ -1,0 +1,210 @@
+.smart-card-icon-top{
+    margin-top: 3em;
+}
+
+
+.smart-dash-card {
+   transition: transform 0.3s ease; /* Add a smooth transition */
+   border-radius: 8px; /* Rounded corners */
+   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Shadow */   
+}
+.smart-dash-card .smart-text-color{
+    color: rgba(75,85,99,0.9);
+}
+
+.smart-dash-card:hover{
+    transform: scale(1.1); 
+}
+
+/** Green color card with dash **/
+.smart-dash-style-border-green{
+    background: linear-gradient(to bottom, #86efac, #c8f1cc); /* Gradient from green-200 to green-100 */
+    border-bottom: 4px solid #34d399; /* Border color green-600 */   
+}
+.smart-dash-style-border-green .smart-icon-color{
+    background-color: rgba(5,150,105,0.9);
+}
+.smart-dash-style-border-green .smart-caret-color{
+   color: rgba(16,185,129,var(--smart-text-opacity));
+}
+
+
+/**** pink color ******/
+.smart-dash-style-border-pink {
+    background: linear-gradient(to bottom, #fbcfe8, #fed7da); /* Gradient from pink-200 to pink-100 */
+    border-bottom: 4px solid #ec4899; /* Border color pink-500 */    
+}
+.smart-dash-style-border-pink .smart-icon-color{
+    background-color: rgba(219,39,119,var(--smart-bg-opacity));
+}
+.smart-dash-style-border-pink .smart-caret-color{
+    color: rgba(236,72,153,var(--smart-text-opacity));
+}
+
+
+/**** yellow color ******/
+.smart-dash-style-border-yellow {
+    background: linear-gradient(to bottom, #fdf68e, #fff3c7); /* Gradient from yellow-200 to yellow-100 */
+    border-bottom: 4px solid #d69e2e; /* Border color yellow-600 */  
+}
+.smart-dash-style-border-yellow .smart-icon-color{
+    background-color: rgba(217,119,6,var(--smart-bg-opacity));
+}
+.smart-dash-style-border-yellow .smart-caret-color{
+    color:rgba(217,119,6,var(--smart-text-opacity));
+}
+
+/**** blue color ******/
+.smart-dash-style-border-blue {
+    background: linear-gradient(to bottom, #b3d4fc, #c3dafe);  /* Gradient from blue-200 to blue-100 */
+    border-bottom: 4px solid #3b82f6; /* Border color blue-500 */  
+}
+.smart-dash-style-border-blue .smart-icon-color{
+    background-color: rgba(37,99,235,var(--smart-bg-opacity));
+}
+.smart-dash-style-border-blue .smart-caret-color{
+    color:rgba(217,119,6,var(--smart-text-opacity));
+}
+
+
+/**** INDIGO color ******/
+.smart-dash-style-border-indigo {
+    background: linear-gradient(to bottom, #c7d2fe, #e0e7ff);/* Gradient from blue-200 to blue-100 */
+  border-bottom: 4px solid #3b82f6; /* Border color blue-500 */  
+}
+.smart-dash-style-border-indigo .smart-icon-color{
+    background-color: rgba(79,70,229,var(--smart-bg-opacity));
+}
+.smart-dash-style-border-indigo .smart-caret-color{
+    color:rgba(217,119,6,var(--smart-text-opacity));
+}
+
+
+/***** red *****/
+.smart-dash-style-border-red {
+    background: linear-gradient(to bottom, #feb2b2, #fed7d7); /* Gradient from red-200 to red-100 */
+    border-bottom: 4px solid #dc2626; /* Border color red-500 */   
+}
+.smart-dash-style-border-red .smart-icon-color{
+    background-color: rgba(220,38,38,var(--smart-bg-opacity));
+}
+.smart-dash-style-border-red .smart-caret-color{
+    color:rgba(217,119,6,var(--smart-text-opacity));
+}
+
+/***** smart dash icons top*****/
+.smart-card-icon-top{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 0 solid rgba(0, 0, 0, 0.125);
+    border-radius: 0.75rem;
+    color:#7b809a;
+}
+
+.smart-card-icon-top h4{
+    font-size: 1.5rem;
+    line-height: 1.375;
+    font-weight: 900;
+    color: #344767;
+}
+.smart-card-icon-top .card-header{
+  position: relative;
+  box-shadow: none !important;
+  border-bottom: 0px;
+}
+.smart-card-icon-top .smart-card-content{
+    width:100%;
+}
+.smart-card-content .smart-card-content p{
+    font-size: 0.875rem !important;
+}
+
+.smart-card-icon-top .smart-icon-top{
+  background: linear-gradient(to bottom, #333, #000);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  color: white;
+  position: absolute;
+  left:1rem;
+  top:-20px;
+  border-radius: 0.75rem;
+  width:4rem;
+  height:4rem;
+  background-position: center;
+  text-align: center !important;
+  margin-top: -1.5rem !important;
+}
+.smart-card-icon-top{
+    border-bottom:1em solid #333;
+}
+.smart-card-icon-top.smart-card-red{
+    border-bottom:1em solid #EC407A;
+}
+.smart-card-red .smart-icon-top  {
+    background-image: linear-gradient(195deg, #EC407A 0%, #D81B60 100%);
+}
+.smart-card-icon-top.smart-card-green{
+    border-bottom:1em solid #66BB6A;
+}
+.smart-card-green .smart-icon-top {
+    background-image: linear-gradient(195deg, #66BB6A 0%, #43A047 100%);
+}
+/***  blue color ***/
+.smart-card-icon-top.smart-card-blue{
+    border-bottom:1em solid #49a3f1;
+}
+.smart-card-blue .smart-icon-top {
+    background-image: linear-gradient(195deg, #49a3f1 0%, #1A73E8 100%);
+}
+
+/***  yellow color ***/
+.smart-card-icon-top.smart-card-yellow{
+    border-bottom:1em solid #d69e2e;
+}
+.smart-card-yellow .smart-icon-top {
+    background-image: linear-gradient(195deg,#d69e2e, 0%,#fff3c7 100%);
+    color:#333;
+}
+
+
+/***  **/
+.smart-card-icon-right{
+    min-height: 3em;
+    padding:0.8em;
+    border-radius:0.5em;
+    box-shadow: 5px 5px #e2d9d9;
+}
+.smart-card-icon-right .level-left{
+    width:80%;
+}
+.smart-card-icon-right .level .level-left{
+    display: block;
+}
+.smart-card-icon-right i{
+    font-size: 1.5em;
+}
+.smart-card-icon-right .smart-icon-holder{
+    display: inline-block;
+    width:3em;
+    height:3em;
+    border-radius: 50%;
+    text-align: center;
+    padding: 0.75em;   
+}
+.smart-card-icon-green{
+    background-color: green;
+}
+.smart-card-icon-green i {
+    color:white;
+}
+.smart-card-icon-right p{
+    color:#bcbcbc;
+}
+.smart-card-icon-right h4{
+    font-size:1.5em;
+}
+

@@ -1,0 +1,109 @@
+.recent{
+    
+   display: flex;
+   text-align: center;
+  
+
+  
+
+
+ }
+  .imgBx{
+    position: relative;
+    width: 60px;
+    height:60px;
+    border-radius: 50%;
+    overflow: hidden;
+
+ }
+ .imgBx img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height:100% ;
+    object-fit: cover;
+
+
+ }
+  /* table tr:hover{
+    background-color: #2a2185;
+    color: #fff;
+    border-radius: 10px;
+    
+ } */
+
+  .user-name{
+    font-size: 1em;
+    font-weight: 400;
+    line-height: 1.2rem;
+    margin-top:12px;
+    color: var(--primary-color-side);;
+
+ }
+ .user-name span{
+   color:rgb(44, 114, 253);
+   font-size: 12px;
+   font-weight: 400;
+   position: absolute;
+   bottom: 0;
+
+ }
+ 
+
+
+
+ /* .date:hover{
+   color: white;
+ } */
+
+ .users{
+  display: flex;
+  position: relative;
+ }
+ .user-img{
+  display: flex;
+  position: relative;
+  margin-left: 5px;
+ }
+ .user-date{
+  position: absolute;
+  bottom: 0;
+  right:2%;
+  color: rgb(44, 114, 253); 
+ }
+
+ .smart-users-card{
+  height: 400px;
+  overflow-y: scroll;
+  overflow: hidden;
+ }
+
+ .scrolling-text {
+  white-space: nowrap; /* Prevent text from wrapping */
+  overflow: hidden; /* Hide overflowing text */
+  animation: scroll 15s linear infinite; /* Apply a scrolling animation */
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateY(100%); /* Start off-screen to the right */
+  }
+  100% {
+    transform: translateY(-100%); /* Scroll to the left */
+  }
+}
+
+.scrolling-text:hover {
+  animation-play-state: paused; /* Pause the animation on hover */
+}
+
+::ng-deep .smart-dash-container .column{
+ padding:0;
+ padding-bottom: 0.5em;
+ padding-right: 0.5em;
+}
+
+::ng-deep .smart-dash-container .columns .column:last-child{
+  padding-right: 0;
+}

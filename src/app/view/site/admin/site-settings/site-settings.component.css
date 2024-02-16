@@ -1,0 +1,33 @@
+::ng-deep .smart-image-upload figure{
+    height:250px;
+    width: 250px;
+}
+
+.smart-site-tabs{
+   
+  
+   width: 100%;
+    cursor: pointer;
+    display: flex;
+    flex-wrap: wrap;
+
+   
+   
+   
+}
+
+/* .smart-site-tabs::-webkit-scrollbar{
+    width: 1.1em;
+
+
+}
+.smart-site-tabs::-webkit-scrollbar-track{
+    background-color:rgb(21, 21, 235);
+    border-radius: 0;
+
+}
+.smart-site-tabs::-webkit-scrollbar-thumb{
+    background-color:transparent;
+    border-radius: 0;
+    
+} */

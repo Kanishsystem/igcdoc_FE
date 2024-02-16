@@ -1,0 +1,129 @@
+<!-- First Card -->
+<div class="columns is-mobile">
+    <div class="column">
+        <h3 class="smart-header-text ">
+            Profile</h3>
+    </div>
+</div>
+
+<div class="card">
+    <div class="columns">
+        <div class="column">
+            <div class="card smart-profile-card">
+                <div class="card-header card-title is-flex is-justify-content-space-around has-text-weight-bold">
+                    <p class="has-text-white">Personal Information</p>
+                    <div class="button is-info custom-button" (click)="openFileForm()">
+                        Edit
+                    </div>
+                </div>
+                <div class="smart-div">
+                    <div class="smart-main-div ">
+                        <div class="card-content is-flex is-justify-content-center is-flex-direction-column">
+                            <div class="smart-card-details">
+                                <div class="smart-lable has-text-primary">Employee ID:</div>
+                                <div class="smart-value">{{profileDetails?.euserid}}</div>
+                            </div>
+                            <div class="smart-card-details">
+                                <div class="smart-lable has-text-primary">Name:</div>
+                                <div class="smart-value">{{profileDetails?.ename}}</div>
+                            </div>
+                            <div class="smart-card-details">
+                                <div class="smart-lable has-text-primary">Intercom Number:</div>
+                                <div class="smart-value">{{profileDetails?.intercome_number}}</div>
+                            </div>
+                            <div class="smart-card-details">
+                                <div class="smart-lable has-text-primary">Email:</div>
+                                <div class="smart-value">{{profileDetails?.emailid}}</div>
+                            </div>
+                            <div class="smart-card-details">
+                                <div class="smart-lable has-text-primary">Designation:</div>
+                                <div class="smart-value">{{profileDetails?.designation}}</div>
+                            </div>
+                        </div>
+                        <div class=" ">
+                            <div class="main-card-image">
+                                <div class="is-square">
+                                    <img class="images" [src]="[profileDetails?.profile_img] " alt="Profile " />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+
+
+
+
+
+            </div>
+        </div>
+
+        <div class="column">
+            <div class="card smart-profile-card">
+                <div class="card-header card-title is-flex is-justify-content-space-around has-text-weight-bold">
+                    <p class="has-text-white">Change Password</p>
+                </div>
+                <div class="p-5">
+                    <app-smart-form-new [smartFormConfig]="changepassword()"
+                        [smartFormData]="passData"></app-smart-form-new>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #createform let-c="close" let-d="dismiss">
+    <div class="modal-body">
+        <app-smart-form-new [smartFormConfig]="createFormConfig()" [smartFormData]="formData"></app-smart-form-new>
+    </div>
+</ng-template>
+
+
+<!-- <div class="columns">
+    <div class="column is-4">
+        <div class="card smart-profile-card">
+            <div class="card-header card-title is-flex is-justify-content-space-around has-text-weight-bold">
+               
+                <p class="has-text-white">Personal Information</p>
+                <div class="button is-info custom-button">
+                    Edit
+                </div>
+                
+            </div>
+        <div class="image is-flex is-justify-content-center">
+                <figure class="image is-128x128">
+                    <img class="image is-rounded " [src]="[profileDetails?.profile_img] " alt="Profile " />
+                </figure>  
+            </div>
+          
+              
+                <div class="card-content is-flex is-justify-content-center is-flex-direction-column">
+                    <div class="smart-card-details" >
+                    <div class="smart-lable has-text-primary">Employee ID:</div>
+                    <div class="smart-value">{{profileDetails?.euserid}}</div>
+                    </div>
+                    <div   class="smart-card-details">
+                        <div class="smart-lable has-text-primary">Name:</div>
+                        <div class="smart-value">{{profileDetails?.ename}}</div>
+                        </div>
+                        <div  class="smart-card-details" >
+                            <div class="smart-lable has-text-primary">Intercom Number:</div>
+                            <div class="smart-value">{{profileDetails?.intercome_number}}</div>
+                            </div>
+                            <div  class="smart-card-details">
+                                <div class="smart-lable has-text-primary">Email:</div>
+                                <div class="smart-value">{{profileDetails?.emailid}}</div>
+                                </div>
+                                <div  class="smart-card-details">
+                                    <div class="smart-lable has-text-primary">Designation:</div>
+                                    <div class="smart-value">{{profileDetails?.designation}}</div>
+                                    </div>       
+                </div>
+
+                
+           
+        </div>
+    </div>
+</div> -->

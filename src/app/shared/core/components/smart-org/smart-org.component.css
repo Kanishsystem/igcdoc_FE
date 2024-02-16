@@ -1,0 +1,110 @@
+* {
+	padding: 0px;
+	margin: 0px;
+	box-sizing: border-box;
+}
+.smart-org-tree{
+    padding-top: 20px;
+	position: relative;
+	transition: .5s;
+	margin-left:0;
+}
+.smart-tree{
+    width:100%;
+}
+.smart-tree_ul::before{
+  display:none;
+}
+.smart-org-tree:before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 50%;
+	border-left: 3px solid #2b2929;
+	width: 0;
+	height: 20px;
+}
+
+
+
+.smart-org-tree li{
+    display: inline-table;
+	text-align: center;
+	list-style-type: none;
+	position: relative;
+	padding: 10px;
+	transition: .5s;   
+}
+
+.smart-org-tree li::before, .smart-org-tree li::after {
+	content: '';
+	position: absolute;
+	top: 0;
+	right: 50%;
+	border-top: 3px solid #141414;
+	width: 51%;
+	height: 10px;
+}
+.smart-org-tree li::after {
+	right: auto;
+	left: 50%;
+	border-left: 3px solid #181717;
+}
+
+.smart-org-tree li:only-child::after, .smart-org-tree li:only-child::before {
+	display: none;
+}
+.smart-org-tree li:only-child {
+	padding-top: 0;
+}
+.smart-org-tree li:first-child::before, .smart-org-tree li:last-child::after {
+	border: 0 none;
+}
+.smart-org-tree li:last-child::before {
+	border-right: 3px solid #2b2929;
+	border-radius: 0 5px 0 0;
+	-webkit-border-radius: 0 5px 0 0;
+	-moz-border-radius: 0 5px 0 0;
+}
+.smart-org-tree li:first-child::after {
+	border-radius: 5px 0 0 0;
+	-webkit-border-radius: 5px 0 0 0;
+	-moz-border-radius: 5px 0 0 0;
+}
+
+
+
+.smart-org-tree li a {
+	border: 1px solid #ccc;
+	padding: 10px;
+	display: inline-grid;
+	border-radius: 5px;
+	text-decoration-line: none;
+	border-radius: 5px;
+	transition: .5s;
+	/* background-color: #ff5560; */
+	background: linear-gradient(to right, #7fe6b2 2%, #c3ece3 100%);
+	position: relative;
+	width: 150px;
+	height: 150px;	
+	color: white;
+}
+
+.smart-org-tree li a.smart-org-dev-16{
+	/* background-color: #b0fbff; */
+	background: linear-gradient(to right, #fd8a8a 2%, #f5d4b4 100%);
+}
+.smart-org-tree li a.smart-org-dev-14{
+	/* background-color: 	#ffafff; */
+	background: linear-gradient(to right, #6fc3fa 2%, #90e3e3 100%);
+}
+.smart-org-tree li a.smart-org-dev-12{
+	background: linear-gradient(to right, #cc99ff 2%, #ff9999 100%);
+}
+
+
+.smart-org-vert-tree li a:hover{
+	background-color: #dfdddd;
+	border: 1px solid #ac3b3b;
+}
+

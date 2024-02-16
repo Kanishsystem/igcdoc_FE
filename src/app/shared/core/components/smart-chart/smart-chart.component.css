@@ -1,0 +1,21 @@
+/* .smart-chart-display{
+    height:200px !important;
+} */
+.smart-chart-div-mobile{
+    width:100%;
+    overflow: scroll;
+    display:none;
+}
+
+@media screen and (max-width: 600px) {  
+   .smart-chart-div-mobile{
+    display: block;
+   }
+   .smart-chart-div-dekstop{
+    display: none;
+   }    
+}
+
+.my-legend{
+    color:red;
+}

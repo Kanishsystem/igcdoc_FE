@@ -1,0 +1,110 @@
+<div class="columns is-multiline">
+  <div class="column is-12 ">
+    <div class="tabs is-toggle is-right">
+      <ul class="">
+        <li class="card" *ngFor="let obj of tabs;" (click)="tabSelected=obj.value"
+          [ngClass]="obj.value==tabSelected ? 'is-active':''"><a>          
+            <span>{{obj.label}}</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div *ngIf="tabSelected=='proposal'">
+  <div class="column pdf-button ">
+  <button
+    class="button smart-action-button-secondary"
+    (click)="openPdfViewType()"
+  >
+    Office Order
+  </button>
+</div>
+</div>
+
+<div *ngIf="tabSelected=='Mom'">
+  <div *ngIf="newButtonCheck()">
+    <div class="columns is-mobile">
+      <div class="column">
+        <h3 class="card-header-title smart-header-text">
+          Minutes Of Meeting - {{ mom }}
+        </h3>
+      </div>
+      <div class="column">
+        <button
+          class="button smart-action-button-secondary"
+          (click)="openPdfViewType()"
+        >
+          Office Order
+        </button>
+      </div>
+      
+      <div class="column is-4 is-flex is-justify-content-end smart-mobile-hide">
+        <button
+          *ngIf="newButtonCheck()"
+          class="button smart-action-button-secondary"
+          (click)="openForm()"
+        >
+          <i class="fa fa-plus"></i>Add Meeting
+        </button>
+      </div>
+      <div class="column is-3 is-flex is-justify-content-end smart-desk-hide">
+        <figure class="image is-32x32">
+          <img class="is-rounded" src="assets/icons/add-100-blue.png" />
+        </figure>
+      </div>
+    </div>
+    <div class="columns">
+      <div class="column is-12 p-0">
+        <div class="card">
+          <div class="card-content pt-2">
+            <div class="content">
+              <app-smart-tablenew
+                [data]="tableData"
+                [tconfig]="tableConfigNew"
+              ></app-smart-tablenew>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+
+<ng-template #employeesTemplate let-item>
+  <span class="tag" *ngFor="let obj of item.employees">{{ obj.label }}</span>
+</ng-template>
+
+<ng-template #createform let-c="close" let-d="dismiss">
+  <div class="modal-body">
+    <app-smart-form-new
+      [smartFormConfig]="createFormConfig()"
+      [smartFormData]="formData"
+    ></app-smart-form-new>
+  </div>
+</ng-template>
+<div *ngIf="!newButtonCheck()">
+  <div class="column">
+    <h3 class="card-header-title smart-header-text">
+      <!-- Minutes Of Meeting - {{ mom }} -->
+    </h3>
+  </div>
+  <!-- <div class="column">         
+    <app-smart-pdf-view *ngIf="pdfData"  [data]="pdfData"></app-smart-pdf-view>         
+  </div>   -->
+</div>
+
+
+
+<div *ngIf="tabSelected=='proposal'"> 
+   <app-meet-proposals [modeInput]="'emp'" [mom]="mom"></app-meet-proposals>
+</div>
+<div *ngIf="tabSelected=='approvals'">
+  <app-meet-proposals [modeInput]="'appwait'" [mom]="mom"></app-meet-proposals>
+</div>
+<div *ngIf="tabSelected=='processed'">
+  <app-meet-proposals [modeInput]="'appproc'" [mom]="mom" ></app-meet-proposals>
+</div>

@@ -1,0 +1,140 @@
+<div class="columns is-mobile">
+  <div class="column">
+    <h3 class="card-header-title smart-header-text">{{ siteTitle }}</h3>
+  </div>
+  <div class="column is-4 is-flex is-justify-content-end smart-mobile-hide">
+    <div class="tabs is-small is-size-6 is-toggle " *ngIf="selectionButton==true">
+      <ul>
+        <li *ngFor="let obj of actionTypes;" (click)="processSelection=obj.value;actionChange()"
+          [ngClass]="obj.value==processSelection ? 'is-active':''"><a>
+            <span>{{obj.label}}</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <button *ngIf="selectionButton==false" class="button smart-action-button-secondary" (click)="openForm()">
+      <i class="fa fa-plus p-1"></i>New Complaint
+    </button>
+  </div>
+  <div class="column is-3 is-flex is-justify-content-end smart-desk-hide">
+    <figure class="image is-32x32" (click)="openForm()">
+      <img class="is-rounded" src="assets/icons/add-100-blue.png" />
+    </figure>
+  </div>
+</div>
+<div class="columns">
+  <div class="column">
+    <div class="card">
+      <div class="card-content">
+        <div class="content">
+          <app-smart-tablenew [data]="tableData" [tconfig]="tableConfigNew">
+          </app-smart-tablenew>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #createform let-c="close" let-d="dismiss">
+    <!-- <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLabel"
+          class="ft-popup-heading text-center brand-text-color">Electrical Complaint Form</h5>
+      <button type="button" class="btn-close" aria-label="Close"
+          (click)="d('Cross click')"></button>
+  </div> -->
+    <div class="modal-body" filter>
+      <app-smart-form-new [smartFormConfig]="createFormConfig()" [smartFormData]="formData"></app-smart-form-new>
+    </div>
+  </ng-template>
+
+  <ng-template #editform let-c="close" let-d="dismiss">
+    <div class="modal-body">
+      <div class="columns is-multiline my-5">
+        <div class="column is-12 p-0">
+          <span class="smart-field-label">Title</span>
+          <span class="smart-field-value"> {{ editData?.title }}</span>
+        </div>
+
+        <div class="column is-12 p-0">
+          <span class="smart-field-label">Requester Name</span>
+          <span class="smart-field-value">{{ editData?.created_by }}</span>
+        </div>
+
+        <div class="column is-12 p-0">
+          <span class="smart-field-label">Location</span>
+          <span class="smart-field-value">{{ editData?.location }}</span>
+        </div>
+
+        <div class="column is-12 p-0">
+          <span class="smart-field-label">Requester Date</span>
+          <span class="smart-field-value">{{
+            editData?.created_time | date : "dd/MM/YYYY"
+            }}</span>
+        </div>
+      </div>
+
+      <app-smart-form-new [smartFormConfig]="editFormConfig()" [smartFormData]="editData"></app-smart-form-new>
+    </div>
+  </ng-template>
+
+  <ng-template #viewform let-c="close" let-d="dismiss">
+    <div class="columns is-multiline">
+      <div class="column is-12 p-0">
+        <span class="smart-field-label">Title</span>
+        <span class="smart-field-value"> {{ viewData?.title }}</span>
+      </div>
+
+      <div class="column is-12 p-0">
+        <span class="smart-field-label">Requester Name</span>
+        <span class="smart-field-value"> {{ viewData?.created_by }}</span>
+      </div>
+
+      <div class="column is-12 p-0">
+        <span class="smart-field-label">Description</span>
+        <span class="smart-field-value">{{ viewData?.description }}</span>
+      </div>
+
+      <div class="column is-12 p-0">
+        <span class="smart-field-label">Location</span>
+        <span class="smart-field-value">{{ viewData?.location }}</span>
+      </div>
+
+      <div class="column is-12 p-0">
+        <span class="smart-field-label">Requested Date</span>
+        <span class="smart-field-value">{{
+          viewData?.created_time | date : "dd/MM/YYYY"
+          }}</span>
+      </div>
+      <!-- 
+      <div class="column is-12 p-0">
+        <span class="smart-field-label">Selected Approval Authority</span>
+        <span class="smart-field-value">{{ viewData?.appsel }}</span>
+      </div>
+
+      <div class="column is-12 p-0">
+        <span class="smart-field-label">Remarks</span>
+        <span class="smart-field-value">{{ viewData?.app_null }}</span>
+      </div>
+
+      <div class="column is-12 p-0">
+        <span class="smart-field-label">Time</span>
+        <span class="smart-field-value">{{ viewData?.app_time }}</span>
+      </div> -->
+
+      <div class="column is-12 p-0">
+        <span class="smart-field-label">Status</span>
+        <span class="smart-field-value">{{get_status_disp(viewData?.status )}}</span>
+      </div>
+
+      <div class="column is-12 p-0" *ngIf="viewData?.status != '10'">
+        <span class="smart-field-label">{{viewData?.status === "15"? 'Completed ': 'Rejected'}} Date</span>
+        <span class="smart-field-value">{{viewData?.admin_time | date : "dd/MM/YYYY"}}</span>
+      </div>
+
+      <div class="column is-12 p-0" *ngIf="viewData?.status == '11'">
+        <span class="smart-field-label">Admin Remarks</span>
+        <span class="smart-field-value">{{ viewData?.admin_remarks }}</span>
+      </div>
+
+    </div>
+  </ng-template>
+</div>

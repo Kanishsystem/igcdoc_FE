@@ -1,0 +1,58 @@
+<div class="columns is-multiline">
+    <div *ngFor="
+    let item of smartDash;
+    let i = index;
+    trackBy: trackByFn
+  " class="column " [ngClass]="getCardSizeClass">
+        <!--  Style Boarder Based Smart Cards -->
+        <div *ngIf="smartDashCards.type=='STYLE_BORDER'" class="smart-dash-card p-5" [ngClass]="getCardCalss(item)">
+            <div class="smart-flex smart-flex-row smart-items-center">
+                <div class="smart-flex-shrink pr-4">
+                    <div class="smart-rounded-full p-5 smart-icon-color">
+                        <i class="fa {{item.icon}} fa-2x fa-inverse"></i>
+                    </div>
+                </div>
+                <div class="smart-flex-1 has-text-right-mobile has-text-centered">
+                    <h5 class="has-text-weight-bold is-uppercase smart-text-color">
+                        {{item.title}}</h5>
+                    <h3 class="has-text-weight-bold is-size-3 animate__animated animate__bounceInDown"> {{item.valueIndex}}
+                        <span *ngIf="item?.carrotIcon" class="smart-caret-color">
+                            <i class="fas fa-caret-up"></i></span>
+                    </h3>
+                </div>
+            </div>
+        </div>
+        <!--- Icon Top Models -->
+        <div class="card smart-card-icon-top" *ngIf="smartDashCards.type=='ICON_TOP'" [ngClass]="getCardCalss(item)">
+            <div class="card-header p-3 pt-2">
+                <div
+                    class="icon is-large icon-shape smart-icon-top mt-n4">
+                    <i class="fa  {{item.icon}} "></i>
+                </div>
+                <div class="smart-card-content has-text-right pt-1">
+                    <p class="mb-0 is-capitalized">{{item.title}}</p>
+                    <h4 class="mb-0 animate__animated" [ngClass]="animateClasses[animationClassIndex]">{{item.valueIndex}}</h4>
+                </div>
+            </div>          
+            <div class="card-footer p-3" *ngIf="item.cardFooterMsg">
+                <p class="mb-0"><span class="text-success text-sm font-weight-bolder">+55% </span>than lask week</p>
+            </div>
+        </div>
+        <!--- icon right side -->
+        <div class="card smart-card-icon-right" *ngIf="smartDashCards.type=='ICON_RIGHT'" >
+            <nav class="level is-mobile">
+                <!-- Left side -->
+                <div class="level-left">
+                    <p class="mb-0 is-uppercase">{{item.title}}</p>
+                    <h4 class="mb-0 animate__animated" [ngClass]="animateClasses[animationClassIndex]">{{item.valueIndex}}</h4>                  
+                </div>              
+                <!-- Right side -->
+                <div class="level-right">  
+                    <span class="smart-icon-holder"  [ngClass]="getCardCalss(item)">
+                      <i class="fa  {{item.icon}} "></i>
+                  </span>               
+                </div>
+              </nav>
+        </div>
+    </div>
+</div>

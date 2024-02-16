@@ -1,0 +1,15 @@
+<div class="text-center">
+	<div>
+		<webcam [height]="320" [width]="400" [trigger]="triggerObservable" (imageCapture)="handleImage($event)" *ngIf="showWebcam"
+		 [allowCameraSwitch]="allowCameraSwitch" [switchCamera]="nextWebcamObservable" [videoOptions]="videoOptions" (cameraSwitched)="cameraWasSwitched($event)"
+		 (initError)="handleInitError($event)" [mirrorImage]="'never'"></webcam>
+		<br/>
+	</div>
+    <div class="row text-center">
+        <div class="col-md-12">
+            <button *ngIf="multipleWebcamsAvailable" class="btn btn-outline-secondary m-2" (click)="showNextWebcam(true)">Switch Camera</button>
+            <button  class="btn btn-outline-danger m-2" (click)="restCaptureType.emit()">Cancel</button>
+            <button  class="btn btn-outline-success" (click)="triggerSnapshot()">Capture</button>
+        </div>
+    </div>
+</div>

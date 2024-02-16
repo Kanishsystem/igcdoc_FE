@@ -1,0 +1,67 @@
+.smart-column{
+    width:14%;   
+    min-height: 8em;
+    position: relative;
+    cursor: pointer;
+    padding:0.2em;
+}
+.smart-head-column{
+    min-height: 1em;
+    text-align: center;
+    padding:0.4em;
+    border-radius:0;
+    border-right-color:#faf3f3;    
+}
+.smart-two-day{
+    margin-left: 14%;
+}
+.smart-three-day{
+    margin-left: 28%;
+}
+.smart-four-day{
+    margin-left: 42%;
+}
+.smart-five-day{
+    margin-left: 56%;
+}
+.smart-six-day{
+    margin-left: 70%;
+}
+.smart-seven-day{
+    margin-left: 84%;
+}
+.smart-meet-day{
+    position: absolute;
+    right:3%;
+    top:1%;
+    color: #a7a0a0;
+}
+/** meet info block**/
+.smart-meet-info-block{
+  font-size: 0.8em;
+  padding:0.2em;
+}
+.smart-meet-info-block span{
+    font-size: 0.7em;
+    margin-right: 0.4em;
+    
+}
+
+.smart-meet-day-disable{
+    background-color: #faf3f3;
+    cursor: auto;
+}
+
+/* responsive table settings for mobile view s*/
+
+@media screen and (max-width: 600px) {  
+    .smart-column{
+        width:100%;
+    }
+    .smart-day-head{
+        display: none;
+    }
+    .smart-two-day,.smart-three-day,.smart-four-day,.smart-five-day,.smart-six-day,.smart-seven-day{
+        margin-left: 0;
+    }
+}

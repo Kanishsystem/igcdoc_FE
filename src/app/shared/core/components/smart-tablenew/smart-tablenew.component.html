@@ -1,0 +1,195 @@
+<div class="columns smart-table-columns is-mobile">
+    <div  *ngIf="table_data?.length>0" class="column smart-table-show-entries" [ngClass]="show_entries_class">
+        <span *ngIf="tableconfig?.showentries && this.tableconfig.pagination">
+            Show
+            <select [(ngModel)]="count" (change)="onCountChange()">
+                <option *ngFor="let items of showItems">{{items}}</option>
+            </select>           
+        </span>
+    </div>
+    <div class="column d-flex is-justify-content-flex-end" [ngClass]="search_bar_class">
+        <span *ngIf="table_data?.length>0 && tableconfig?.search" class="field smart-table-search">
+            <p class="control has-icons-left">
+                <input class="input" type="text" [placeholder]="search_bar_placeholder" 
+                [(ngModel)]="filter" (ngModelChange)="searchItems()">
+                <span class="icon is-small is-left">
+                  <i class="fa fa-search"></i>
+                </span>
+              </p>          
+        </span>
+        <span *ngIf="tableconfig?.refresh">
+            <button class="button" (click)="onRefreshClick()"><i class="fa
+                    fa-refresh"></i></button>
+        </span>
+        <!-- 
+        <span *ngIf="tableconfig?.colsearch && !server">
+            <button class="button" (click)="isFilterEnabled=!isFilterEnabled"><i
+                    class="{{isFilterEnabled ? 'fa fa-close' : 'fa fa-filter'}}"></i></button>
+        </span>
+         -->
+        <span *ngIf="table_data?.length>0 && tableconfig?.colsearch">
+         <div class="smart-table-filter-dropdown dropdown is-right" [ngClass]="isFilterEnabled?'is-active':''">
+            <div class="dropdown-trigger">
+              <button class="button" aria-haspopup="true" aria-controls="dropdown-menu6" (click)="isFilterEnabled=!isFilterEnabled">                
+                <span class="icon is-small">
+                  <i  class="{{isFilterEnabled ? 'fa fa-close' : 'fa fa-filter'}}" aria-hidden="true"></i>
+                </span>
+              </button>
+            </div>
+            <div class="dropdown-menu smart-table-filter" id="dropdown-menu6" role="menu">
+              <div class="dropdown-content">
+                <div class="dropdown-item">
+                    <app-smart-form-new [smartFormConfig]="filterFormConfig" [smartFormData]="filterInData"></app-smart-form-new> 
+                </div>
+              </div>
+            </div>
+          </div>
+          </span>
+        <span *ngIf="table_data?.length>0 && tableconfig?.download">
+            <button class="button" (click)="exportexcel(tableconfig?.name)"><i
+                    class="fa fa-download"></i></button>
+        </span>
+        <span *ngIf="tableconfig?.settings" ngbDropdown>
+            <button class="button" id="settings" ngbDropdownToggle><i class="fa fa-gear"></i></button>
+            <div ngbDropdownMenu aria-labelledby="settings"
+                style="width: 250px;height: 500px; overflow-x: hidden; overflow-y: scroll;">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" (click)="generateColumnSettingData()"
+                                role="switch" [id]="'all'">
+                            <label class="form-check-label" [for]="'all'">ALL</label>
+                        </div>
+                    </li>
+                    <li class="list-group-item" *ngFor="let colet of colsettingsData;let i = index">
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" [disabled]="colet?.disabled"
+                                [checked]="colet?.selected" value=true (click)="onColumnSelected($event,i,colet?.tbody)"
+                                role="switch" [id]="colet?.tbody">
+                            <label class="form-check-label" [for]="colet?.tbody">{{colet?.title}}</label>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </span>       
+    </div>
+    <div class="column" *ngIf="buttons_tempalte" [ngClass]="buttons_bar_class">
+        <ng-container *ngTemplateOutlet="getButtonTemplateName();"></ng-container>
+    </div>
+</div>
+<div class="columns is-multiline smart-table-container">
+
+<div class="column is-12" >   
+    <div *ngIf="table_data?.length<1" class="no-result-content"  >
+        <i class="fa {{tableconfig?.no_results?.icon}}"></i>
+        <h1 class="title is-4 my-2">{{tableconfig?.no_results?.title}}</h1>
+        <p class="subtitle is-6 my-2">{{tableconfig?.no_results?.sub_title}}</p>          
+   </div> 
+    <table *ngIf="table_data?.length>0"  class="table table-hover smart-responsive" id={{tableconfig?.name}}  [ngClass]="tableconfig?.table_class">
+        <thead class="border">
+            <tr class="datatable-head smart-header border" >
+                <ng-template ngFor let-thead [ngForOf]="colsettingsData">
+                    <th smartTableShort [enablesort]=tableconfig?.sorting (click)="add_sort_index(thead.tbody)"
+                        *ngIf="thead?.selected" [ngClass]="thead?.th_class" [attr.width]="thead.width" >{{thead.title}}</th>
+                </ng-template>
+            </tr>
+            <!-- 
+            <tr *ngIf="isFilterEnabled && !server">
+                <th *ngFor="let thead of colsettingsData">
+                    <form>
+                        <input type="search" name="{{thead.tbody}}" id="{{thead.tbody}}" autocomplete="off"
+                            (input)="coulmnSearch(thead.tbody,$event)" *ngIf="thead?.filter == true ? true : false"
+                            #filterText class="form-control form-control-sm">
+                    </form>
+                </th>
+            </tr>
+            -->
+        </thead>
+        <tbody *ngIf="filteredData?.length > 0" class="table-group-divider">
+            <tr *ngFor="let tbody of paginatedData; let i= index"
+                class="ft-table-body">
+                <ng-template ngFor let-tdata [ngForOf]="colsettingsData">
+                    <ng-container *ngIf="tdata?.selected">
+                        <td [attr.data-label]="tdata.title" *ngIf="tdata.type=='sno'"
+                         [ngClass]="tbody?.td_class" >
+                            {{startIndex + i + 1 }}
+                        </td>
+                        <td [attr.data-label]="tdata.title" *ngIf="tdata.type=='db' && !tdata.uppercase" [ngClass]="tbody?.td_class">
+                            {{tbody[tdata.tbody] || '' }}
+                        </td>
+                        <td  [attr.data-label]="tdata.title" *ngIf="tdata.type=='db' && tdata.uppercase" [ngClass]="tbody?.td_class" >
+                            {{tbody[tdata.tbody] | uppercase }}
+                        </td>
+                        <td  [attr.data-label]="tdata.title" *ngIf="tdata.type=='link'" [ngClass]="tbody?.td_class" >
+                            <a class="has-text-link" (click)="tdata.onClick(tbody)"> {{tbody[tdata.tbody] || tdata.tbody }}</a>
+                        </td>
+                        <td  [attr.data-label]="tdata.title" *ngIf="tdata.type=='template'" [ngClass]="tbody?.td_class" >
+                           <ng-container *ngTemplateOutlet="getTemplateName(tdata); context: { $implicit: tbody }"></ng-container>
+                          </td>
+                        <td  [attr.data-label]="tdata.title" *ngIf="tdata.type=='buttons'" [ngClass]="tbody?.td_class" >
+                          <app-smart-button [btn_config]="tdata.btn_config" [row_data]="tbody"></app-smart-button>
+                        </td>
+                        <td  [attr.data-label]="tdata.title" class="has-text-centered" *ngIf="tdata.type=='buttonsAction'" [ngClass]="tbody?.td_class" >                             
+                             <span class="smart-table-action icon" [ngbPopover]="popContent" placement="start" popoverClass="smart-table-action-popover"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></span>
+                            <ng-template #popContent>
+                                 <app-smart-button [btn_config]="tdata.btn_config" [row_data]="tbody"></app-smart-button>
+                            </ng-template>                           
+                        </td>
+                        <td  [attr.data-label]="tdata.title" *ngIf="tdata.type=='date'" [ngClass]="tbody?.td_class">
+                            <span *ngIf="tdata?.customFormat">{{tbody[tdata.tbody] | date: tdata?.format || '-'
+                                }}</span>
+                            <span *ngIf="tdata?.datePipeFormat">{{tbody[tdata.tbody] | date: tdata?.format || '-'
+                                }}</span>
+                            <span *ngIf="!tdata?.datePipeFormat && !tdata?.customFormat">{{tbody[tdata.tbody] || '-'
+                                }}</span>
+                        </td>
+                        <td  [attr.data-label]="tdata.title" *ngIf="tdata.type=='badge'" [ngClass]="tbody?.td_class" >
+                            <span *ngFor="let badgecond of tdata.cond">
+                                <span *ngIf="tbody[tdata.tbody] == badgecond.comp" id="status" class="badge"
+                                    [ngStyle]="{'background-color':badgecond.color}">{{tbody[tdata.tbody]}}</span>
+                            </span>
+                        </td>
+                        <td  [attr.data-label]="tdata.title" *ngIf="tdata.type=='tag'" [ngClass]="tbody?.td_class" >
+                            <span *ngFor="let tagcond of tdata.tagCond">
+                                <span *ngIf="tbody[tdata.tbody] == tagcond.comp" class="tag"
+                                    [ngClass]="tagcond.tagClass">{{getTagValue(tagcond.tagText,tbody,tdata.tbody)}}</span>
+                            </span>
+                        </td>
+                        <td [attr.data-label]="tdata.title" *ngIf="tdata.type=='image'" [ngClass]="tbody?.td_class">
+                            <figure class="image is-48x48">
+                                <img [src]="tbody[tdata.tbody]" alt="" />
+                            </figure>                           
+                        </td>
+                     
+                    </ng-container>
+                </ng-template>
+            </tr>
+        </tbody>
+        <tbody
+            *ngIf="(this.tableconfig.pagination || this.tableconfig.norecordsFound )&& (filteredData?.length == 0 || filteredData?.length == null)"
+            class="table-group-divider">
+            <tr class="datatable-head">
+                <td [attr.colspan]=colspan class="text-center">
+                    <span>No Records Found</span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>  
+        <div class="column is-6">
+            <span *ngIf="tableconfig?.showingentries && this.tableconfig.pagination">
+                Showing {{startCount}} to {{endIndex}} of
+                {{filteredCount}} entries
+                <span *ngIf="isSearchEnabled">(filtered from {{totalDataCount}}
+                    total entries)</span>
+            </span>           
+        </div>
+        <div class="column is-6 d-flex flex-row-reverse">
+            <span *ngIf="this.tableconfig.pagination && filteredData?.length > 0">               
+                <app-smart-pagination [itemsPerPage]="itemsPerPage" [currentPage]="currentPage"
+                [totalCount]="filteredCount" (pageChange)="onPageChange($event)"  ></app-smart-pagination>
+            </span>
+        </div>
+    
+   
+</div>

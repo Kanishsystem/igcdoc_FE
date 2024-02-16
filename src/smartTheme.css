@@ -1,0 +1,64 @@
+:root {
+   
+    --primary-color: #e3e0f3;
+    --primary-color-side:hsl(240, 98%, 21%);
+    --primary-gradient-color:#874f60;
+    /* Blue */
+    --secondary-color: #f3fdfd;
+    /* Gray */
+    --accent-color: #ffc107;
+    /* Yellow */
+    --white-color:#FFFFFE;
+    /* Add more color variables as needed */
+
+    /* Text Colors */
+    --text-color: #333;
+    /* Main text color */
+    --link-color: #007bff;
+    /* Color for hyperlinks */
+    --link-hover-color: #0056b3;
+    /* Color for hyperlinks on hover */
+
+    --body-background:var( --primary-color);
+    /*** header nav olors**/
+    --headnav-background:var( --white-color);
+    --headnav-textcolor:var( --text-color);
+    --sidenav-background:var(--primary-color-side);
+
+    /** buttons colors **/
+    --smart-action-button-background:var(--primary-color-side);
+    --smart-action-button-text:var(--secondary-color);
+
+    /*** pagination colors ***/
+    --smart-page-active-color:var(--primary-color-side);
+    --smart-page-disabled-color:var(--secondary-color);
+
+    /**** ****/
+    --smart-text-opacity:0.9;
+    --smart-bg-opacity:0.9;
+
+    /***/
+    --bs-popover-body-padding-y:0.4em;
+}
+
+/* Scroll Bar */
+::-webkit-scrollbar {
+    width: 1px;
+    height:8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background:var(--primary-color-side);
+    border-radius: 5px
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background:var(--primary-color-side);
+}
+
+
+

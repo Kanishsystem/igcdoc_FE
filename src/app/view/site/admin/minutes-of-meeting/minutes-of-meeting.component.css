@@ -1,0 +1,8 @@
+.pdf-button{
+    position: relative;
+}
+
+.smart-action-button-secondary{
+    position: absolute;
+    top: -70px;
+}

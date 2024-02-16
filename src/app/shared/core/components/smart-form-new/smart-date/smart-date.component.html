@@ -1,0 +1,37 @@
+<div *ngIf="type=='yearMonth'">
+    <button class="card-header-icon" aria-label="more options"> 
+        <span class="icon" (click)="meetPreviousClick()">
+            <i class="fa fa-caret-left" aria-hidden="true"></i>
+          </span>
+        {{monthNames[meetMonth-1]}}, {{meetYear}}
+        <span class="icon" placement="left" [ngbPopover]="popContent" [autoClose]="'outside'"
+        triggers="manual"
+        #p="ngbPopover"
+        (click)="p.open();monthYearReset()">
+        <i class="fa fa-calendar" aria-hidden="true"></i>
+          </span>
+          <span class="icon" (click)="meetNextClick()">
+            <i class="fa fa-caret-right" aria-hidden="true"></i>
+          </span>
+    </button>
+    <ng-template #popContent>
+        <div class="select">
+            <select [(ngModel)]="meetMonthSelect">
+                <option *ngFor="let m of monthsArray" [value]="m">{{monthNames[m-1]}}</option>
+            </select>
+          </div> 
+          <div class="select">
+            <select [(ngModel)]="meetYearSelect">
+                <option *ngFor="let yearValue of years" [value]="yearValue">{{yearValue}}</option>
+            </select>
+          </div>
+          <span class="icon" (click)="p.close();monthYearSelect()">
+            <i class="fa fa-check" aria-hidden="true"></i>
+          </span>
+    </ng-template>
+</div>
+<div *ngIf="type=='time'"> 
+  <ngb-timepicker [(ngModel)]="selectedTime" (ngModelChange)="onTimeChange($event)"
+  [minuteStep]="item?.timeSettings?.step"  [size]="'small'"
+   [minTime]="item?.timeSettings?.minTime" ></ngb-timepicker>
+</div>

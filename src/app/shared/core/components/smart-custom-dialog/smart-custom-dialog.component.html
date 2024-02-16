@@ -1,0 +1,28 @@
+<div class="modal is-active animate__animated animate__fadeIn" [ngClass]="dialogClass">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+      <header class="modal-card-head" *ngIf="data?.title?.length > 1">
+        <p class="modal-card-title">
+          <i *ngIf="data?.icon" class="fa {{data?.icon}}"></i>
+          {{data.title}}</p>
+        <button class="delete" aria-label="close" (click)="onCloseClick()"></button>
+      </header>
+      <section class="modal-card-body" *ngIf="!data?.iframe" >
+        <div class="column" *ngIf="!data?.template">
+          <b>Note:</b>{{data.message}}
+        </div> 
+        <div class="column"  *ngIf="data?.template">
+          <ng-container *ngTemplateOutlet="data?.template"></ng-container>
+        </div>          
+      </section>
+      <section class="modal-card-body"  *ngIf="data?.iframe"> 
+        <div class="column">         
+          <app-smart-pdf-view *ngIf="pdfData"  [data]="pdfData"></app-smart-pdf-view>         
+        </div>   
+      </section>
+      <footer class="modal-card-foot justify-content-end" *ngIf="data?.buttons?.length>0">
+            <button *ngFor="let item of data?.buttons"  class="button is-small {{item?.class}}" 
+            (click)="onButtonClick(item.action)">{{item.label}}</button>            
+      </footer>
+    </div>
+  </div>
