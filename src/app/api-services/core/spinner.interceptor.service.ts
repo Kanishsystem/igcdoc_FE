@@ -18,7 +18,7 @@ export class SpinnerInterceptorService implements HttpInterceptor  {
     ) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    if(!SPINNER_BLOCK_API.includes(req.url)){
+    if(!SPINNER_BLOCK_API.includes(req.url) && !(req.url.indexOf("get_one_image_new") != -1)){
       if (this.count === 0) {
         this.loaderService.setHttpProgressStatus(true);
       }

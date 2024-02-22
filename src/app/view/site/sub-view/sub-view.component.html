@@ -16,6 +16,7 @@
           <img class="sub-view-image" src="../assets/images/igcar-2.jpeg">
         </figure>
       </div>
+   
     </div>
 
 
@@ -35,45 +36,52 @@
 
 
 
-
-<div class="columns scrolling-card">
-  <div class="column is-6 card border-0 p-0 card-shadow ">
-    <div class="card-header card card-header-1 ">
-      <div class="card-header-title has-text-weight-bold">Site Circular</div>
-    </div>
-    <div class="card-content overflow-hidden p-2">
-      <div class="scrolling-text">
-
-        <ul class="sub-view-list" *ngFor="let list of circularList">
-          <li class="list-view card">
-            {{list.form_name}} <span class="list-date">
-              {{list.last_modified_time|date:'dd/MM/YYYY'}}</span></li>
-        </ul>
-
-      </div>
-    </div>
-  </div>
-  <div class="column card is-6 border-0 p-0 card-shadow">
-    <div class="card ">
-      <header class="card-header">
-        <p class="card-header-title">
-          Document Publication Chart
-        </p>
-        <button class="card-header-icon has-text-white" aria-label="more options">
-          <span class="icon" (click)="changeYear(2)">
-            <i class="fa fa-chevron-left" aria-hidden="true"></i>
-          </span>
-          {{currentYear}}
-          <span class="icon" (click)="changeYear(1)">
-            <i class="fa fa-chevron-right" aria-hidden="true"></i>
-          </span>
-        </button>
-      </header>
-      <div class="card-content">
-        <div class="content" style="height:100vh">
-          <app-smart-chart [smartConfig]="smartChartConfig"></app-smart-chart>
+<div class="container is-full-widescreen">
+  <div class="columns  ">
+ 
+    <div class=" column  is-6  border-0 p-0 card-shadow scrolling-card ">
+      <div class=" ">
+        <div class="card-header card card-header-1 ">
+          <div class="card-header-title has-text-weight-bold">Site Circular</div>
+        </div>
+        <div class="card-content overflow-hidden p-2">
+          <div class="scrolling-text">
+    
+            <ul class="sub-view-list" *ngFor="let list of circularList">
+              <li class="list-view card">
+                {{list.form_name}} <span class="list-date">
+                  {{list.last_modified_time|date:'dd/MM/YYYY'}}</span></li>
+            </ul>
+    
+          </div>
         </div>
       </div>
-    </div> 
+    </div>
+  
+    <div class="column card is-6 border-0 p-0 card-shadow">
+      <div class="">  
+        <div class="card ">
+        <header class="card-header card-header-1">
+          <p class="card-header-title">
+            Document Publication Chart
+          </p>
+          <button class="card-header-icon has-text-white" aria-label="more options">
+            <span class="icon" (click)="changeYear(2)">
+              <i class="fa fa-chevron-left" aria-hidden="true"></i>
+            </span>
+            {{currentYear}}
+            <span class="icon" (click)="changeYear(1)">
+              <i class="fa fa-chevron-right" aria-hidden="true"></i>
+            </span>
+          </button>
+        </header>
+        <div class="card-content">
+          <div class="content" style="height:100vh">
+            <app-smart-chart [smartConfig]="smartChartConfig"></app-smart-chart>
+          </div>
+        </div>
+      </div> </div>
+    
+    </div>
   </div>
 </div>

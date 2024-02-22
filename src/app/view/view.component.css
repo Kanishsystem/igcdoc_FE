@@ -171,17 +171,21 @@
     width:150px;
     border-left:1px solid #920090;
     position:relative;   
+    cursor: pointer;
 }
 .smart-sub-nav li a{
     color:#920090;
     padding: 10px;
+    cursor: pointer;
 }
 .smart-main-ul li:hover{
     background-color: white;
+    cursor: pointer;
    
 }
 .smart-main-ul li:hover a{
     color:#920090;
+    cursor: pointer;
 }
 .smart-main-ul li:hover .smart-sub-nav{
     display:block;
@@ -194,6 +198,7 @@
     top:-300%;
     background: white;
     position: absolute;
+    cursor: pointer;
 }
 .smart-sub-nav-sub{
     display:none;
@@ -201,6 +206,7 @@
     top: 0px;
     background: white;
     position: absolute;
+    cursor: pointer;
 }
 
 /* .smart-sub-nav li:last-child .smart-sub-nav-sub{

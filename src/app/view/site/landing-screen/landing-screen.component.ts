@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { get_api_full_route } from 'src/app/api-services/api-router';
+import { get_api_full_route, get_api_route } from 'src/app/api-services/api-router';
 import { NotifyService } from 'src/app/api-services/common/notify.service';
 import { SpinnerService } from 'src/app/api-services/common/spinner.service';
 import { SessionStorageServiceService } from 'src/app/api-services/core/session-storage-service.service';
@@ -36,6 +36,8 @@ export class LandingScreenComponent {
   ];
 
   currentImageIndex: number = 0;
+  //
+  currentImageSrc:any;
 
   siteSettings: any;
 
@@ -59,18 +61,33 @@ export class LandingScreenComponent {
     this.getActivity();
     this.startSlideshow();
     this.getShutDownData();
+    
   }
 
   getHomeImagesData() {
     this.images = [];
+    let id =0;
     this.api.smartGet('HOME_IMAGES_GET_ALL').subscribe((res: any) => {
-       res.forEach(element => {
+       res.forEach(element => {      
         let image_url = this.imageUrl + "/" + element.ID;
-        this.images.push(image_url)
+        this.images.push(element.ID)       
+        if(id == 0){
+           id = element.ID;
+           this.getImageUpdate(element.ID);
+        }
         this.getSettingsData();
        });
     });
   }
+
+  getImageUpdate(id:number){
+     let url = get_api_route("HOME_IMAGES_GET_ONE_IMAGE_NEW") + "/" + id;
+     //console.log("url =" , url);
+     this.api.smartGet(url).subscribe((res: any) => {
+        //console.log("data " , res);
+        this.currentImageSrc = "data:image/jpeg;base64,"+res?.content;
+     });
+   }
 
   updateTab(tab){
     this.mainTab = tab;
@@ -79,13 +96,17 @@ export class LandingScreenComponent {
   getShutDownData() {
     this.images = [];
     this.api.smartGet('SITE_DASH_SHUTDOWN').subscribe((res: any) => {
+
        this.shutdowndata = res;
+       console.log(this.shutdowndata)
     });
   }
 
   startSlideshow(): void {
     setInterval(() => {
       this.getNextImage();
+      let image_id = parseInt(this.images[this.currentImageIndex]);
+      this.getImageUpdate(image_id);
     }, 3000); // Change 3000 to the desired timeout interval in milliseconds (3 seconds in this example)
   }
 

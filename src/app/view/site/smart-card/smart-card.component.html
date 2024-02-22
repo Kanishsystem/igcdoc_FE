@@ -119,6 +119,18 @@
                     </div>
                    
                 </div> 
+
+                <div class="card-1" *ngFor="let obj of data?.custom" routerLink="/custom-complaints-admin/{{obj.tlink}}">
+                    <div class="cardname">{{obj?.ctype}}</div>
+                    <div class="is-flex is-justify-content-space-around mt-5">
+                        <div class="numbers">{{obj?.total_count||0}}</div>
+                       
+                        <div class="iconBx">
+                            <i class="fa fa-globe"></i>
+                        </div>
+                    </div>
+                   
+                </div> 
                 <!-- <div class="card-1" *ngIf="isMe" routerLink="/mechanical-complaint-admin">
                     <div class="cardname">MECHANICAL</div>
                     <div class="is-flex is-justify-content-space-around mt-5">
@@ -130,7 +142,13 @@
                     </div>
                    
                 </div>                          -->
-            </div>          
+            </div> 
+            
+
+            
+
+
+
         </div>
     </div>
 </div>

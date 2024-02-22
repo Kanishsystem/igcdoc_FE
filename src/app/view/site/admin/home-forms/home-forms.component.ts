@@ -8,6 +8,7 @@ import { SmartTableColumnConfig, SmartTableConfig, SmartTableMainConfig } from '
 import { SmartDialogService } from 'src/app/shared/core/services/smart-dialog.service';
 import { default_delete_dialog, default_form_dialog, default_iframe_dialog } from '../../helpers/site-defaults';
 import { get_api_route } from 'src/app/api-services/api-router';
+import { SmartFileService } from 'src/app/shared/core/services/smart-file.service';
 
 @Component({
   selector: 'app-home-forms',
@@ -26,6 +27,7 @@ export class HomeFormsComponent {
     private smartDialog: SmartDialogService,
     private notify: NotifyService,
     private common: CommonService,
+    private smartFile:SmartFileService
 
 
   ) { }
@@ -352,6 +354,14 @@ export class HomeFormsComponent {
     dialog_options.iframe_payload = {id:id};  
     dialog_options.width = 90;
     this.smartDialog.openDialog(dialog_options)
+  }
+
+  downLoadFile(id,fileName:string){
+    let payload = {id:id};
+    this.api.smartPost("SITE_HOME_FORM_DOCUMENT_GET_DOCUMENT",payload).subscribe((res:any)=>{
+      this.smartFile.downLoadFile(res?.content, fileName);
+   })
+    
   }
 
 

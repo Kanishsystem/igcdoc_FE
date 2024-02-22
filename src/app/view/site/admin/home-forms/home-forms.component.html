@@ -48,7 +48,7 @@
       </ng-template>
     
       <div *ngIf="mode=='display'">
-      <div class="columns is-multiple document-card">
+      <div class="columns is-multiple document-card ">
         
         <div class="column is-12 card">
           <div class="title has-text-centered">
@@ -56,8 +56,17 @@
           </div>
           <div class="smart-license_doc  m-4 p-4">
             <ul class="my_list ">
-              <li class="subtitle smart_doc_list m-3 p-4 card" *ngFor="let item of tableData">
-                <span (click)="openPdfView(item)" style="cursor:pointer" >{{item.title}}</span>
+              <li class="subtitle m-3" *ngFor="let item of tableData;let i = index">
+                <div class="">
+                  <div (click)="downLoadFile(item.ID,item.doc_loc)" style="cursor:pointer" ><i class="fa fa-dot-circle-o mr-2" aria-hidden="true"></i>{{item.title}}</div>
+                  <!-- <div class="is-flex" >
+                    <div class="mr-5 has-text-info" (click)="openPdfView(item)"><i class="fa fa-eye" aria-hidden="true"></i></div>
+                    <div class="has-text-primary" (click)="downLoadFile(item.ID,item.doc_loc)"><i class="fa fa-download" aria-hidden="true"></i></div>
+                    
+                  </div> -->
+                </div>
+               
+               
               </li>        
             </ul>
           </div>

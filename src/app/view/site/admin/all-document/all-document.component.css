@@ -52,3 +52,6 @@
     height: 100vh;
     width: 100%;
 }
+.smart_doc_list{
+    display: flex;
+}

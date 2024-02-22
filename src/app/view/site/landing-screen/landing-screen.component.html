@@ -38,13 +38,15 @@
     </div>
   </div>
 </div>
-
+<!--- <div class="background-container" 
+    [ngStyle]="{'background-image': 'url(' + images[currentImageIndex] + ')'}"> -->
 <!-- this is the middle poortion starting -->
 <div *ngIf="mainTab=='main'"> 
 
 <div class="columns mt-5 smart-desk">
   <div class="column p-0 is-12">
-    <div class="background-container" [ngStyle]="{'background-image': 'url(' + images[currentImageIndex] + ')'}">
+    <div class="background-container" 
+    [ngStyle]="{'background-image': 'url('+currentImageSrc+')'}">
       <div class="content">
         <!-- Your content goes here -->
       </div>
@@ -60,15 +62,14 @@
 </div>
 <div class="notification has-background-warning-light is-light p-1 m-2 smart-top-notification">
   <marquee>
-    <mark class="scroll-view">
       <span *ngFor="let item of shutdowndata">
         {{item.description}}
-        <span class="mx-4">Date: {{item.from_date | date:'dd/MM/yyyy' }}
+        <span class="mx-4">Date: {{item.from_date | date:'dd/MM/yyyy' }} to {{item.to_date | date:'dd/MM/yyyy' }}
         </span>
         <span class="mx-4">Time:{{item.from_time}} to {{item.to_time}}</span>
         |
       </span>
-    </mark>
+   
     <!-- <span class="" *ngFor="let offer of offerList">
         {{offer.offer_desc}}
       </span> -->
@@ -182,33 +183,21 @@
 <!--- Footer code -->
 <div class="columns is-multiple smart-footer has-background-black">
 
-  <div class="column is-4 ">
-    <div class="footer-navigations  is-justify-content-space-around">
-      .
-      <!-- <div class="has-text-black">
-        <li><a class="has-text-white is-bordered is-size-5 my-4">History about RCL</a></li>
-        <li><a class="has-text-white is-bordered is-size-5 my-4">Gallery Section</a></li>
-        <li><a class="has-text-white is-bordered is-size-5 my-4">License Documents</a></li>
-        <li><a class="has-text-white is-bordered is-size-5 my-4">Awards</a></li>
-      </div> -->
-     
+
+  <div class="column is-8 mt-2 ml-4 ">
+    <div class="is-flex">
+    <p class="footer-address">{{ siteSettings?.site_footer }}{{ siteSettings?.site_contect_details }}</p>
+    <span class="has-text-white ">(Best Viewed @ google chrome and mozilla firefox)</span>
+    <!-- <p class="footer-address"></p> -->
   </div>
-  </div>
-  <div class="column is-4 mt-5  ">
-    <div >
-    <p class="footer-address">{{ siteSettings?.site_footer }}</p>
-    <p class="footer-address">{{ siteSettings?.site_contect_details }}</p>
-  </div>
-  <div class="footer-best-view is-right">
-    <span class="has-text-white ">Best Viewed @ google chrome and google firefox</span>
-  </div>
-  <div class="footer-best-view is-right">
-    <span class="has-text-white ">Best Display Resolution 1920 x 1080</span>
-  </div>
+
+  <!-- <div class="footer-best-view is-right">
+   
+  </div> -->
 </div>
   
   <div class="column is-4 has-text-centered">
-    <div class="has-text-white is-size-4">
+    <div class="has-text-white ">
       Website Visit Count :#{{siteSettings?.site_visitor_count}}
     </div>
     <div class="has-text-white">

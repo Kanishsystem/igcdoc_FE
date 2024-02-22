@@ -580,7 +580,7 @@ export class DocumentsComponent {
         validations: [
           {
             type: "required",
-            msg: "Document / Drawing Type is Required"
+            msg: "Document  Type is Required"
           }
         ]
       },

@@ -258,7 +258,7 @@ export const API_ROUTER = {
   HOME_IMAGES_GET_ONE: 'homeimages/get_one',
   HOME_IMAGES_DELETE_ONE: 'homeimages/delete_one',
   HOME_IMAGES_GET_ONE_IMAGE: 'homeimages/get_one_image',
-
+  HOME_IMAGES_GET_ONE_IMAGE_NEW: 'homeimages/get_one_image_new',
 
   // ORG
   ORG_INSERT: 'org/insert',
@@ -351,4 +351,5 @@ export const get_api_full_route = (route_index: string) => {
 
 export const SPINNER_BLOCK_API = [
   // environment.BASE_API_URL[0] + 'users'
+  environment.BASE_API_URL[0] + "homeimages/get_one_image_new",
 ];
